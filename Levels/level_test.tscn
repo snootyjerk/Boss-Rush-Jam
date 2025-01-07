@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://dff4s57byf83y"]
+
+[ext_resource type="Script" path="res://level.gd" id="1_cta5x"]
+[ext_resource type="PackedScene" uid="uid://78ali1yoytib" path="res://Player/player.tscn" id="2_y52ef"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4qw2i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_11cff"]
+size = Vector2(201, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s283j"]
+size = Vector2(190, 22)
+
+[node name="Level Test" type="Node2D"]
+script = ExtResource("1_cta5x")
+
+[node name="Player" parent="." instance=ExtResource("2_y52ef")]
+position = Vector2(368, 269)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(323, 228)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall"]
+position = Vector2(101.187, 144)
+scale = Vector2(201.625, 22.75)
+texture = SubResource("PlaceholderTexture2D_4qw2i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(101.5, 144)
+shape = SubResource("RectangleShape2D_11cff")
+
+[node name="Wall3" type="StaticBody2D" parent="."]
+position = Vector2(502, 282)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall3"]
+position = Vector2(101.187, 144)
+scale = Vector2(201.625, 22.75)
+texture = SubResource("PlaceholderTexture2D_4qw2i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
+position = Vector2(101.5, 144)
+shape = SubResource("RectangleShape2D_11cff")
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(323, 228)
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall2"]
+position = Vector2(428, 144)
+scale = Vector2(190, 22.75)
+texture = SubResource("PlaceholderTexture2D_4qw2i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+position = Vector2(428, 144)
+shape = SubResource("RectangleShape2D_s283j")
