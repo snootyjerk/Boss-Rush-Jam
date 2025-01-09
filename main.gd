@@ -7,6 +7,16 @@ static var node: Main
 
 var current_level: Level
 
+var player_health: int = Constants.PLAYER_MAX_HEALTH:
+	get:
+		return player_health
+func damage_player():
+	player_health = max(0, player_health - 1)
+	print("Player health = ", player_health)
+func heal_player():
+	player_health = min(player_health, Constants.PLAYER_MAX_HEALTH)
+	print("Player health = ", player_health)
+
 
 func _init():
 	node = self
