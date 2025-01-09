@@ -10,6 +10,9 @@ const TERMINAL_VELOCITY: int = 1500
 @export var _friction = 2500
 @export var _gravity = 500
 
+@export var _max_energy = 100
+@export var _flight_acceleration = 100
+
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _animation_player: AnimationPlayer = $AnimatedSprite2D/AnimationPlayer
 @onready var _jump_buffer_cast: RayCast2D = $JumpBufferCast
@@ -17,6 +20,9 @@ const TERMINAL_VELOCITY: int = 1500
 var _has_jumped = true
 var _is_jump_buffered = false
 var _was_on_floor = false
+var _is_flying = false
+var _current_energy = _max_energy
+
 
 var _input: Vector2
 
@@ -36,11 +42,18 @@ func _process(delta: float) -> void:
 		
 	if is_on_floor():
 		_has_jumped = false
+		_is_flying = false
+		
+		#Refills flight energy when grounded if it's below max
+		if _current_energy < _max_energy:   
+			_current_energy += 1
+		elif _current_energy > _max_energy:
+			_current_energy = _max_energy
+
 		if Input.is_action_just_pressed("jump") or _is_jump_buffered:
 			_jump()
-	else:
+	elif _is_flying == false:
 		#_animation_player.play("jump")
-		
 		# Variable jump height
 		var jump_release_speed = _jump_speed / 4.0
 		if Input.is_action_just_released("jump") and velocity.y < -jump_release_speed:
@@ -50,8 +63,13 @@ func _process(delta: float) -> void:
 		if _jump_buffer_cast.is_colliding():
 			if Input.is_action_just_pressed("jump"):
 				_is_jump_buffered = true
-	# end not is_on_floor()
-	
+		elif Input.is_action_just_pressed("jump") and _current_energy > 0: # Start flying if jump is pressed midair 	
+			_is_flying = true
+	#Flight
+	else:
+		_fly()
+		
+	#End flight
 	_was_on_floor = is_on_floor()
 	move_and_slide()
 
@@ -84,6 +102,11 @@ func _jump():
 	_has_jumped = true
 	_is_jump_buffered = false
 	
+func _fly():
+	velocity.y = -_flight_acceleration
+	_current_energy -= 1
+	if _current_energy <= 0 or Input.is_action_just_released("jump"):
+		_is_flying = false
 	
 func _update_input():
 	_input.x = Input.get_action_strength("right") - Input.get_action_strength("left")
