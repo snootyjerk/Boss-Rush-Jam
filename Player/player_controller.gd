@@ -67,6 +67,7 @@ func _process(delta: float) -> void:
 			_is_flying = true
 	#Flight
 	else:
+		#_animation_player.play("fly")
 		_fly()
 		
 	#End flight

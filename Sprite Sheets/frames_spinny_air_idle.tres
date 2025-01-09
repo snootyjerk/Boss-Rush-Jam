@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://cl7wjkdg26uod"]
+
+[ext_resource type="Texture2D" uid="uid://bg7r17qslxnug" path="res://Sprite Sheets/spinnyIdleAir.png" id="1_ss8iy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6d0f"]
+atlas = ExtResource("1_ss8iy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg602"]
+atlas = ExtResource("1_ss8iy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds0sd"]
+atlas = ExtResource("1_ss8iy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1tfqf"]
+atlas = ExtResource("1_ss8iy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_voth0"]
+atlas = ExtResource("1_ss8iy")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26skv"]
+atlas = ExtResource("1_ss8iy")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_avhhd"]
+atlas = ExtResource("1_ss8iy")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wae2"]
+atlas = ExtResource("1_ss8iy")
+region = Rect2(224, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6d0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bg602")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ds0sd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1tfqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_voth0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26skv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_avhhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wae2")
+}],
+"loop": true,
+"name": &"air_idle",
+"speed": 5.0
+}]

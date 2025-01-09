@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://vnp6pspyd1mk"]
+
+[ext_resource type="Texture2D" uid="uid://crddnwi3v45ky" path="res://Sprite Sheets/spinnyIdle.png" id="1_gs5hn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uyup"]
+atlas = ExtResource("1_gs5hn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwu2y"]
+atlas = ExtResource("1_gs5hn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_javll"]
+atlas = ExtResource("1_gs5hn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nwxm1"]
+atlas = ExtResource("1_gs5hn")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uyup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwu2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_javll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nwxm1")
+}],
+"loop": true,
+"name": &"ground_idle",
+"speed": 5.0
+}]
