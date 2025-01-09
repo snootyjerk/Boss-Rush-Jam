@@ -1,6 +1,8 @@
 extends Node
 class_name Main
 
+signal player_health_changed(new_health: int)
+
 @export var _first_level_scene: PackedScene
 @export var _game_over_scene: PackedScene
 
@@ -10,14 +12,17 @@ var current_level: Level
 var player_health: int = Constants.PLAYER_MAX_HEALTH:
 	get:
 		return player_health
+	set(new_health):
+		player_health = new_health
+		player_health_changed.emit(player_health)
 func damage_player():
 	player_health = max(0, player_health - 1)
-	print("Player health = ", player_health)
+	player_health_changed.emit(player_health)
 	if player_health < 1:
 		_show_game_over_screen()
 func heal_player():
 	player_health = min(player_health, Constants.PLAYER_MAX_HEALTH)
-	print("Player health = ", player_health)
+	player_health_changed.emit(player_health)
 
 
 var _game_over_node: Node
@@ -30,6 +35,7 @@ func _init():
 	
 func _ready():
 	go_to_level(_first_level_scene)
+	player_health_changed.emit(player_health)
 
 
 func go_to_level(level_scene: PackedScene):

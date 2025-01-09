@@ -1,11 +1,65 @@
-[gd_scene load_steps=4 format=3 uid="uid://ba2g4ofnehaba"]
+[gd_scene load_steps=6 format=3 uid="uid://ba2g4ofnehaba"]
 
 [ext_resource type="PackedScene" uid="uid://dff4s57byf83y" path="res://Levels/level_test.tscn" id="1_2x0na"]
 [ext_resource type="Script" path="res://main.gd" id="1_wael7"]
 [ext_resource type="PackedScene" uid="uid://bypwi50itfktm" path="res://Scenes/game_over.tscn" id="3_j2noh"]
+[ext_resource type="Script" path="res://hud.gd" id="4_a8hih"]
+[ext_resource type="Texture2D" uid="uid://bbjlyttolohup" path="res://Sprite Sheets/heart_icon.png" id="4_eroq4"]
 
 [node name="Main" type="Node"]
 process_mode = 3
 script = ExtResource("1_wael7")
 _first_level_scene = ExtResource("1_2x0na")
 _game_over_scene = ExtResource("3_j2noh")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 359.0
+script = ExtResource("4_a8hih")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+layout_direction = 2
+layout_mode = 1
+offset_right = 36.0
+offset_bottom = 18.0
+
+[node name="HeartIcon" type="TextureRect" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("4_eroq4")
+stretch_mode = 2
+
+[node name="HeartIcon2" type="TextureRect" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("4_eroq4")
+stretch_mode = 2
+
+[node name="HeartIcon3" type="TextureRect" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("4_eroq4")
+stretch_mode = 2
+
+[node name="HeartIcon4" type="TextureRect" parent="HUD/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("4_eroq4")
+stretch_mode = 2
+
+[node name="HeartIcon5" type="TextureRect" parent="HUD/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("4_eroq4")
+stretch_mode = 2
+
+[connection signal="player_health_changed" from="." to="HUD" method="_on_main_player_health_changed"]
