@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://pky0u0xtgc6h"]
+
+[ext_resource type="Script" path="res://next_level_trigger.gd" id="1_brlkq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxtq6"]
+
+[node name="NextLevelTrigger" type="Node2D"]
+script = ExtResource("1_brlkq")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_cxtq6")
+debug_color = Color(0.866667, 0.25098, 1, 0.886275)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
