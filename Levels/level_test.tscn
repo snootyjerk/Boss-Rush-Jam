@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dff4s57byf83y"]
+[gd_scene load_steps=8 format=3 uid="uid://dff4s57byf83y"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_cta5x"]
 [ext_resource type="Texture2D" uid="uid://xwc7bxfugy5d" path="res://Sprite Sheets/bg_test.png" id="2_1hbrp"]
 [ext_resource type="PackedScene" uid="uid://78ali1yoytib" path="res://Player/player.tscn" id="2_y52ef"]
 [ext_resource type="TileSet" uid="uid://ctjmvke53srhk" path="res://Tile Sets/tileset_test.tres" id="3_s8bue"]
+[ext_resource type="PackedScene" uid="uid://blroordjt6oi6" path="res://outlet.tscn" id="3_y0dj3"]
+[ext_resource type="PackedScene" uid="uid://dirybipb62lpw" path="res://cable_segment.tscn" id="4_0tdf5"]
 [ext_resource type="PackedScene" uid="uid://dn6303lg03qwh" path="res://Bosses/boss_test.tscn" id="4_ttgys"]
 
 [node name="Level Test" type="Node2D"]
@@ -15,6 +17,40 @@ self_modulate = Color(0.572549, 0.572549, 0.572549, 0.87451)
 position = Vector2(320, 179)
 texture = ExtResource("2_1hbrp")
 
+[node name="Outlet" parent="." instance=ExtResource("3_y0dj3")]
+position = Vector2(445, 315)
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Outlet/Plug" index="3"]
+node_a = NodePath("../Body")
+node_b = NodePath("../CableSegment")
+
+[node name="CableSegment" parent="Outlet/Plug" index="4" instance=ExtResource("4_0tdf5")]
+rotation = 2.37296
+
+[node name="PinJoint2D3" type="PinJoint2D" parent="Outlet/Plug" index="5"]
+position = Vector2(-42, -43)
+node_a = NodePath("../CableSegment")
+node_b = NodePath("../CableSegment2")
+
+[node name="CableSegment2" parent="Outlet/Plug" index="6" instance=ExtResource("4_0tdf5")]
+position = Vector2(-43, -44)
+rotation = 2.51538
+
+[node name="PinJoint2D4" type="PinJoint2D" parent="Outlet/Plug" index="7"]
+position = Vector2(-78, -93)
+node_a = NodePath("../CableSegment2")
+node_b = NodePath("../CableSegment3")
+
+[node name="CableSegment3" parent="Outlet/Plug" index="8" instance=ExtResource("4_0tdf5")]
+position = Vector2(-79, -94)
+rotation = 2.69837
+
+[node name="PinJoint2D5" type="PinJoint2D" parent="Outlet/Plug" index="9"]
+position = Vector2(-119, -145)
+node_a = NodePath("../CableSegment3")
+node_b = NodePath("../../../BossTest/StaticCollisionBox")
+softness = 4.07
+
 [node name="BossTest" parent="." instance=ExtResource("4_ttgys")]
 position = Vector2(324, 152)
 
@@ -25,3 +61,7 @@ position = Vector2(368, 269)
 tile_set = ExtResource("3_s8bue")
 format = 2
 layer_0/tile_data = PackedInt32Array(1245184, 1, 0, 1245185, 1, 0, 1245186, 1, 0, 1245187, 1, 0, 1245188, 1, 0, 1245189, 1, 0, 1245190, 1, 0, 1245194, 1, 0, 1245195, 1, 0, 1245196, 1, 0, 1245197, 1, 0, 1245198, 1, 0, 1245199, 1, 0, 1245200, 1, 0, 1245201, 1, 0, 1245202, 1, 0, 1245203, 1, 0, 1245204, 1, 0, 1245205, 1, 0, 1245206, 1, 0, 1245207, 1, 0, 1245208, 1, 0, 1245214, 1, 0, 1245215, 1, 0, 1245216, 1, 0, 1245217, 1, 0, 1245218, 1, 0, 1245219, 1, 0, 1179648, 1, 0, 1114112, 1, 0, 1048576, 1, 0, 983040, 1, 0, 917504, 1, 0, 851968, 1, 0, 786432, 1, 0, 720896, 1, 0, 655360, 1, 0, 589824, 1, 0, 524288, 1, 0, 458752, 1, 0, 393216, 1, 0, 327680, 1, 0, 262144, 1, 0, 196608, 1, 0, 131072, 1, 0, 65536, 1, 0, 0, 1, 0, 1179683, 1, 0, 1114147, 1, 0, 1048611, 1, 0, 983075, 1, 0, 917539, 1, 0, 852003, 1, 0, 786467, 1, 0, 720931, 1, 0, 655395, 1, 0, 589859, 1, 0, 524323, 1, 0, 458787, 1, 0, 393251, 1, 0, 327715, 1, 0, 262179, 1, 0, 196643, 1, 0, 131107, 1, 0, 65571, 1, 0, 35, 1, 0, -65536, 1, 0, -131072, 1, 0, -196608, 1, 0, -262144, 1, 0, -327680, 1, 0, -393216, 1, 0, -458752, 1, 0, -524288, 1, 0, -589824, 1, 0, -655360, 1, 0, -720896, 1, 0, -786432, 1, 0, -65501, 1, 0, -131037, 1, 0, -196573, 1, 0, -262109, 1, 0, -327645, 1, 0, -393181, 1, 0, -458717, 1, 0, -524253, 1, 0, -589789, 1, 0, -655325, 1, 0, -720861, 1, 0, -786397, 1, 0, 917538, 1, 0, 917537, 1, 0, 917536, 1, 0, 196642, 1, 0, 196641, 1, 0, 196640, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, -851968, 1, 0, -917504, 1, 0, -983040, 1, 0, -1048576, 1, 0, -1114112, 1, 0, -1179648, 1, 0, -1245184, 1, 0, -1310720, 1, 0, -1376256, 1, 0, -1441792, 1, 0, -917469, 1, 0, -851933, 1, 0, -983005, 1, 0, -1048541, 1, 0, -1114077, 1, 0, -1179613, 1, 0, -1245149, 1, 0, -1310685, 1, 0, -1376221, 1, 0, 720912, 1, 0, 720913, 1, 0, 720914, 1, 0, 720915, 1, 0, 720916, 1, 0, 720911, 1, 0, 1310726, 1, 0, 1310727, 1, 0, 1310728, 1, 0, 1310729, 1, 0, 1310730, 1, 0, 1310749, 1, 0, 1310748, 1, 0, 1310747, 1, 0, 1310746, 1, 0, 1310745, 1, 0, 1245209, 1, 0, 1245213, 1, 0, 1245191, 524289, 3, 1245192, 524289, 3, 1245193, 524289, 3, 1245210, 524289, 3, 1245211, 524289, 3, 1245212, 524289, 3)
+
+[editable path="Outlet"]
+[editable path="BossTest"]
+[editable path="BossTest/StaticBossHitbox"]

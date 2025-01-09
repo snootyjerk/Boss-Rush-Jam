@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://blroordjt6oi6"]
+
+[ext_resource type="Texture2D" uid="uid://h76p1njqv0um" path="res://Sprite Sheets/outlet.png" id="1_7y7ie"]
+[ext_resource type="Script" path="res://outlet.gd" id="2_j3olr"]
+[ext_resource type="Texture2D" uid="uid://8j2bxnkgeb3v" path="res://Sprite Sheets/plug.png" id="2_u8m3g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7t2y"]
+size = Vector2(23, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fr861"]
+size = Vector2(23, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmx4u"]
+size = Vector2(32, 38)
+
+[node name="Outlet" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_7y7ie")
+script = ExtResource("2_j3olr")
+
+[node name="Plug" type="Node2D" parent="."]
+
+[node name="Body" type="RigidBody2D" parent="Plug"]
+collision_layer = 0
+mass = 100.0
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plug/Body"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_n7t2y")
+
+[node name="Sprite2D" type="Sprite2D" parent="Plug/Body"]
+texture = ExtResource("2_u8m3g")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Plug"]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plug/StaticBody2D"]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_fr861")
+debug_color = Color(0.648963, 0.329865, 0.999858, 0.42)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Plug"]
+node_a = NodePath("../StaticBody2D")
+node_b = NodePath("../Body")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_kmx4u")
+debug_color = Color(0.593076, 0.546523, 0, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
