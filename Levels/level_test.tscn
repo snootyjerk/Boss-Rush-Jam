@@ -1,15 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dff4s57byf83y"]
+[gd_scene load_steps=4 format=3 uid="uid://dff4s57byf83y"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_cta5x"]
 [ext_resource type="PackedScene" uid="uid://78ali1yoytib" path="res://Player/player.tscn" id="2_y52ef"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4qw2i"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_11cff"]
-size = Vector2(201, 22)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s283j"]
-size = Vector2(190, 22)
+[ext_resource type="TileSet" uid="uid://ctjmvke53srhk" path="res://Tile Sets/tileset_test.tres" id="3_s8bue"]
 
 [node name="Level Test" type="Node2D"]
 script = ExtResource("1_cta5x")
@@ -17,41 +10,7 @@ script = ExtResource("1_cta5x")
 [node name="Player" parent="." instance=ExtResource("2_y52ef")]
 position = Vector2(368, 269)
 
-[node name="Wall" type="StaticBody2D" parent="."]
-position = Vector2(323, 228)
-collision_mask = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="Wall"]
-position = Vector2(101.187, 144)
-scale = Vector2(201.625, 22.75)
-texture = SubResource("PlaceholderTexture2D_4qw2i")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
-position = Vector2(101.5, 144)
-shape = SubResource("RectangleShape2D_11cff")
-
-[node name="Wall3" type="StaticBody2D" parent="."]
-position = Vector2(502, 282)
-collision_mask = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="Wall3"]
-position = Vector2(101.187, 144)
-scale = Vector2(201.625, 22.75)
-texture = SubResource("PlaceholderTexture2D_4qw2i")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
-position = Vector2(101.5, 144)
-shape = SubResource("RectangleShape2D_11cff")
-
-[node name="Wall2" type="StaticBody2D" parent="."]
-position = Vector2(323, 228)
-collision_mask = 0
-
-[node name="Sprite2D" type="Sprite2D" parent="Wall2"]
-position = Vector2(428, 144)
-scale = Vector2(190, 22.75)
-texture = SubResource("PlaceholderTexture2D_4qw2i")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
-position = Vector2(428, 144)
-shape = SubResource("RectangleShape2D_s283j")
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("3_s8bue")
+format = 2
+layer_0/tile_data = PackedInt32Array(1179664, 0, 0, 1179665, 0, 0, 1179666, 0, 0, 1179667, 0, 0, 1179668, 0, 0, 1179669, 0, 0, 1179670, 0, 0, 1179671, 0, 0, 1179672, 0, 0, 1179673, 0, 0, 1179674, 0, 0, 1179675, 0, 0, 1179676, 0, 0, 1179677, 0, 0, 1179678, 0, 0, 1179679, 0, 0, 1179680, 0, 0, 1179681, 0, 0, 1179682, 0, 0, 786462, 0, 0, 786463, 0, 0, 786464, 0, 0, 786465, 0, 0, 786466, 0, 0, 786467, 0, 0, 786468, 0, 0, 786469, 0, 0, 786470, 0, 0, 786471, 0, 0, 786472, 0, 0, 786473, 0, 0, 917517, 0, 0, 917516, 0, 0, 917515, 0, 0, 917514, 0, 0, 917513, 0, 0, 917512, 0, 0, 917511, 0, 0, 917510, 0, 0, 917509, 0, 0, 917508, 0, 0, 917507, 0, 0, 917506, 0, 0, 917505, 0, 0, 917504, 0, 0, 1048620, 0, 0, 1048621, 0, 0, 1048622, 0, 0, 1048623, 0, 0, 1048624, 0, 0, 1048625, 0, 0, 1048626, 0, 0, 1048627, 0, 0, 1048628, 0, 0, 1048629, 0, 0)
