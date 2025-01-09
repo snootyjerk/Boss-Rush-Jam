@@ -150,3 +150,4 @@ libraries = {
 
 [connection signal="body_entered" from="Hurtbox" to="Hurtbox" method="_on_body_entered"]
 [connection signal="body_exited" from="Hurtbox" to="Hurtbox" method="_on_body_exited"]
+[connection signal="damaged" from="Hurtbox" to="." method="_on_hurtbox_damaged"]

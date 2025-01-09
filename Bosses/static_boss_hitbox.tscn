@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3k50v47wuhsr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qe46y"]
+size = Vector2(42.5, 37.5)
+
+[node name="StaticBossHitbox" type="StaticBody2D"]
+collision_layer = 32
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, 7)
+shape = SubResource("RectangleShape2D_qe46y")
+debug_color = Color(0.851153, 0.217665, 0.746706, 0.42)

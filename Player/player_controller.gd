@@ -13,6 +13,8 @@ const TERMINAL_VELOCITY: int = 1500
 @export var _max_energy = 100
 @export var _flight_acceleration = 100
 
+@export var knockback_speed: float = 200
+
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _animation_player: AnimationPlayer = $AnimatedSprite2D/AnimationPlayer
 @onready var _jump_buffer_cast: RayCast2D = $JumpBufferCast
@@ -112,3 +114,8 @@ func _fly():
 func _update_input():
 	_input.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	_input.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+
+
+func _on_hurtbox_damaged(contact_point: Vector2) -> void:
+	var delta: Vector2 = (global_position - contact_point).normalized()
+	velocity = delta * knockback_speed

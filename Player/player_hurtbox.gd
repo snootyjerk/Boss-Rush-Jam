@@ -1,5 +1,6 @@
 extends Area2D
 
+signal damaged(contact_point: Vector2)
 
 @export var _sprite_flash_frequency: float
 @export var _sprite_flash_count: int
@@ -11,6 +12,7 @@ extends Area2D
 
 var _has_iframes: bool = false
 var _hitbox_collision_count: int
+var _hitbox_contact_point: Vector2
 
 
 func _ready():
@@ -21,6 +23,7 @@ func _on_body_entered(body):
 	_hitbox_collision_count += 1
 	if not _has_iframes:
 		_take_damage()
+		damaged.emit(body.global_position)
 		
 		
 func _on_body_exited(body):
