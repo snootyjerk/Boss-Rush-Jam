@@ -6,10 +6,15 @@ extends Area2D
 
 
 @onready var _sprite = $"../AnimatedSprite2D"
+@onready var flicker_animation_player: AnimationPlayer = $FlickerAnimationPlayer
 
 
 var _has_iframes: bool = false
 var _hitbox_collision_count: int
+
+
+func _ready():
+	flicker_animation_player.animation_finished.connect(_on_flicker_finished)
 
 
 func _on_body_entered(body):
@@ -25,13 +30,10 @@ func _on_body_exited(body):
 func _take_damage():
 	Main.node.damage_player()
 	_has_iframes = true
-	
-	for i in range(_sprite_flash_count):
-		_sprite.visible = false
-		await get_tree().create_timer(_sprite_flash_frequency).timeout
-		_sprite.visible = true
-		await get_tree().create_timer(_sprite_flash_frequency).timeout
-		
+	flicker_animation_player.play("flicker")
+
+
+func _on_flicker_finished(anim_name: StringName):
 	_has_iframes = false
 	if _hitbox_collision_count > 0:
 		_take_damage()
