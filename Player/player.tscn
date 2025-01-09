@@ -74,6 +74,7 @@ _air_acceleration = 500
 _air_friction = 800
 _friction = 1500
 _gravity = 1200
+_flight_acceleration = 200
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 3)
