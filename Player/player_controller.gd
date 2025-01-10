@@ -27,7 +27,7 @@ var _was_on_floor = false
 var _is_flying = false:
 	set(flying):
 		_is_flying = flying
-		attack_hitbox.visible = flying
+		attack_hitbox.set_enabled(flying)
 var _current_energy = _max_energy:
 	set(energy):
 		_current_energy = energy
