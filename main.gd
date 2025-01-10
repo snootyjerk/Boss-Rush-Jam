@@ -9,6 +9,8 @@ signal player_energy_changed(new_energy: int)
 
 static var node: Main
 
+@onready var hud: Control = $HUD
+
 var current_level: Level
 var player_health: int = Constants.PLAYER_MAX_HEALTH:
 	get:
@@ -70,6 +72,7 @@ func retry():
 	call_deferred("go_to_level", _first_level_scene)
 	get_tree().paused = false
 	player_health = Constants.PLAYER_MAX_HEALTH
+	hud.visible = true
 	
 
 func quit():
@@ -85,3 +88,4 @@ func _show_game_over_screen():
 	_game_over_node = _game_over_scene.instantiate()
 	get_tree().paused = true
 	node.add_child(_game_over_node)
+	hud.visible = false

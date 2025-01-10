@@ -2,8 +2,19 @@ extends CharacterBody2D
 
 
 @export var _move_speed: float = 50.0
+@export var _enemy_death_scene: PackedScene
+
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _process(delta: float) -> void:
 	velocity = global_position.direction_to(Main.node.player_position) * _move_speed
 	move_and_slide()
+
+
+func take_damage():
+	var death_scene = _enemy_death_scene.instantiate()
+	get_tree().current_scene.add_child(death_scene)
+	death_scene.global_position = global_position
+	queue_free()

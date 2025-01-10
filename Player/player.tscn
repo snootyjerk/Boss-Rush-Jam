@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://78ali1yoytib"]
+[gd_scene load_steps=16 format=3 uid="uid://78ali1yoytib"]
 
 [ext_resource type="Script" path="res://Player/player_controller.gd" id="1_36ivf"]
 [ext_resource type="SpriteFrames" uid="uid://dheukkw6hytet" path="res://Sprite Sheets/frames_spinny_ground_idle.tres" id="2_fh7ti"]
 [ext_resource type="Script" path="res://Player/player_hurtbox.gd" id="3_dgb65"]
+[ext_resource type="Script" path="res://Player/player_hitbox.gd" id="4_digm6"]
+[ext_resource type="Texture2D" uid="uid://sask81gr2qvw" path="res://Sprite Sheets/charge_collectible.png" id="5_l2lxv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c781r"]
 size = Vector2(18, 20)
@@ -102,6 +104,9 @@ _data = {
 "flicker": SubResource("Animation_16d1x")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8xa5"]
+size = Vector2(15, 9)
+
 [node name="Player" type="CharacterBody2D"]
 process_mode = 1
 collision_layer = 16
@@ -148,6 +153,23 @@ libraries = {
 "": SubResource("AnimationLibrary_3jlof")
 }
 
+[node name="AttackHitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("4_digm6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
+position = Vector2(-0.5, -11.5)
+shape = SubResource("RectangleShape2D_q8xa5")
+debug_color = Color(0.833177, 0.00134728, 0.93836, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="AttackHitbox"]
+texture_filter = 1
+position = Vector2(0, -12)
+scale = Vector2(3, 1)
+texture = ExtResource("5_l2lxv")
+
 [connection signal="body_entered" from="Hurtbox" to="Hurtbox" method="_on_body_entered"]
 [connection signal="body_exited" from="Hurtbox" to="Hurtbox" method="_on_body_exited"]
 [connection signal="damaged" from="Hurtbox" to="." method="_on_hurtbox_damaged"]
+[connection signal="body_entered" from="AttackHitbox" to="AttackHitbox" method="_on_body_entered"]

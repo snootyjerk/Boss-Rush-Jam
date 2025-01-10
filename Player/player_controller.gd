@@ -19,11 +19,15 @@ const TERMINAL_VELOCITY: int = 1500
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _animation_player: AnimationPlayer = $AnimatedSprite2D/AnimationPlayer
 @onready var _jump_buffer_cast: RayCast2D = $JumpBufferCast
+@onready var attack_hitbox: Area2D = $AttackHitbox
 
 var _has_jumped = true
 var _is_jump_buffered = false
 var _was_on_floor = false
-var _is_flying = false
+var _is_flying = false:
+	set(flying):
+		_is_flying = flying
+		attack_hitbox.visible = flying
 var _current_energy = _max_energy:
 	set(energy):
 		_current_energy = energy
