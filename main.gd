@@ -31,6 +31,8 @@ var player_energy: int = 100:
 	set(new_energy):
 		player_energy = new_energy
 		player_energy_changed.emit(player_energy)
+		
+var player_position: Vector2
 
 
 var _game_over_node: Node

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://q5fpykt0bb1v"]
+
+[ext_resource type="Texture2D" uid="uid://dy00dfrvlhb67" path="res://Sprite Sheets/Vaccum_Head.png" id="1_d8b8g"]
+[ext_resource type="Script" path="res://Enemies/enemy_test.gd" id="1_mhar8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oq3yb"]
+size = Vector2(24, 16)
+
+[node name="EnemyTest" type="CharacterBody2D"]
+collision_layer = 32
+script = ExtResource("1_mhar8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_oq3yb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_d8b8g")

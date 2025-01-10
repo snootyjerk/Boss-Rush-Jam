@@ -28,9 +28,6 @@ var _current_energy = _max_energy:
 	set(energy):
 		_current_energy = energy
 		Main.node.player_energy = _current_energy
-var energy:
-	get:
-		return _current_energy
 
 
 var _input: Vector2
@@ -82,6 +79,7 @@ func _process(delta: float) -> void:
 	#End flight
 	_was_on_floor = is_on_floor()
 	move_and_slide()
+	Main.node.player_position = global_position
 
 
 

@@ -86,7 +86,7 @@ offset_bottom = 56.0
 theme_override_styles/background = SubResource("StyleBoxFlat_kph2w")
 theme_override_styles/fill = SubResource("StyleBoxFlat_4cnt5")
 step = 1.0
-value = 50.0
+value = 100.0
 show_percentage = false
 
 [node name="ChargeIcon" type="TextureRect" parent="HUD"]
