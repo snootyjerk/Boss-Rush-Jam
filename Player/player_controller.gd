@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name PlayerController
 
 const TERMINAL_VELOCITY: int = 1500
 
@@ -23,7 +24,13 @@ var _has_jumped = true
 var _is_jump_buffered = false
 var _was_on_floor = false
 var _is_flying = false
-var _current_energy = _max_energy
+var _current_energy = _max_energy:
+	set(energy):
+		_current_energy = energy
+		Main.node.player_energy = _current_energy
+var energy:
+	get:
+		return _current_energy
 
 
 var _input: Vector2

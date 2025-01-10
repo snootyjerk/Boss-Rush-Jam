@@ -2,6 +2,7 @@ extends Node
 class_name Main
 
 signal player_health_changed(new_health: int)
+signal player_energy_changed(new_energy: int)
 
 @export var _first_level_scene: PackedScene
 @export var _game_over_scene: PackedScene
@@ -23,6 +24,13 @@ func damage_player():
 func heal_player():
 	player_health = min(player_health, Constants.PLAYER_MAX_HEALTH)
 	player_health_changed.emit(player_health)
+	
+var player_energy: int = 100:
+	get:
+		return player_energy
+	set(new_energy):
+		player_energy = new_energy
+		player_energy_changed.emit(player_energy)
 
 
 var _game_over_node: Node
