@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn6303lg03qwh"]
+[gd_scene load_steps=8 format=3 uid="uid://dn6303lg03qwh"]
 
 [ext_resource type="Texture2D" uid="uid://ktyjmqe2qvix" path="res://Sprite Sheets/Vaccum_Body.png" id="1_o2rdb"]
 [ext_resource type="Texture2D" uid="uid://dy00dfrvlhb67" path="res://Sprite Sheets/Vaccum_Head.png" id="2_6jmnq"]
 [ext_resource type="Texture2D" uid="uid://cico2gnt6y2ej" path="res://Sprite Sheets/Vaccum_hose.png" id="2_230tu"]
 [ext_resource type="PackedScene" uid="uid://d3k50v47wuhsr" path="res://Bosses/static_boss_hitbox.tscn" id="4_6et36"]
+[ext_resource type="Script" path="res://Bosses/head_character_2d.gd" id="4_ty75v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmq4e"]
 size = Vector2(36.5, 31.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iq4wm"]
+size = Vector2(20, 14.5)
 
 [node name="BossTest" type="Node2D"]
 scale = Vector2(2, 2)
@@ -24,11 +28,6 @@ width = 8.0
 texture = ExtResource("2_230tu")
 texture_mode = 1
 
-[node name="HeadSprite" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(0, 1)
-texture = ExtResource("2_6jmnq")
-
 [node name="StaticBossHitbox" parent="." instance=ExtResource("4_6et36")]
 
 [node name="CollisionShape2D" parent="StaticBossHitbox" index="0"]
@@ -40,5 +39,20 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticCollisionBox"]
 position = Vector2(-0.25, 8.25)
 shape = SubResource("RectangleShape2D_gmq4e")
+
+[node name="HeadCharacter2D" type="CharacterBody2D" parent="."]
+position = Vector2(0, 1)
+collision_layer = 128
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("4_ty75v")
+
+[node name="HeadSprite" type="Sprite2D" parent="HeadCharacter2D"]
+texture_filter = 1
+texture = ExtResource("2_6jmnq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HeadCharacter2D"]
+position = Vector2(0, -2.25)
+shape = SubResource("RectangleShape2D_iq4wm")
 
 [editable path="StaticBossHitbox"]
