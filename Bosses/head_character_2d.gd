@@ -5,16 +5,16 @@ extends CharacterBody2D
 @export var _strike_speed: float = 250
 @export var _tether_length: float = 100
 
-@export var _idle_timer_max = 10
+@export var _idle_timer_max = 70
 var _idle_timer = _idle_timer_max
 
-@export var _pause_timer_max = 70
+@export var _pause_timer_max = 20
 var _pause_timer = _pause_timer_max
 
 @export var _recover_timer_max = 100
 var _recover_timer = _recover_timer_max
 
-var _tether_point = global_position
+@onready var _tether_point = global_position
 var _target_direction = Vector2(1,0)
 enum _states {IDLE,PAUSE,STRIKE,RECOVER}
 #Idle: move back and forth, waiting for player to come in range. 
@@ -29,17 +29,20 @@ func _physics_process(delta: float) -> void:
 	match _current_state:
 		
 		_states.IDLE:
-			velocity = -_target_direction * _idle_speed
+			velocity = _target_direction * _idle_speed
 			_idle_timer -= 1
-			if _idle_timer <= 0 and _get_player_in_range():
+			if _get_player_in_range():
 				_idle_timer = _idle_timer_max
 				_update_state(_states.PAUSE)
 				_target_direction = global_position.direction_to(Main.node.player_position)
 			elif _idle_timer <= 0:
 				_idle_timer = _idle_timer_max
-			if position.distance_to(_tether_point) > _tether_length:
-				position = _tether_point
-				print(position.distance_to(_tether_point))
+				_target_direction = global_position.direction_to(_tether_point)
+			if global_position.distance_to(_tether_point) > _tether_length:
+				_target_direction = global_position.direction_to(_tether_point)
+				print("too far")
+				print(global_position.distance_to(_tether_point))
+				print(_tether_point)
 				
 		_states.PAUSE:
 			_pause_timer -= 1
@@ -51,7 +54,7 @@ func _physics_process(delta: float) -> void:
 		_states.STRIKE:
 			velocity = _target_direction * _strike_speed
 			if global_position.distance_to(_tether_point) > _tether_length:
-				_target_direction = _tether_point
+				_target_direction = global_position.direction_to(_tether_point)
 				_update_state(_states.RECOVER)
 				
 		_states.RECOVER:
@@ -61,7 +64,6 @@ func _physics_process(delta: float) -> void:
 				_recover_timer = _recover_timer_max
 				_update_state(_states.IDLE)
 			
-	var direction = global_position.direction_to(Main.node.player_position)
 	move_and_slide()
 	
 func _get_player_in_range() -> bool:

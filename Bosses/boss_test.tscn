@@ -42,7 +42,7 @@ shape = SubResource("RectangleShape2D_gmq4e")
 
 [node name="HeadCharacter2D" type="CharacterBody2D" parent="."]
 position = Vector2(0, 1)
-collision_layer = 128
+collision_layer = 32
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("4_ty75v")
