@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://cbw6nrg0a6ctr"]
+
+[ext_resource type="Texture2D" uid="uid://m3ssqsrsnvhn" path="res://Sprite Sheets/spinny_fan.png" id="1_vrhpp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkngw"]
+atlas = ExtResource("1_vrhpp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kc66"]
+atlas = ExtResource("1_vrhpp")
+region = Rect2(32, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkngw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kc66")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]

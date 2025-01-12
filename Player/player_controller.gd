@@ -44,11 +44,9 @@ func _process(delta: float) -> void:
 	
 	if _input.x == 0:
 		_apply_friction(delta)
-		_animation_player.play("idle")
 	else:
 		_apply_acceleration(delta, _input)
-		_flip_horizontal(_input.x > 0)
-		_animation_player.play("run")
+		_flip_horizontal(_input.x < 0)
 		
 	if is_on_floor():
 		_has_jumped = false
@@ -63,7 +61,6 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("jump") or _is_jump_buffered:
 			_jump()
 	elif _is_flying == false:
-		#_animation_player.play("jump")
 		# Variable jump height
 		var jump_release_speed = _jump_speed / 4.0
 		if Input.is_action_just_released("jump") and velocity.y < -jump_release_speed:
@@ -77,12 +74,12 @@ func _process(delta: float) -> void:
 			_is_flying = true
 	#Flight
 	else:
-		#_animation_player.play("fly")
 		_fly()
 		
 	#End flight
 	_was_on_floor = is_on_floor()
 	move_and_slide()
+	_animation()
 	Main.node.player_position = global_position
 
 
@@ -128,3 +125,14 @@ func _update_input():
 func _on_hurtbox_damaged(contact_point: Vector2) -> void:
 	var delta: Vector2 = (global_position - contact_point).normalized()
 	velocity = delta * knockback_speed
+	
+	
+	
+func _animation():
+	if is_on_floor():
+		if _input.x == 0:
+			_animation_player.play("idle")
+		else:
+			_animation_player.play("run")
+	else:
+		_animation_player.play("air")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crddnwi3v45ky"
-path="res://.godot/imported/spinnyIdle.png-080c3cc07624c96597b3bdd1104cfb39.ctex"
+uid="uid://bg3ag7dawm6re"
+path="res://.godot/imported/spinny.png-ececac83d7abdb1e94dc37ae580ee019.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite Sheets/spinnyIdle.png"
-dest_files=["res://.godot/imported/spinnyIdle.png-080c3cc07624c96597b3bdd1104cfb39.ctex"]
+source_file="res://Sprite Sheets/spinny.png"
+dest_files=["res://.godot/imported/spinny.png-ececac83d7abdb1e94dc37ae580ee019.ctex"]
 
 [params]
 
