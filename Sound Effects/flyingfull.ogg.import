@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://chlnsrbvo8w43"
+path="res://.godot/imported/flyingfull.ogg-6026b65eef96bad2ceb5b6de5580c185.oggvorbisstr"
+
+[deps]
+
+source_file="res://Sound Effects/flyingfull.ogg"
+dest_files=["res://.godot/imported/flyingfull.ogg-6026b65eef96bad2ceb5b6de5580c185.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

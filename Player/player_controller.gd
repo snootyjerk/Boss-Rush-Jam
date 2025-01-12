@@ -20,7 +20,11 @@ const TERMINAL_VELOCITY: int = 1500
 @onready var _animation_player: AnimationPlayer = $AnimatedSprite2D/AnimationPlayer
 @onready var _jump_buffer_cast: RayCast2D = $JumpBufferCast
 @onready var attack_hitbox: Area2D = $AttackHitbox
-@onready var audio_stream_player: AudioStreamPlayer = $AnimatedSprite2D/AudioStreamPlayer
+@onready var _audio_stream_player: AudioStreamPlayer = $AnimatedSprite2D/FootstepAudioPlayer
+@onready var _jump_audio_player: AudioStreamPlayer = $AnimatedSprite2D/JumpAudioPlayer
+@onready var fly_audio_player: AudioStreamPlayer = $AnimatedSprite2D/FlyAudioPlayer
+
+var _fly_audio_original_db: float
 
 var _has_jumped = true
 var _is_jump_buffered = false
@@ -37,6 +41,9 @@ var _current_energy = _max_energy:
 
 var _input: Vector2
 
+
+func _ready() -> void:
+	_fly_audio_original_db = fly_audio_player.volume_db
 
 
 func _process(delta: float) -> void:
@@ -111,12 +118,23 @@ func _jump():
 	velocity.y = -_jump_speed
 	_has_jumped = true
 	_is_jump_buffered = false
+	_animation_player.play("jump")
+	
 	
 func _fly():
 	velocity.y = -_flight_acceleration
 	_current_energy -= 1
+	if not fly_audio_player.playing:
+		fly_audio_player.volume_db = _fly_audio_original_db
+		fly_audio_player.play()
 	if _current_energy <= 0 or Input.is_action_just_released("jump"):
 		_is_flying = false
+		var tween = get_tree().create_tween()
+		tween.tween_property(fly_audio_player, "volume_db", -80.0, 0.2)
+		tween.finished.connect(func():
+			fly_audio_player.stop()
+		)
+	
 	
 func _update_input():
 	_input.x = Input.get_action_strength("right") - Input.get_action_strength("left")
@@ -136,9 +154,14 @@ func _animation():
 		else:
 			_animation_player.play("run")
 	else:
-		_animation_player.play("air")
+		if _is_flying:
+			_animation_player.play("air")
 
 
 func _on_foot_step():
-	audio_stream_player.pitch_scale = randf_range(0.5, 1.0)
-	audio_stream_player.play()
+	_audio_stream_player.pitch_scale = randf_range(0.5, 1.0)
+	_audio_stream_player.play()
+	
+	
+func _on_jump():
+	_jump_audio_player.play()
