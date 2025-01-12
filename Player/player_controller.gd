@@ -20,6 +20,7 @@ const TERMINAL_VELOCITY: int = 1500
 @onready var _animation_player: AnimationPlayer = $AnimatedSprite2D/AnimationPlayer
 @onready var _jump_buffer_cast: RayCast2D = $JumpBufferCast
 @onready var attack_hitbox: Area2D = $AttackHitbox
+@onready var audio_stream_player: AudioStreamPlayer = $AnimatedSprite2D/AudioStreamPlayer
 
 var _has_jumped = true
 var _is_jump_buffered = false
@@ -136,3 +137,8 @@ func _animation():
 			_animation_player.play("run")
 	else:
 		_animation_player.play("air")
+
+
+func _on_foot_step():
+	audio_stream_player.pitch_scale = randf_range(0.5, 1.0)
+	audio_stream_player.play()
