@@ -135,6 +135,9 @@ func _fly():
 			fly_audio_player.stop()
 		)
 	
+func _add_velocity(added_velocity: Vector2):
+	velocity += added_velocity
+	
 	
 func _update_input():
 	_input.x = Input.get_action_strength("right") - Input.get_action_strength("left")

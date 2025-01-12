@@ -16,11 +16,13 @@ var _recover_timer = _recover_timer_max
 
 @onready var _tether_point = global_position
 var _target_direction = Vector2(1,0)
-enum _states {IDLE,PAUSE,STRIKE,RECOVER}
+enum _states {IDLE,PAUSE,STRIKE,RECOVER,VACUUM}
 #Idle: move back and forth, waiting for player to come in range. 
 #Pause: wait a short while before charging at player
 #Strike: charge at player
 #Recover: move towards tether point, return to idle state 
+#Vacuum: Emit a coneshaped hit box and sweep it across the level. 
+	#Objects caught in the hitbox will be pulled towards the boss.
 
 var _current_state = _states.IDLE
 var _prev_state = _states.IDLE
