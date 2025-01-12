@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bghueghrqkq31"
-path="res://.godot/imported/tilemap_packed.png-5e8f7509e10001b69f50c9e079b4ec84.ctex"
+uid="uid://bev0tjgbyk6df"
+path="res://.godot/imported/spike_bwall.png-c43a8b239ec746bfd912224b315cfcb1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tile Sets/tilemap_packed.png"
-dest_files=["res://.godot/imported/tilemap_packed.png-5e8f7509e10001b69f50c9e079b4ec84.ctex"]
+source_file="res://Sprite Sheets/spike_bwall.png"
+dest_files=["res://.godot/imported/spike_bwall.png-c43a8b239ec746bfd912224b315cfcb1.ctex"]
 
 [params]
 

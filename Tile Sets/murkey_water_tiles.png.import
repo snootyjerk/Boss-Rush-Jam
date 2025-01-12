@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx8i6nhkgktsb"
-path="res://.godot/imported/tiles_test.png-7c775d64a08c78a7b7eab4ffa067a7d6.ctex"
+uid="uid://b8p6gmymgqw5e"
+path="res://.godot/imported/murkey_water_tiles.png-e7c670da2b821dd54b7b465f3304cf12.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tile Sets/tiles_test.png"
-dest_files=["res://.godot/imported/tiles_test.png-7c775d64a08c78a7b7eab4ffa067a7d6.ctex"]
+source_file="res://Tile Sets/murkey_water_tiles.png"
+dest_files=["res://.godot/imported/murkey_water_tiles.png-e7c670da2b821dd54b7b465f3304cf12.ctex"]
 
 [params]
 
