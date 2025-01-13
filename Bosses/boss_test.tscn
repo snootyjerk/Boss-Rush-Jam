@@ -63,6 +63,8 @@ position = Vector2(0, -1)
 collision_layer = 0
 collision_mask = 80
 script = ExtResource("6_nhmuq")
+_power = 6000
+_rotation_speed = 0.1
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HeadCharacter2D/SuctionHitbox"]
 rotation = 1.01578
