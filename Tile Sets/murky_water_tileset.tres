@@ -1,36 +1,22 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cehu7pplthxg4"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cct8db38hqdxt"]
 
 [ext_resource type="Texture2D" uid="uid://b8p6gmymgqw5e" path="res://Tile Sets/murkey_water_tiles.png" id="1_2uogh"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s5l80"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1rd36"]
 texture = ExtResource("1_2uogh")
 0:0/animation_columns = 8
+0:0/animation_speed = 4.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/animation_frame_4/duration = 1.0
+0:0/animation_frame_5/duration = 1.0
+0:0/animation_frame_6/duration = 1.0
+0:0/animation_frame_7/duration = 1.0
 0:0/0 = 0
-0:0/0/modulate = Color(1, 1, 1, 0.831373)
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:0/0 = 0
-1:0/0/modulate = Color(1, 1, 1, 0.831373)
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:0/0 = 0
-2:0/0/modulate = Color(1, 1, 1, 0.831373)
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-3:0/0 = 0
-3:0/0/modulate = Color(1, 1, 1, 0.831373)
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-4:0/0 = 0
-4:0/0/modulate = Color(1, 1, 1, 0.831373)
-4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-5:0/0 = 0
-5:0/0/modulate = Color(1, 1, 1, 0.831373)
-5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-6:0/0 = 0
-6:0/0/modulate = Color(1, 1, 1, 0.831373)
-6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-7:0/0 = 0
-7:0/0/modulate = Color(1, 1, 1, 0.831373)
-7:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [resource]
-physics_layer_0/collision_layer = 32
-physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_s5l80")
+physics_layer_0/collision_layer = 0
+physics_layer_0/collision_mask = 32
+sources/0 = SubResource("TileSetAtlasSource_1rd36")

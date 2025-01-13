@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dn6303lg03qwh" path="res://Bosses/boss_test.tscn" id="4_ttgys"]
 [ext_resource type="TileSet" uid="uid://7iu1neo0872o" path="res://Tile Sets/vacuum_boss_tileset.tres" id="8_1ms8r"]
 [ext_resource type="PackedScene" uid="uid://q5fpykt0bb1v" path="res://Enemies/enemy_test.tscn" id="9_lm43w"]
-[ext_resource type="TileSet" uid="uid://cehu7pplthxg4" path="res://Tile Sets/murky_water_tileset.tres" id="9_nh304"]
+[ext_resource type="TileSet" uid="uid://cct8db38hqdxt" path="res://Tile Sets/murky_water_tileset.tres" id="9_nh304"]
 
 [node name="Level Test" type="Node2D"]
 script = ExtResource("1_cta5x")
