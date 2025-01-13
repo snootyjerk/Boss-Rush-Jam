@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dn6303lg03qwh"]
+[gd_scene load_steps=10 format=3 uid="uid://dn6303lg03qwh"]
 
 [ext_resource type="Texture2D" uid="uid://ktyjmqe2qvix" path="res://Sprite Sheets/Vaccum_Body.png" id="1_o2rdb"]
 [ext_resource type="Texture2D" uid="uid://dy00dfrvlhb67" path="res://Sprite Sheets/Vaccum_Head.png" id="2_6jmnq"]
@@ -12,6 +12,8 @@ size = Vector2(36.5, 31.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iq4wm"]
 size = Vector2(20, 14.5)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_rtbpd"]
 
 [node name="BossTest" type="Node2D"]
 scale = Vector2(2, 2)
@@ -56,16 +58,22 @@ texture = ExtResource("2_6jmnq")
 position = Vector2(0, -2.25)
 shape = SubResource("RectangleShape2D_iq4wm")
 
-[node name="Area2D" type="Area2D" parent="HeadCharacter2D"]
+[node name="SuctionHitbox" type="Area2D" parent="HeadCharacter2D"]
 position = Vector2(0, -1)
 collision_layer = 0
-collision_mask = 16
+collision_mask = 80
 script = ExtResource("6_nhmuq")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HeadCharacter2D/Area2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HeadCharacter2D/SuctionHitbox"]
 rotation = 1.01578
 polygon = PackedVector2Array(0, 0, 20, 100, -20, 100)
 
-[connection signal="body_entered" from="HeadCharacter2D/Area2D" to="HeadCharacter2D/Area2D" method="_on_body_entered"]
+[node name="Polygon2D" type="Polygon2D" parent="HeadCharacter2D/SuctionHitbox/CollisionPolygon2D"]
+color = Color(0.58, 0.2552, 0.174, 0.85098)
+texture = SubResource("CanvasTexture_rtbpd")
+polygon = PackedVector2Array(0, 0, 20, 100, -20, 100)
+
+[connection signal="body_entered" from="HeadCharacter2D/SuctionHitbox" to="HeadCharacter2D/SuctionHitbox" method="_on_body_entered"]
+[connection signal="body_exited" from="HeadCharacter2D/SuctionHitbox" to="HeadCharacter2D/SuctionHitbox" method="_on_body_exited"]
 
 [editable path="StaticBossHitbox"]

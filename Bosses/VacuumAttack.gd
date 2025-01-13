@@ -1,8 +1,11 @@
 extends Area2D
 
-@export var _power = 500
+@export var _power = 15
 @export var _rotation_speed = .01
 var _active = true
+
+var _target_list = Array()
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_set_enabled(true)
@@ -11,7 +14,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	rotation -= _rotation_speed
-	
+	for target in _target_list:
+		target._add_velocity(target.global_position.direction_to(global_position) * _power)
 	
 func _set_enabled(enabled: bool):
 	_active = enabled
@@ -22,8 +26,12 @@ func _set_enabled(enabled: bool):
 func _reset():
 	rotation = 0
 	_set_enabled(false)
+	_target_list.clear()
 	
 
 func _on_body_entered(body: Node2D) -> void:
-	print("hit")
-	body._add_velocity(body.global_position.direction_to(global_position) * _power)
+	_target_list.append(body)
+	#body._add_velocity(body.global_position.direction_to(global_position) * _power)
+
+func _on_body_exited(body: Node2D) -> void:
+	_target_list.erase(body)

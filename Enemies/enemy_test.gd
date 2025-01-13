@@ -18,3 +18,6 @@ func take_damage():
 	get_tree().current_scene.add_child(death_scene)
 	death_scene.global_position = global_position
 	queue_free()
+
+func _add_velocity(added_velocity: Vector2):
+	velocity += added_velocity
