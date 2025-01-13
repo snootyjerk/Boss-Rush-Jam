@@ -64,6 +64,8 @@ softness = 4.07
 
 [node name="Anchor" type="StaticBody2D" parent="Outlet/Plug" index="10"]
 position = Vector2(-119, -145)
+collision_layer = 2147483648
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Outlet/Plug/Anchor"]
 shape = SubResource("RectangleShape2D_jtchg")
