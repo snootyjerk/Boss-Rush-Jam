@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dn6303lg03qwh"]
+[gd_scene load_steps=11 format=3 uid="uid://dn6303lg03qwh"]
 
 [ext_resource type="Texture2D" uid="uid://ktyjmqe2qvix" path="res://Sprite Sheets/Vaccum_Body.png" id="1_o2rdb"]
 [ext_resource type="Texture2D" uid="uid://dy00dfrvlhb67" path="res://Sprite Sheets/Vaccum_Head.png" id="2_6jmnq"]
-[ext_resource type="Texture2D" uid="uid://cico2gnt6y2ej" path="res://Sprite Sheets/Vaccum_hose.png" id="2_230tu"]
+[ext_resource type="Texture2D" uid="uid://1uq1jmjbyarw" path="res://Sprite Sheets/Vaccum_pipe.png" id="2_rt2ye"]
+[ext_resource type="Script" path="res://Bosses/vacuum_hose.gd" id="3_ll0tt"]
 [ext_resource type="PackedScene" uid="uid://d3k50v47wuhsr" path="res://Bosses/static_boss_hitbox.tscn" id="4_6et36"]
 [ext_resource type="Script" path="res://Bosses/head_character_2d.gd" id="4_ty75v"]
 [ext_resource type="Script" path="res://Bosses/VacuumAttack.gd" id="6_nhmuq"]
@@ -22,14 +23,17 @@ scale = Vector2(2, 2)
 texture_filter = 1
 texture = ExtResource("1_o2rdb")
 
-[node name="HoseLine" type="Line2D" parent="."]
+[node name="HoseLine" type="Line2D" parent="." node_paths=PackedStringArray("_tethered_node")]
 texture_filter = 1
 texture_repeat = 2
-position = Vector2(0, 15)
-points = PackedVector2Array(0, 1, 0, -13)
-width = 8.0
-texture = ExtResource("2_230tu")
+points = PackedVector2Array(0, 16, 45.5, -23)
+width = 12.0
+texture = ExtResource("2_rt2ye")
 texture_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
+script = ExtResource("3_ll0tt")
+_tethered_node = NodePath("../HeadCharacter2D")
 
 [node name="StaticBossHitbox" parent="." instance=ExtResource("4_6et36")]
 
@@ -63,8 +67,8 @@ position = Vector2(0, -1)
 collision_layer = 0
 collision_mask = 80
 script = ExtResource("6_nhmuq")
-_power = 6000
-_rotation_speed = 0.1
+_power = 4000
+_rotation_speed = 0.5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HeadCharacter2D/SuctionHitbox"]
 rotation = 1.01578
