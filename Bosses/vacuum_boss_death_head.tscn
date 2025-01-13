@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://qpbodhkhs4ke"]
+
+[ext_resource type="Texture2D" uid="uid://dy00dfrvlhb67" path="res://Sprite Sheets/Vaccum_Head.png" id="1_lm12o"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i3pso"]
+bounce = 0.05
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0sevr"]
+radius = 11.0
+
+[node name="VacuumBossDeathHead" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_i3pso")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_0sevr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_lm12o")

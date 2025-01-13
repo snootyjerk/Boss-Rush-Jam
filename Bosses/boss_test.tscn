@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://dn6303lg03qwh"]
+[gd_scene load_steps=13 format=3 uid="uid://dn6303lg03qwh"]
 
+[ext_resource type="Script" path="res://Bosses/boss_vacuum.gd" id="1_dodtl"]
 [ext_resource type="Texture2D" uid="uid://ktyjmqe2qvix" path="res://Sprite Sheets/Vaccum_Body.png" id="1_o2rdb"]
 [ext_resource type="Texture2D" uid="uid://dy00dfrvlhb67" path="res://Sprite Sheets/Vaccum_Head.png" id="2_6jmnq"]
+[ext_resource type="PackedScene" uid="uid://cca1yaaya3ctj" path="res://Bosses/vacuum_boss_death.tscn" id="2_j62r2"]
 [ext_resource type="Texture2D" uid="uid://1uq1jmjbyarw" path="res://Sprite Sheets/Vaccum_pipe.png" id="2_rt2ye"]
 [ext_resource type="Script" path="res://Bosses/vacuum_hose.gd" id="3_ll0tt"]
 [ext_resource type="PackedScene" uid="uid://d3k50v47wuhsr" path="res://Bosses/static_boss_hitbox.tscn" id="4_6et36"]
@@ -18,6 +20,8 @@ size = Vector2(20, 14.5)
 
 [node name="BossTest" type="Node2D"]
 scale = Vector2(2, 2)
+script = ExtResource("1_dodtl")
+_boss_death_scene = ExtResource("2_j62r2")
 
 [node name="BodySprite" type="Sprite2D" parent="."]
 texture_filter = 1

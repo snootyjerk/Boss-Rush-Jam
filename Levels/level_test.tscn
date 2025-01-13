@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dff4s57byf83y"]
+[gd_scene load_steps=12 format=3 uid="uid://dff4s57byf83y"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_cta5x"]
 [ext_resource type="Texture2D" uid="uid://djv0wop88b75l" path="res://Sprite Sheets/bg_vacuum.png" id="2_phtop"]
@@ -10,6 +10,8 @@
 [ext_resource type="TileSet" uid="uid://7iu1neo0872o" path="res://Tile Sets/vacuum_boss_tileset.tres" id="8_1ms8r"]
 [ext_resource type="PackedScene" uid="uid://q5fpykt0bb1v" path="res://Enemies/enemy_test.tscn" id="9_lm43w"]
 [ext_resource type="TileSet" uid="uid://cct8db38hqdxt" path="res://Tile Sets/murky_water_tileset.tres" id="9_nh304"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtchg"]
 
 [node name="Level Test" type="Node2D"]
 script = ExtResource("1_cta5x")
@@ -57,8 +59,14 @@ rotation = 2.69837
 [node name="PinJoint2D5" type="PinJoint2D" parent="Outlet/Plug" index="9"]
 position = Vector2(-119, -145)
 node_a = NodePath("../CableSegment3")
-node_b = NodePath("../../../BossTest/StaticCollisionBox")
+node_b = NodePath("../Anchor")
 softness = 4.07
+
+[node name="Anchor" type="StaticBody2D" parent="Outlet/Plug" index="10"]
+position = Vector2(-119, -145)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Outlet/Plug/Anchor"]
+shape = SubResource("RectangleShape2D_jtchg")
 
 [node name="BossTest" parent="." instance=ExtResource("4_ttgys")]
 position = Vector2(322, 145)
@@ -85,6 +93,7 @@ position = Vector2(503, 152)
 [node name="EnemyTest3" parent="." instance=ExtResource("9_lm43w")]
 position = Vector2(322, 37)
 
+[connection signal="boss_defeated" from="." to="BossTest" method="_on_level_boss_defeated"]
 [connection signal="unplugged" from="Outlet" to="." method="_on_outlet_unplugged"]
 
 [editable path="Outlet"]

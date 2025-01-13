@@ -1,8 +1,12 @@
 extends Node2D
 class_name Level
 
+signal boss_defeated
+
 const LEVEL_DIR: String = "res://Levels/level_"
+
 @export var _next_level_name: String
+
 @onready var boss_music: AudioStreamPlayer = $BossMusic
 
 
@@ -18,6 +22,8 @@ var is_boss_defeated: bool:
 		_is_boss_defeated = defeated
 		if defeated:
 			boss_music.stop()
+			boss_defeated.emit()
+			
 
 
 # make invisible for level transition

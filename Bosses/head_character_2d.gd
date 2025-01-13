@@ -1,4 +1,8 @@
 extends CharacterBody2D
+class_name VacuumHead
+
+
+var _boss_death_head = preload("res://Bosses/vacuum_boss_death_head.tscn")
 
 
 @export var _idle_speed: float = 25
@@ -67,6 +71,13 @@ func _physics_process(delta: float) -> void:
 				_update_state(_states.IDLE)
 			
 	move_and_slide()
+	
+	
+func on_boss_defeated():
+	var dead_head = _boss_death_head.instantiate()
+	Main.node.current_level.add_child(dead_head)
+	dead_head.global_position = global_position
+	
 	
 func _get_player_in_range() -> bool:
 	var _player_distance =  _tether_point.distance_to(Main.node.player_position)
