@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dff4s57byf83y"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_cta5x"]
-[ext_resource type="Texture2D" uid="uid://xwc7bxfugy5d" path="res://Sprite Sheets/bg_test.png" id="2_1hbrp"]
+[ext_resource type="Texture2D" uid="uid://djv0wop88b75l" path="res://Sprite Sheets/bg_vacuum.png" id="2_phtop"]
 [ext_resource type="PackedScene" uid="uid://78ali1yoytib" path="res://Player/player.tscn" id="2_y52ef"]
 [ext_resource type="AudioStream" uid="uid://dxj8wkhwibvri" path="res://Music/boss 1.ogg" id="3_6fsmp"]
 [ext_resource type="PackedScene" uid="uid://blroordjt6oi6" path="res://outlet.tscn" id="3_y0dj3"]
@@ -18,7 +18,7 @@ _next_level_name = "test2"
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
 self_modulate = Color(0.572549, 0.572549, 0.572549, 0.87451)
 position = Vector2(320, 179)
-texture = ExtResource("2_1hbrp")
+texture = ExtResource("2_phtop")
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6fsmp")
