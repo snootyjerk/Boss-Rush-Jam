@@ -3,6 +3,8 @@ class_name PlayerController
 
 const TERMINAL_VELOCITY: int = 1500
 
+var _fan_projectile_scene = preload("res://Player/fan_projectile.tscn")
+
 @export var _max_run_speed = 100
 @export var _jump_speed = 300
 @export var _acceleration = 450
@@ -16,6 +18,7 @@ const TERMINAL_VELOCITY: int = 1500
 
 @export var knockback_speed: float = 200
 
+
 @onready var _sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var _animation_player: AnimationPlayer = $AnimatedSprite2D/AnimationPlayer
 @onready var _jump_buffer_cast: RayCast2D = $JumpBufferCast
@@ -23,12 +26,14 @@ const TERMINAL_VELOCITY: int = 1500
 @onready var _audio_stream_player: AudioStreamPlayer = $AnimatedSprite2D/FootstepAudioPlayer
 @onready var _jump_audio_player: AudioStreamPlayer = $AnimatedSprite2D/JumpAudioPlayer
 @onready var fly_audio_player: AudioStreamPlayer = $AnimatedSprite2D/FlyAudioPlayer
+@onready var fan_launch_point: Node2D = $AnimatedSprite2D/FanLaunchPoint
 
 var _fly_audio_original_db: float
 
 var _has_jumped = true
 var _is_jump_buffered = false
 var _was_on_floor = false
+var _has_fan: bool = true
 var _is_flying = false:
 	set(flying):
 		_is_flying = flying
@@ -38,15 +43,27 @@ var _current_energy = _max_energy:
 		_current_energy = energy
 		Main.node.player_energy = _current_energy
 
+enum States { MOBILE, THROW_FAN }
+var _state: States = States.MOBILE
+
 
 var _input: Vector2
 
 
 func _ready() -> void:
 	_fly_audio_original_db = fly_audio_player.volume_db
+	$AnimatedSprite2D/ArmsPivot/ArmsSprite.visible = false
 
 
 func _process(delta: float) -> void:
+	match _state:
+		States.MOBILE:
+			_state_mobile(delta)
+		States.THROW_FAN:
+			_state_throw_fan(delta)
+
+
+func _state_mobile(delta: float):
 	_update_input()
 	_apply_gravity(delta)
 	
@@ -79,7 +96,7 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("jump"):
 				_is_jump_buffered = true
 		elif Input.is_action_just_pressed("jump") and _current_energy > 0: # Start flying if jump is pressed midair 	
-			_is_flying = true
+			_is_flying = _has_fan
 	#Flight
 	else:
 		_fly()
@@ -88,8 +105,15 @@ func _process(delta: float) -> void:
 	_was_on_floor = is_on_floor()
 	move_and_slide()
 	_animation()
+	
+	if Input.is_action_just_pressed("throw") and _has_fan:
+		_throw_fan()
+	
 	Main.node.player_position = global_position
-
+	
+	
+func _state_throw_fan(delta: float):
+	pass
 
 
 func _apply_gravity(delta):
@@ -111,7 +135,7 @@ func _apply_acceleration(delta, input_vector: Vector2):
 	
 	
 func _flip_horizontal(_flip: bool):
-	_sprite.flip_h = _flip
+	_sprite.scale.x = -1 if _flip else 1
 	
 	
 func _jump():
@@ -122,18 +146,43 @@ func _jump():
 	
 	
 func _fly():
-	velocity.y = -_flight_acceleration
-	_current_energy -= 1
-	if not fly_audio_player.playing:
-		fly_audio_player.volume_db = _fly_audio_original_db
-		fly_audio_player.play()
-	if _current_energy <= 0 or Input.is_action_just_released("jump"):
+	if _has_fan:
+		velocity.y = -_flight_acceleration
+		_current_energy -= 1
+		if not fly_audio_player.playing:
+			fly_audio_player.volume_db = _fly_audio_original_db
+			fly_audio_player.play()
+		if _current_energy <= 0 or Input.is_action_just_released("jump"):
+			_is_flying = false
+			var tween = get_tree().create_tween()
+			tween.tween_property(fly_audio_player, "volume_db", -80.0, 0.2)
+			tween.finished.connect(func():
+				fly_audio_player.stop()
+			)
+		
+		
+func _throw_fan():
+	if _has_fan:
+		_animation_player.play("throw")
+		velocity = Vector2.ZERO
 		_is_flying = false
-		var tween = get_tree().create_tween()
-		tween.tween_property(fly_audio_player, "volume_db", -80.0, 0.2)
-		tween.finished.connect(func():
-			fly_audio_player.stop()
+		_has_fan = false
+		_state = States.THROW_FAN
+		
+		var fan_projectile = _fan_projectile_scene.instantiate()
+		Main.node.current_level.add_child(fan_projectile)
+		fan_projectile.global_position = fan_launch_point.global_position
+		fan_projectile.throw(_sprite.scale.x)
+		fan_projectile.recalled.connect(func():
+			_has_fan = true
 		)
+	
+
+	
+	
+func _on_throw_animation_finished():
+	_state = States.MOBILE
+		
 	
 func _add_velocity(added_velocity: Vector2):
 	velocity += added_velocity
@@ -159,6 +208,8 @@ func _animation():
 	else:
 		if _is_flying:
 			_animation_player.play("air")
+		#if not _has_fan:
+			#_animation_player.play("air_no_fan")
 
 
 func _on_foot_step():
