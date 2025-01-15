@@ -5,11 +5,15 @@ extends CharacterBody2D
 @export var _enemy_death_scene: PackedScene
 
 
+var _is_being_sucked_up: bool = false
+
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _process(delta: float) -> void:
-	velocity = global_position.direction_to(Main.node.player_position) * _move_speed
+	if not _is_being_sucked_up:
+		velocity = global_position.direction_to(Main.node.player_position) * _move_speed
 	move_and_slide()
 
 
@@ -20,4 +24,5 @@ func take_damage():
 	queue_free()
 
 func _add_velocity(added_velocity: Vector2):
-	velocity += added_velocity
+	velocity = added_velocity
+	_is_being_sucked_up = true

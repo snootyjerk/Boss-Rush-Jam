@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhexa4a8g27k3"]
+
+[ext_resource type="Script" path="res://Enemies/SmallVacuum/suction_hitbox_small.gd" id="1_48tcj"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_rtbpd"]
+
+[node name="SuctionHitbox" type="Area2D"]
+position = Vector2(0, -1)
+collision_layer = 0
+collision_mask = 80
+script = ExtResource("1_48tcj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+rotation = -1.11191
+polygon = PackedVector2Array(0, 0, 20, 100, -20, 100)
+
+[node name="Polygon2D" type="Polygon2D" parent="CollisionPolygon2D"]
+visible = false
+rotation = 0.554159
+color = Color(0.49, 0.6615, 0.98, 0.301961)
+texture = SubResource("CanvasTexture_rtbpd")
+polygon = PackedVector2Array(0, 0, 20, 100, -20, 100)
+
+[node name="SuctionParticles" type="CPUParticles2D" parent="CollisionPolygon2D"]
+position = Vector2(0.983879, 97.0929)
+rotation = -1.62075
+amount = 12
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 11.21
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 175.0
+initial_velocity_max = 175.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

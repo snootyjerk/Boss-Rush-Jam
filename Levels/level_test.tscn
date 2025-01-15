@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dff4s57byf83y"]
+[gd_scene load_steps=13 format=3 uid="uid://dff4s57byf83y"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_cta5x"]
 [ext_resource type="Texture2D" uid="uid://djv0wop88b75l" path="res://Sprite Sheets/bg_vacuum.png" id="2_phtop"]
@@ -10,6 +10,7 @@
 [ext_resource type="TileSet" uid="uid://7iu1neo0872o" path="res://Tile Sets/vacuum_boss_tileset.tres" id="8_1ms8r"]
 [ext_resource type="PackedScene" uid="uid://q5fpykt0bb1v" path="res://Enemies/Spike/enemy_spike.tscn" id="9_lm43w"]
 [ext_resource type="TileSet" uid="uid://cct8db38hqdxt" path="res://Tile Sets/murky_water_tileset.tres" id="9_nh304"]
+[ext_resource type="PackedScene" uid="uid://gsvrqme0y14b" path="res://Enemies/SmallVacuum/small_vacuum.tscn" id="11_3s5c5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtchg"]
 
@@ -94,6 +95,9 @@ position = Vector2(255, 101)
 
 [node name="EnemyTest3" parent="." instance=ExtResource("9_lm43w")]
 position = Vector2(565, 37)
+
+[node name="SmallVacuum" parent="." instance=ExtResource("11_3s5c5")]
+position = Vector2(33, 94)
 
 [connection signal="boss_defeated" from="." to="VacuumBoss" method="_on_level_boss_defeated"]
 [connection signal="unplugged" from="Outlet" to="." method="_on_outlet_unplugged"]
