@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://cable_segment.gd" id="1_ry7mu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pwat3"]
-size = Vector2(8, 64)
+size = Vector2(4, 64)
 
 [node name="CableSegment" type="RigidBody2D"]
 collision_layer = 0
@@ -14,7 +14,7 @@ script = ExtResource("1_ry7mu")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, 31)
-scale = Vector2(1, 4)
+scale = Vector2(0.5, 4)
 texture = ExtResource("1_cjbji")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
