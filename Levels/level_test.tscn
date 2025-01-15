@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dirybipb62lpw" path="res://cable_segment.tscn" id="4_0tdf5"]
 [ext_resource type="PackedScene" uid="uid://dn6303lg03qwh" path="res://Bosses/boss_test.tscn" id="4_ttgys"]
 [ext_resource type="TileSet" uid="uid://7iu1neo0872o" path="res://Tile Sets/vacuum_boss_tileset.tres" id="8_1ms8r"]
-[ext_resource type="PackedScene" uid="uid://q5fpykt0bb1v" path="res://Enemies/enemy_test.tscn" id="9_lm43w"]
+[ext_resource type="PackedScene" uid="uid://q5fpykt0bb1v" path="res://Enemies/Spike/enemy_spike.tscn" id="9_lm43w"]
 [ext_resource type="TileSet" uid="uid://cct8db38hqdxt" path="res://Tile Sets/murky_water_tileset.tres" id="9_nh304"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtchg"]
@@ -87,10 +87,10 @@ format = 2
 layer_0/tile_data = PackedInt32Array(1441809, 0, 0, 1441808, 0, 0, 1441807, 0, 0, 1441806, 0, 0, 1441814, 0, 0, 1441815, 0, 0, 1441816, 0, 0, 1441817, 0, 0, 1441797, 0, 0, 1441798, 0, 0, 1441825, 0, 0, 1441826, 0, 0)
 
 [node name="EnemyTest" parent="." instance=ExtResource("9_lm43w")]
-position = Vector2(543, 77)
+position = Vector2(295, 26)
 
 [node name="EnemyTest2" parent="." instance=ExtResource("9_lm43w")]
-position = Vector2(503, 152)
+position = Vector2(255, 101)
 
 [node name="EnemyTest3" parent="." instance=ExtResource("9_lm43w")]
 position = Vector2(565, 37)
