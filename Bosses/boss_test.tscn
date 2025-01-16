@@ -55,5 +55,6 @@ shape = SubResource("RectangleShape2D_iq4wm")
 
 [node name="SuctionHitbox" parent="HeadCharacter2D" instance=ExtResource("9_g6c6k")]
 position = Vector2(0, 0)
+_power = 50
 
 [editable path="StaticBossHitbox"]

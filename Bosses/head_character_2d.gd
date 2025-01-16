@@ -46,9 +46,9 @@ func _physics_process(delta: float) -> void:
 				_target_direction = global_position.direction_to(_tether_point)
 			if global_position.distance_to(_tether_point) > _tether_length:
 				_target_direction = global_position.direction_to(_tether_point)
-				print("too far")
-				print(global_position.distance_to(_tether_point))
-				print(_tether_point)
+				#print("too far")
+				#print(global_position.distance_to(_tether_point))
+				#print(_tether_point)
 				
 		_states.PAUSE:
 			_pause_timer -= 1

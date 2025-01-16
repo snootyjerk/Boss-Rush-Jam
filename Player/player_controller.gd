@@ -34,6 +34,7 @@ var _has_jumped = true
 var _is_jump_buffered = false
 var _was_on_floor = false
 var _has_fan: bool = true
+var _added_velocity: Vector2 = Vector2(0,0)
 var _is_flying = false:
 	set(flying):
 		_is_flying = flying
@@ -103,7 +104,11 @@ func _state_mobile(delta: float):
 		
 	#End flight
 	_was_on_floor = is_on_floor()
+	velocity += _added_velocity
 	move_and_slide()
+	if _added_velocity != Vector2(0,0):
+			print(_added_velocity)
+	_added_velocity = Vector2(0,0)
 	_animation()
 	
 	if Input.is_action_just_pressed("throw") and _has_fan:
@@ -185,7 +190,7 @@ func _on_throw_animation_finished():
 		
 	
 func _add_velocity(added_velocity: Vector2):
-	velocity += added_velocity
+	_added_velocity += added_velocity
 	
 	
 func _update_input():

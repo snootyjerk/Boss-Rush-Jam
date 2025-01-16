@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var _power = 15
+@export var _power = 30
 var _active = true
 
 var _target_list = Array()
@@ -14,7 +14,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	for target in _target_list:
 		if target.has_method("_add_velocity"):
-			target._add_velocity(target.global_position.direction_to(global_position) * _power * delta)
+			target._add_velocity(target.global_position.direction_to(global_position) * _power)
 	
 func _set_enabled(enabled: bool):
 	_active = enabled
