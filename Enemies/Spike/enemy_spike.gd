@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 
 func take_damage():
 	var death_scene = _enemy_death_scene.instantiate()
-	get_tree().current_scene.add_child(death_scene)
+	Main.node.current_level.add_child(death_scene)
 	death_scene.global_position = global_position
 	queue_free()
 
