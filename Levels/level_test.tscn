@@ -76,7 +76,7 @@ shape = SubResource("RectangleShape2D_jtchg")
 position = Vector2(312, 168)
 
 [node name="Player" parent="." instance=ExtResource("2_y52ef")]
-position = Vector2(159, 283)
+position = Vector2(559, 170)
 
 [node name="CollisionTileMap" type="TileMap" parent="."]
 tile_set = ExtResource("8_1ms8r")

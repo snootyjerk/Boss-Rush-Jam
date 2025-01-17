@@ -3,7 +3,7 @@ class_name VacuumHead
 
 
 var _boss_death_head = preload("res://Bosses/vacuum_boss_death_head.tscn")
-
+var _suction_attack = preload("res://Bosses/suction_hitbox.tscn")
 
 @export var _idle_speed: float = 25
 @export var _strike_speed: float = 250
@@ -18,14 +18,17 @@ var _pause_timer = _pause_timer_max
 @export var _recover_timer_max = 100
 var _recover_timer = _recover_timer_max
 
+@export var _suction_timer_max = 100
+var _suction_timer = _suction_timer_max
+
 @onready var _tether_point = global_position
 var _target_direction = Vector2(1,0)
-enum _states {IDLE,PAUSE,STRIKE,RECOVER,VACUUM}
+enum _states {IDLE,PAUSE,STRIKE,RECOVER,SUCTION}
 #Idle: move back and forth, waiting for player to come in range. 
 #Pause: wait a short while before charging at player
 #Strike: charge at player
 #Recover: move towards tether point, return to idle state 
-#Vacuum: Emit a coneshaped hit box and sweep it across the level. 
+#Suction: Emit a coneshaped hit box and sweep it across the level. 
 	#Objects caught in the hitbox will be pulled towards the boss.
 
 var _current_state = _states.IDLE
@@ -69,7 +72,10 @@ func _physics_process(delta: float) -> void:
 			if _recover_timer <= 0:
 				_recover_timer = _recover_timer_max
 				_update_state(_states.IDLE)
-			
+		
+		_states.SUCTION:
+			var _attack = _suction_attack.instantiate()
+			_attack.global_position = global_position
 	move_and_slide()
 	
 	
@@ -89,4 +95,4 @@ func _get_player_in_range() -> bool:
 func _update_state(new_state):
 	_prev_state = _current_state
 	_current_state = new_state
-	print(_current_state)
+	#print(_current_state)
