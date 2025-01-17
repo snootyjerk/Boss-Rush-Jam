@@ -8,6 +8,7 @@ const LEVEL_DIR: String = "res://Levels/level_"
 @export var _next_level_name: String
 
 @onready var boss_music: AudioStreamPlayer = $BossMusic
+@onready var exit_blocking_tile_map: TileMap = $ExitBlockingTileMap
 
 
 func get_next_level_path() -> String:
@@ -23,7 +24,7 @@ var is_boss_defeated: bool:
 		if defeated:
 			boss_music.stop()
 			boss_defeated.emit()
-			
+			exit_blocking_tile_map.clear()
 
 
 # make invisible for level transition
