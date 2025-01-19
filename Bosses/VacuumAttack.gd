@@ -5,14 +5,16 @@ extends Area2D
 var _active = true
 
 var _target_list = Array()
-var _player_quadrant = Vector2(1,1)
-var _suck_timer = 5
+var _player_quadrant: Vector2
+var _suck_timer = 2
 var _rotation_direction
+
+signal _suction_complete
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_set_enabled(true)
-	_player_quadrant = _get_player_quadrant()
+	#_player_quadrant = _get_player_quadrant()
 	print(_player_quadrant)
 	match _player_quadrant:
 		Vector2(1,1):
@@ -29,14 +31,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	_player_quadrant = _get_player_quadrant()
-	print(_player_quadrant)
+	#_player_quadrant = _get_player_quadrant()
+	#print(_player_quadrant)
 	rotation += _rotation_speed * delta * _rotation_direction
 	for target in _target_list:
 		if target.has_method("_add_velocity"):
 			target._add_velocity(target.global_position.direction_to(global_position) * _power)
-	#_suck_timer -= 1*delta
+	_suck_timer -= 1*delta
 	if _suck_timer <= 0:
+		_suction_complete.emit()
 		queue_free()
 	
 func _set_enabled(enabled: bool):
@@ -49,7 +52,6 @@ func _reset():
 	rotation = 0
 	_set_enabled(false)
 	_target_list.clear()
-	
 
 func _on_body_entered(body: Node2D) -> void:
 	_target_list.append(body)
@@ -58,14 +60,5 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	_target_list.erase(body)
 	
-func _get_player_quadrant() -> Vector2:
-	var result: Vector2
-	if Main.node.player_position.x >= global_position.x:
-		result = Vector2(1,0)
-	else:
-		result = Vector2(-1,0)
-	if Main.node.player_position.y >= global_position.y:
-		result += Vector2(0,1)
-	else:
-		result += Vector2(0,-1)
-	return result
+func _set_player_quadrant(quadrant: Vector2) -> void:
+	_player_quadrant = quadrant

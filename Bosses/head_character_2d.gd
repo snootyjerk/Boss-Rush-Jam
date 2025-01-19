@@ -23,6 +23,8 @@ var _suction_timer = _suction_timer_max
 
 @onready var _tether_point = global_position
 var _target_direction = Vector2(1,0)
+
+
 enum _states {IDLE,PAUSE,STRIKE,RECOVER,SUCTION}
 #Idle: move back and forth, waiting for player to come in range. 
 #Pause: wait a short while before charging at player
@@ -47,6 +49,7 @@ func _physics_process(delta: float) -> void:
 			elif _idle_timer <= 0:
 				_idle_timer = _idle_timer_max
 				_target_direction = global_position.direction_to(_tether_point)
+				_start_suction()
 			if global_position.distance_to(_tether_point) > _tether_length:
 				_target_direction = global_position.direction_to(_tether_point)
 				#print("too far")
@@ -54,7 +57,7 @@ func _physics_process(delta: float) -> void:
 				#print(_tether_point)
 				
 		_states.PAUSE:
-			_pause_timer -= 1
+			_pause_timer -= 14
 			velocity = Vector2(0,0)
 			if _pause_timer <= 0:
 				_pause_timer = _pause_timer_max
@@ -63,8 +66,7 @@ func _physics_process(delta: float) -> void:
 		_states.STRIKE:
 			velocity = _target_direction * _strike_speed
 			if global_position.distance_to(_tether_point) > _tether_length:
-				_target_direction = global_position.direction_to(_tether_point)
-				_update_state(_states.RECOVER)
+				_start_recovery(_recover_timer_max)
 				
 		_states.RECOVER:
 			velocity = _target_direction * _idle_speed
@@ -92,7 +94,34 @@ func _get_player_in_range() -> bool:
 	else:
 		return false
 
+func _start_recovery(time: int):
+	_target_direction = global_position.direction_to(_tether_point)
+	_update_state(_states.RECOVER)
+	_recover_timer = time
+
 func _update_state(new_state):
 	_prev_state = _current_state
 	_current_state = new_state
-	#print(_current_state)
+	print(_current_state)
+	
+func _start_suction():
+	var attack = _suction_attack.instantiate()
+	var callable = Callable(self,"_start_recovery").bind(_recover_timer_max)
+	velocity = Vector2(0,0)
+	attack.global_position = global_position
+	attack._player_quadrant = _get_player_quadrant()
+	attack._suction_complete.connect(callable)
+	Main.node.current_level.add_child(attack)
+	_update_state(_states.SUCTION)
+
+func _get_player_quadrant() -> Vector2:
+	var result: Vector2
+	if Main.node.player_position.x >= global_position.x:
+		result = Vector2(1,0)
+	else:
+		result = Vector2(-1,0)
+	if Main.node.player_position.y >= global_position.y:
+		result += Vector2(0,1)
+	else:
+		result += Vector2(0,-1)
+	return result
