@@ -77,7 +77,7 @@ shape = SubResource("RectangleShape2D_jtchg")
 position = Vector2(312, 168)
 
 [node name="Player" parent="." instance=ExtResource("2_y52ef")]
-position = Vector2(559, 170)
+position = Vector2(162, 275)
 
 [node name="CollisionTileMap" type="TileMap" parent="."]
 tile_set = ExtResource("8_1ms8r")
@@ -111,6 +111,9 @@ position = Vector2(76, 103)
 
 [node name="NextLevelTrigger" parent="." instance=ExtResource("13_03rqp")]
 position = Vector2(645, 320)
+
+[node name="BossJumpPoint1" type="Node2D" parent="."]
+position = Vector2(567, 144)
 
 [connection signal="boss_defeated" from="." to="VacuumBoss" method="_on_level_boss_defeated"]
 [connection signal="unplugged" from="Outlet" to="." method="_on_outlet_unplugged"]
