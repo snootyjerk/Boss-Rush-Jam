@@ -15,7 +15,6 @@ signal _suction_complete
 func _ready() -> void:
 	_set_enabled(true)
 	#_player_quadrant = _get_player_quadrant()
-	print(_player_quadrant)
 	match _player_quadrant:
 		Vector2(1,1):
 				rotation = 0

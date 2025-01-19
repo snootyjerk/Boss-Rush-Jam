@@ -5,9 +5,12 @@ class_name VacuumHead
 var _boss_death_head = preload("res://Bosses/vacuum_boss_death_head.tscn")
 var _suction_attack = preload("res://Bosses/suction_hitbox.tscn")
 
+signal death
+
 @export var _idle_speed: float = 25
 @export var _strike_speed: float = 250
 @export var _tether_length: float = 100
+@export var _hp: int = 2
 
 @export var _idle_timer_max = 70
 var _idle_timer = _idle_timer_max
@@ -102,7 +105,7 @@ func _start_recovery(time: int):
 func _update_state(new_state):
 	_prev_state = _current_state
 	_current_state = new_state
-	print(_current_state)
+	#print(_current_state)
 	
 func _start_suction():
 	var attack = _suction_attack.instantiate()
@@ -125,3 +128,8 @@ func _get_player_quadrant() -> Vector2:
 	else:
 		result += Vector2(0,-1)
 	return result
+
+func take_damage():
+	_hp -= 1
+	if _hp <= 0:
+		death.emit()

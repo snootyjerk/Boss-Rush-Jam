@@ -39,8 +39,8 @@ position = Vector2(-0.25, 5.25)
 
 [node name="HeadCharacter2D" type="CharacterBody2D" parent="."]
 position = Vector2(0, 1)
-collision_layer = 32
-collision_mask = 0
+collision_layer = 96
+collision_mask = 32
 motion_mode = 1
 script = ExtResource("4_ty75v")
 
@@ -51,5 +51,7 @@ texture = ExtResource("2_6jmnq")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadCharacter2D"]
 position = Vector2(0, -2.25)
 shape = SubResource("RectangleShape2D_iq4wm")
+
+[connection signal="death" from="HeadCharacter2D" to="." method="_boss_defeated_hook"]
 
 [editable path="StaticBossHitbox"]
