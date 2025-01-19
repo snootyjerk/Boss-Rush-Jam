@@ -3,7 +3,7 @@ class_name BossVacuum
 
 @onready var _head: VacuumHead = $HeadCharacter2D
 @onready var _jump_starting_point = global_position
-var _moving = true
+var _moving = false
 var _jump_point_1 = Vector2(567,168)
 var _jump_arc_height = -200
 
