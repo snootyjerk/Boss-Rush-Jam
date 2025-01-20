@@ -4,16 +4,17 @@ class_name BossVacuum
 @onready var _head: VacuumHead = $HeadCharacter2D
 
 @onready var _jump_starting_point = global_position
-@onready var _jump_points = [_jump_starting_point,Vector2(567,168)]
+@onready var _jump_points = [Vector2(61,88),_jump_starting_point,Vector2(567,168)]
+var _jump_direction = 1
 
 var _jumping = true
 var _can_jump = true
-var _current_point = 0
-var _next_point = 1
-var _last_point = 0
+var _current_point = 1
+var _next_point = _current_point + _jump_direction
+var _last_point = _current_point - _jump_direction
 var _jump_arc_height = -200
 var _jump_process = 0.0
-var _action_timer_max = 10
+var _action_timer_max = 3
 var _action_timer = _action_timer_max
 
 func _process(delta: float) -> void:
@@ -25,7 +26,11 @@ func _process(delta: float) -> void:
 			_jumping = false
 			_last_point = _current_point
 			_current_point = _next_point
-			_next_point = _last_point
+			if _current_point == _jump_points.size() -1:
+				_jump_direction = -1
+			elif _current_point == 0:
+				_jump_direction = 1
+			_next_point = _current_point + _jump_direction
 			_jump_starting_point = _jump_points[_current_point]
 			_head._tether_point = global_position
 			_jump_process = 0

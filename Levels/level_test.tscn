@@ -112,6 +112,9 @@ position = Vector2(76, 103)
 [node name="NextLevelTrigger" parent="." instance=ExtResource("13_03rqp")]
 position = Vector2(645, 320)
 
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(61, 81)
+
 [connection signal="boss_defeated" from="." to="VacuumBoss" method="_on_level_boss_defeated"]
 [connection signal="unplugged" from="Outlet" to="." method="_on_outlet_unplugged"]
 
