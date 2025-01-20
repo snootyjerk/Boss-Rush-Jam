@@ -27,6 +27,7 @@ var _suction_timer = _suction_timer_max
 @onready var _tether_point = global_position
 var _target_direction = Vector2(1,0)
 
+var _attack = null
 
 enum _states {IDLE,PAUSE,STRIKE,RECOVER,SUCTION}
 #Idle: move back and forth, waiting for player to come in range. 
@@ -105,16 +106,18 @@ func _start_recovery(time: int):
 func _update_state(new_state):
 	_prev_state = _current_state
 	_current_state = new_state
-	#print(_current_state)
+	if _prev_state == _states.SUCTION:
+		_attack.queue_free()
+		_attack = null
 	
 func _start_suction():
-	var attack = _suction_attack.instantiate()
+	_attack = _suction_attack.instantiate()
 	var callable = Callable(self,"_start_recovery").bind(_recover_timer_max)
 	velocity = Vector2(0,0)
-	attack.global_position = global_position
-	attack._player_quadrant = _get_player_quadrant()
-	attack._suction_complete.connect(callable)
-	Main.node.current_level.add_child(attack)
+	_attack.global_position = global_position
+	_attack._player_quadrant = _get_player_quadrant()
+	_attack._suction_complete.connect(callable)
+	Main.node.current_level.add_child(_attack)
 	_update_state(_states.SUCTION)
 
 func _get_player_quadrant() -> Vector2:

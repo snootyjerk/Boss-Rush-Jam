@@ -26,8 +26,6 @@ func _ready() -> void:
 				rotation = 0
 	_rotation_direction = -_player_quadrant.x
 
-
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	#_player_quadrant = _get_player_quadrant()

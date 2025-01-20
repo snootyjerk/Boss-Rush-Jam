@@ -2,26 +2,43 @@ extends Boss
 class_name BossVacuum
 
 @onready var _head: VacuumHead = $HeadCharacter2D
-@onready var _jump_starting_point = global_position
-var _moving = false
-var _jump_point_1 = Vector2(567,168)
-var _jump_arc_height = -200
 
-var _move_timer = 0.0
+@onready var _jump_starting_point = global_position
+@onready var _jump_points = [_jump_starting_point,Vector2(567,168)]
+
+var _jumping = true
+var _can_jump = true
+var _current_point = 0
+var _next_point = 1
+var _last_point = 0
+var _jump_arc_height = -200
+var _jump_process = 0.0
+var _action_timer_max = 10
+var _action_timer = _action_timer_max
 
 func _process(delta: float) -> void:
-	if _moving == true:
-		_jump_movement(_jump_point_1)
-		_move_timer += delta *.4
-		if _move_timer >= 1:
-			_moving = false
+	if _jumping == true:
+		_head._update_state(_head._states.IDLE)
+		_jump_movement(_jump_points[_next_point])
+		_jump_process += delta *.4
+		if _jump_process >= 1:
+			_jumping = false
+			_last_point = _current_point
+			_current_point = _next_point
+			_next_point = _last_point
+			_jump_starting_point = _jump_points[_current_point]
 			_head._tether_point = global_position
-
+			_jump_process = 0
+	else:
+		_action_timer -= 1*delta
+		if _action_timer <= 0:
+			_action_timer = _action_timer_max
+			_jumping = true
 func _boss_defeated_hook():
 	_head.on_boss_defeated()
 	
 func _jump_movement(endpoint: Vector2):
-	var jump_arc_point = Vector2((_jump_point_1.x-_jump_starting_point.x) *.5 +_jump_starting_point.x,max(_jump_point_1.y,_jump_starting_point.y)+_jump_arc_height)
-	var curve_point0 = _jump_starting_point.lerp(jump_arc_point,_move_timer)
-	var curve_point1 = jump_arc_point.lerp(endpoint,_move_timer)
-	global_position = curve_point0.lerp(curve_point1,_move_timer)
+	var jump_arc_point = Vector2((endpoint.x-_jump_starting_point.x) *.5 +_jump_starting_point.x,max(endpoint.y,_jump_starting_point.y)+_jump_arc_height)
+	var curve_point0 = _jump_starting_point.lerp(jump_arc_point,_jump_process)
+	var curve_point1 = jump_arc_point.lerp(endpoint,_jump_process)
+	global_position = curve_point0.lerp(curve_point1,_jump_process)
