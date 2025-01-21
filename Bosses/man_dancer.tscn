@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://brfn0l5o8s87q"]
+
+[ext_resource type="Texture2D" uid="uid://cluc3d6ed6xvm" path="res://Sprite Sheets/Dancers/ManDancersIdle.png" id="1_k8ppj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mu5nh"]
+atlas = ExtResource("1_k8ppj")
+region = Rect2(0, 0, 24, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0kd1"]
+atlas = ExtResource("1_k8ppj")
+region = Rect2(24, 0, 24, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vbkr"]
+atlas = ExtResource("1_k8ppj")
+region = Rect2(48, 0, 24, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_87n75"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mu5nh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0kd1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vbkr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dd02t"]
+size = Vector2(14, 33)
+
+[node name="ManDancer" type="CharacterBody2D"]
+position = Vector2(508, 182)
+
+[node name="ManSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_87n75")
+frame_progress = 0.640451
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -0.5)
+shape = SubResource("RectangleShape2D_dd02t")

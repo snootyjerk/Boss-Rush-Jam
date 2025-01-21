@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://bayubd62rlo3u"]
+
+[ext_resource type="Texture2D" uid="uid://csco3x5ingfhe" path="res://Sprite Sheets/Dancers/FemDancerIdle.png" id="1_eboif"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsess"]
+atlas = ExtResource("1_eboif")
+region = Rect2(0, 0, 24, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ffspj"]
+atlas = ExtResource("1_eboif")
+region = Rect2(24, 0, 24, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aerfa"]
+atlas = ExtResource("1_eboif")
+region = Rect2(48, 0, 24, 63)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qfo2l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hsess")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ffspj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aerfa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c47fb"]
+size = Vector2(13, 33)
+
+[node name="FemDancer" type="CharacterBody2D"]
+
+[node name="FemSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qfo2l")
+frame_progress = 0.714773
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_c47fb")
