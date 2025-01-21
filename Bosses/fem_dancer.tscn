@@ -38,6 +38,7 @@ size = Vector2(13, 33)
 
 [node name="FemSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qfo2l")
+autoplay = "default"
 frame_progress = 0.714773
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

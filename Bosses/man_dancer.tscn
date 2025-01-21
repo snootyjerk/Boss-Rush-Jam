@@ -39,6 +39,7 @@ position = Vector2(508, 182)
 
 [node name="ManSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_87n75")
+autoplay = "default"
 frame_progress = 0.640451
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

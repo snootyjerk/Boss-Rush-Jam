@@ -17,5 +17,5 @@ func _process(delta: float) -> void:
 	
 	velocity.y = sin(_timer*_frequency) * _amplitude
 	global_position += velocity
-	if _timer <= 0:
+	if _timer >= _max_time:
 		queue_free()
