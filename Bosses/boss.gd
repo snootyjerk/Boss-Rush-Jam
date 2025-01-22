@@ -1,6 +1,7 @@
 extends Node2D
 class_name Boss
 
+signal death
 
 @export var _boss_death_scene: PackedScene
 

@@ -17,6 +17,13 @@ var _jump_process = 0.0
 var _action_timer_max = 3
 var _action_timer = _action_timer_max
 
+
+func _ready() -> void:
+	_head.death.connect(func():
+		death.emit()
+	)
+
+
 func _process(delta: float) -> void:
 	if _jumping == true:
 		_head._update_state(_head._states.IDLE)
@@ -39,8 +46,7 @@ func _process(delta: float) -> void:
 		if _action_timer <= 0:
 			_action_timer = _action_timer_max
 			_jumping = true
-func _boss_defeated_hook():
-	_head.on_boss_defeated()
+	
 	
 func _jump_movement(endpoint: Vector2):
 	var jump_arc_point = Vector2((endpoint.x-_jump_starting_point.x) *.5 +_jump_starting_point.x,max(endpoint.y,_jump_starting_point.y)+_jump_arc_height)

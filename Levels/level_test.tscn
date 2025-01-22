@@ -1,11 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://dff4s57byf83y"]
+[gd_scene load_steps=12 format=3 uid="uid://dff4s57byf83y"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_cta5x"]
 [ext_resource type="Texture2D" uid="uid://djv0wop88b75l" path="res://Sprite Sheets/bg_vacuum.png" id="2_phtop"]
 [ext_resource type="PackedScene" uid="uid://78ali1yoytib" path="res://Player/player.tscn" id="2_y52ef"]
 [ext_resource type="AudioStream" uid="uid://dxj8wkhwibvri" path="res://Music/boss 1.ogg" id="3_6fsmp"]
-[ext_resource type="PackedScene" uid="uid://blroordjt6oi6" path="res://outlet.tscn" id="3_y0dj3"]
-[ext_resource type="PackedScene" uid="uid://dirybipb62lpw" path="res://cable_segment.tscn" id="4_0tdf5"]
 [ext_resource type="PackedScene" uid="uid://dn6303lg03qwh" path="res://Bosses/boss_test.tscn" id="4_ttgys"]
 [ext_resource type="TileSet" uid="uid://7iu1neo0872o" path="res://Tile Sets/vacuum_boss_tileset.tres" id="8_1ms8r"]
 [ext_resource type="PackedScene" uid="uid://q5fpykt0bb1v" path="res://Enemies/Spike/enemy_spike.tscn" id="9_lm43w"]
@@ -14,11 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://cscc0uil6ps2p" path="res://Enemies/Spike/enemy_spike_death.tscn" id="12_7tw4s"]
 [ext_resource type="PackedScene" uid="uid://pky0u0xtgc6h" path="res://next_level_trigger.tscn" id="13_03rqp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtchg"]
-
-[node name="Level Vacuum" type="Node2D"]
+[node name="Level Vacuum" type="Node2D" node_paths=PackedStringArray("_boss")]
 script = ExtResource("1_cta5x")
 _next_level_name = "test2"
+_boss = NodePath("VacuumBoss")
 
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
 self_modulate = Color(0.572549, 0.572549, 0.572549, 0.87451)
@@ -30,48 +27,6 @@ stream = ExtResource("3_6fsmp")
 volume_db = -16.0
 autoplay = true
 parameters/looping = true
-
-[node name="Outlet" parent="." instance=ExtResource("3_y0dj3")]
-position = Vector2(445, 315)
-
-[node name="PinJoint2D2" type="PinJoint2D" parent="Outlet/Plug" index="3"]
-node_a = NodePath("../Body")
-node_b = NodePath("../CableSegment")
-
-[node name="CableSegment" parent="Outlet/Plug" index="4" instance=ExtResource("4_0tdf5")]
-rotation = 2.37296
-
-[node name="PinJoint2D3" type="PinJoint2D" parent="Outlet/Plug" index="5"]
-position = Vector2(-42, -43)
-node_a = NodePath("../CableSegment")
-node_b = NodePath("../CableSegment2")
-
-[node name="CableSegment2" parent="Outlet/Plug" index="6" instance=ExtResource("4_0tdf5")]
-position = Vector2(-43, -44)
-rotation = 2.51538
-
-[node name="PinJoint2D4" type="PinJoint2D" parent="Outlet/Plug" index="7"]
-position = Vector2(-78, -93)
-node_a = NodePath("../CableSegment2")
-node_b = NodePath("../CableSegment3")
-
-[node name="CableSegment3" parent="Outlet/Plug" index="8" instance=ExtResource("4_0tdf5")]
-position = Vector2(-79, -94)
-rotation = 2.38045
-
-[node name="PinJoint2D5" type="PinJoint2D" parent="Outlet/Plug" index="9"]
-position = Vector2(-124, -132)
-node_a = NodePath("../CableSegment3")
-node_b = NodePath("../Anchor")
-softness = 4.07
-
-[node name="Anchor" type="StaticBody2D" parent="Outlet/Plug" index="10"]
-position = Vector2(-236, -264)
-collision_layer = 2147483648
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Outlet/Plug/Anchor"]
-shape = SubResource("RectangleShape2D_jtchg")
 
 [node name="VacuumBoss" parent="." instance=ExtResource("4_ttgys")]
 position = Vector2(312, 168)
@@ -112,9 +67,10 @@ position = Vector2(76, 103)
 [node name="NextLevelTrigger" parent="." instance=ExtResource("13_03rqp")]
 position = Vector2(645, 320)
 
-[connection signal="boss_defeated" from="." to="VacuumBoss" method="_on_level_boss_defeated"]
-[connection signal="unplugged" from="Outlet" to="." method="_on_outlet_unplugged"]
+[node name="BossJumpPoint1" type="Node2D" parent="."]
+position = Vector2(567, 144)
 
-[editable path="Outlet"]
+[connection signal="boss_defeated" from="." to="VacuumBoss" method="_on_level_boss_defeated"]
+
 [editable path="VacuumBoss"]
 [editable path="VacuumBoss/StaticBossHitbox"]

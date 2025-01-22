@@ -6,6 +6,7 @@ signal boss_defeated
 const LEVEL_DIR: String = "res://Levels/level_"
 
 @export var _next_level_name: String
+@export var _boss: Boss
 
 @onready var boss_music: AudioStreamPlayer = $BossMusic
 @onready var exit_blocking_tile_map: TileMap = $ExitBlockingTileMap
@@ -25,6 +26,14 @@ var is_boss_defeated: bool:
 			boss_music.stop()
 			boss_defeated.emit()
 			exit_blocking_tile_map.clear()
+			
+			
+func _ready() -> void:
+	_boss.death.connect(_on_boss_death)
+
+
+func _on_boss_death():
+	is_boss_defeated = true
 
 
 # make invisible for level transition

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7qi1smdrdoi7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at6v5"]
+bg_color = Color(0.14, 0.14, 0.14, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ft065"]
+bg_color = Color(0.56, 0.1568, 0.1568, 1)
+
+[node name="HealthBar" type="VBoxContainer"]
+offset_top = 5.0
+offset_right = 638.0
+offset_bottom = 59.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(250, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_at6v5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ft065")
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Vac the Destroyer"

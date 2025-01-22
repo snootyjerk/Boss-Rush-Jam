@@ -85,7 +85,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	
-func on_boss_defeated():
+func _boss_defeated():
 	var dead_head = _boss_death_head.instantiate()
 	Main.node.current_level.add_child(dead_head)
 	dead_head.global_position = global_position
@@ -98,10 +98,12 @@ func _get_player_in_range() -> bool:
 	else:
 		return false
 
+
 func _start_recovery(time: int):
 	_target_direction = global_position.direction_to(_tether_point)
 	_update_state(_states.RECOVER)
 	_recover_timer = time
+
 
 func _update_state(new_state):
 	_prev_state = _current_state
@@ -109,7 +111,8 @@ func _update_state(new_state):
 	if _prev_state == _states.SUCTION:
 		_attack.queue_free()
 		_attack = null
-	
+
+
 func _start_suction():
 	_attack = _suction_attack.instantiate()
 	var callable = Callable(self,"_start_recovery").bind(_recover_timer_max)
@@ -119,6 +122,7 @@ func _start_suction():
 	_attack._suction_complete.connect(callable)
 	Main.node.current_level.add_child(_attack)
 	_update_state(_states.SUCTION)
+
 
 func _get_player_quadrant() -> Vector2:
 	var result: Vector2
@@ -132,7 +136,10 @@ func _get_player_quadrant() -> Vector2:
 		result += Vector2(0,-1)
 	return result
 
+
 func take_damage():
+	print("OUCH")
 	_hp -= 1
 	if _hp <= 0:
+		_boss_defeated()
 		death.emit()

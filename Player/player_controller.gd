@@ -106,8 +106,8 @@ func _state_mobile(delta: float):
 	_was_on_floor = is_on_floor()
 	velocity += _added_velocity
 	move_and_slide()
-	if _added_velocity != Vector2(0,0):
-			print(_added_velocity)
+	#if _added_velocity != Vector2(0,0):
+			#print(_added_velocity)
 	_added_velocity = Vector2(0,0)
 	_animation()
 	

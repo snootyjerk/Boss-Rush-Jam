@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dn6303lg03qwh"]
+[gd_scene load_steps=12 format=3 uid="uid://dn6303lg03qwh"]
 
 [ext_resource type="Script" path="res://Bosses/boss_vacuum.gd" id="1_dodtl"]
 [ext_resource type="Texture2D" uid="uid://ktyjmqe2qvix" path="res://Sprite Sheets/Vaccum_Body.png" id="1_o2rdb"]
@@ -10,7 +10,13 @@
 [ext_resource type="Script" path="res://Bosses/head_character_2d.gd" id="4_ty75v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iq4wm"]
-size = Vector2(20, 14.5)
+size = Vector2(22, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at6v5"]
+bg_color = Color(0.14, 0.14, 0.14, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ft065"]
+bg_color = Color(0.56, 0.1568, 0.1568, 1)
 
 [node name="BossTest" type="Node2D"]
 script = ExtResource("1_dodtl")
@@ -33,24 +39,46 @@ script = ExtResource("3_ll0tt")
 _tethered_node = NodePath("../HeadCharacter2D")
 
 [node name="StaticBossHitbox" parent="." instance=ExtResource("4_6et36")]
+collision_mask = 0
 
 [node name="CollisionShape2D" parent="StaticBossHitbox" index="0"]
 position = Vector2(-0.25, 5.25)
 
 [node name="HeadCharacter2D" type="CharacterBody2D" parent="."]
-position = Vector2(0, 1)
 collision_layer = 96
-collision_mask = 32
-motion_mode = 1
+collision_mask = 0
+platform_on_leave = 2
 script = ExtResource("4_ty75v")
+_hp = 16
 
 [node name="HeadSprite" type="Sprite2D" parent="HeadCharacter2D"]
 texture_filter = 1
 texture = ExtResource("2_6jmnq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadCharacter2D"]
-position = Vector2(0, -2.25)
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_iq4wm")
+
+[node name="HealthBar" type="VBoxContainer" parent="."]
+offset_top = 5.0
+offset_right = 638.0
+offset_bottom = 59.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+
+[node name="ProgressBar" type="ProgressBar" parent="HealthBar"]
+custom_minimum_size = Vector2(250, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_at6v5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ft065")
+value = 100.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="HealthBar"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Vac the Destroyer"
 
 [connection signal="death" from="HeadCharacter2D" to="." method="_boss_defeated_hook"]
 
