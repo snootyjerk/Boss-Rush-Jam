@@ -5,6 +5,7 @@ signal player_health_changed(new_health: int)
 signal player_energy_changed(new_energy: int)
 
 signal boss_health_changed(new_health: int)
+signal boss_phase_changed(new_phase: int)
 signal boss_defeated
 
 @export var _first_level_scene: PackedScene
@@ -31,6 +32,12 @@ func heal_player():
 	player_health_changed.emit(player_health)
 	
 var boss_name: String
+var boss_phase: int: # 4 phases that activate at 100%, 75%, 50%, and 25%
+	get:
+		return boss_phase
+	set(new_phase):
+		boss_phase = new_phase
+		boss_phase_changed.emit(new_phase)
 var boss_max_health: int = 1
 var boss_health: int = 1:
 	get:
@@ -38,6 +45,22 @@ var boss_health: int = 1:
 	set(new_health):
 		boss_health = new_health
 		boss_health_changed.emit(boss_health)
+		
+		# Phase change
+		var health_ratio: float = float(boss_health) / boss_max_health
+		if health_ratio <= 0.25:
+			if boss_phase != 4:
+				print("Phase 4")
+				boss_phase = 4
+		elif health_ratio <= 0.5:
+			if boss_phase != 3:
+				print("Phase 3")
+				boss_phase = 3
+		elif health_ratio <= 0.75:
+			if boss_phase != 2:
+				print("Phase 2")
+				boss_phase = 2
+		
 func damage_boss():
 	boss_health = max(0, boss_health - 1)
 	if boss_health < 1:
@@ -70,6 +93,7 @@ func _ready():
 func go_to_level(level_scene: PackedScene):
 	var new_level: Level = level_scene.instantiate()
 	if node.current_level:
+		node.current_level.queue_free()
 		node.remove_child(node.current_level)
 	node.call_deferred("add_child", new_level)
 
