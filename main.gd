@@ -4,6 +4,9 @@ class_name Main
 signal player_health_changed(new_health: int)
 signal player_energy_changed(new_energy: int)
 
+signal boss_health_changed(new_health: int)
+signal boss_defeated
+
 @export var _first_level_scene: PackedScene
 @export var _game_over_scene: PackedScene
 
@@ -27,6 +30,20 @@ func heal_player():
 	player_health = min(player_health, Constants.PLAYER_MAX_HEALTH)
 	player_health_changed.emit(player_health)
 	
+var boss_name: String
+var boss_max_health: int = 1
+var boss_health: int = 1:
+	get:
+		return boss_health
+	set(new_health):
+		boss_health = new_health
+		boss_health_changed.emit(boss_health)
+func damage_boss():
+	boss_health = max(0, boss_health - 1)
+	if boss_health < 1:
+		boss_defeated.emit()
+	
+
 var player_energy: int = 100:
 	get:
 		return player_energy

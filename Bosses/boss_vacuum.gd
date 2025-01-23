@@ -1,6 +1,8 @@
 extends Boss
 class_name BossVacuum
 
+var _boss_death_head = preload("res://Bosses/vacuum_boss_death_head.tscn")
+
 @onready var _head: VacuumHead = $HeadCharacter2D
 
 @onready var _jump_starting_point = global_position
@@ -18,10 +20,10 @@ var _action_timer_max = 3
 var _action_timer = _action_timer_max
 
 
-func _ready() -> void:
-	_head.death.connect(func():
-		death.emit()
-	)
+func _boss_defeated_hook():
+	var dead_head = _boss_death_head.instantiate()
+	Main.node.current_level.add_child(dead_head)
+	dead_head.global_position = global_position
 
 
 func _process(delta: float) -> void:

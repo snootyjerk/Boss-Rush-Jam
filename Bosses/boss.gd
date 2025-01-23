@@ -3,7 +3,13 @@ class_name Boss
 
 signal death
 
+@export var boss_name: String
+@export var boss_health: int = 1
 @export var _boss_death_scene: PackedScene
+
+
+func _ready() -> void:
+	Main.node.boss_defeated.connect(_on_level_boss_defeated)
 
 
 func _on_level_boss_defeated() -> void:

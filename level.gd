@@ -29,7 +29,11 @@ var is_boss_defeated: bool:
 			
 			
 func _ready() -> void:
-	_boss.death.connect(_on_boss_death)
+	Main.node.boss_defeated.connect(_on_boss_death)
+	
+	Main.node.boss_max_health = _boss.boss_health
+	Main.node.boss_health = _boss.boss_health
+	HUD.node.set_boss_name_text(_boss.boss_name)
 
 
 func _on_boss_death():

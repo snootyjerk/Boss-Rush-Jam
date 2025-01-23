@@ -5,12 +5,10 @@ class_name VacuumHead
 var _boss_death_head = preload("res://Bosses/vacuum_boss_death_head.tscn")
 var _suction_attack = preload("res://Bosses/suction_hitbox.tscn")
 
-signal death
 
 @export var _idle_speed: float = 25
 @export var _strike_speed: float = 250
 @export var _tether_length: float = 100
-@export var _hp: int = 2
 
 @export var _idle_timer_max = 70
 var _idle_timer = _idle_timer_max
@@ -85,12 +83,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	
-func _boss_defeated():
-	var dead_head = _boss_death_head.instantiate()
-	Main.node.current_level.add_child(dead_head)
-	dead_head.global_position = global_position
-	
-	
 func _get_player_in_range() -> bool:
 	var _player_distance =  _tether_point.distance_to(Main.node.player_position)
 	if _player_distance <= _tether_length:
@@ -138,8 +130,4 @@ func _get_player_quadrant() -> Vector2:
 
 
 func take_damage():
-	print("OUCH")
-	_hp -= 1
-	if _hp <= 0:
-		_boss_defeated()
-		death.emit()
+	Main.node.damage_boss()
