@@ -1,15 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://dff4s57byf83y"]
+[gd_scene load_steps=10 format=3 uid="uid://dff4s57byf83y"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_cta5x"]
 [ext_resource type="Texture2D" uid="uid://djv0wop88b75l" path="res://Sprite Sheets/bg_vacuum.png" id="2_phtop"]
 [ext_resource type="PackedScene" uid="uid://78ali1yoytib" path="res://Player/player.tscn" id="2_y52ef"]
 [ext_resource type="AudioStream" uid="uid://dxj8wkhwibvri" path="res://Music/boss 1.ogg" id="3_6fsmp"]
-[ext_resource type="PackedScene" uid="uid://dn6303lg03qwh" path="res://Bosses/boss_test.tscn" id="4_ttgys"]
+[ext_resource type="PackedScene" uid="uid://dn6303lg03qwh" path="res://Bosses/boss_vacuum.tscn" id="4_ttgys"]
 [ext_resource type="TileSet" uid="uid://7iu1neo0872o" path="res://Tile Sets/vacuum_boss_tileset.tres" id="8_1ms8r"]
 [ext_resource type="PackedScene" uid="uid://q5fpykt0bb1v" path="res://Enemies/Spike/enemy_spike.tscn" id="9_lm43w"]
 [ext_resource type="TileSet" uid="uid://cct8db38hqdxt" path="res://Tile Sets/murky_water_tileset.tres" id="9_nh304"]
-[ext_resource type="PackedScene" uid="uid://gsvrqme0y14b" path="res://Enemies/SmallVacuum/small_vacuum.tscn" id="11_3s5c5"]
-[ext_resource type="PackedScene" uid="uid://cscc0uil6ps2p" path="res://Enemies/Spike/enemy_spike_death.tscn" id="12_7tw4s"]
 [ext_resource type="PackedScene" uid="uid://pky0u0xtgc6h" path="res://next_level_trigger.tscn" id="13_03rqp"]
 
 [node name="Level Vacuum" type="Node2D" node_paths=PackedStringArray("_boss")]
@@ -50,19 +48,10 @@ format = 2
 layer_0/tile_data = PackedInt32Array(1441809, 0, 0, 1441808, 0, 0, 1441807, 0, 0, 1441806, 0, 0, 1441814, 0, 0, 1441815, 0, 0, 1441816, 0, 0, 1441817, 0, 0, 1441797, 0, 0, 1441798, 0, 0, 1441825, 0, 0, 1441826, 0, 0)
 
 [node name="EnemyTest" parent="." instance=ExtResource("9_lm43w")]
-position = Vector2(295, 26)
-
-[node name="EnemyTest2" parent="." instance=ExtResource("9_lm43w")]
-position = Vector2(220, 107)
+position = Vector2(382, 57)
 
 [node name="EnemyTest3" parent="." instance=ExtResource("9_lm43w")]
-position = Vector2(259, 107)
-
-[node name="SmallVacuum" parent="." instance=ExtResource("11_3s5c5")]
-position = Vector2(25, 44)
-
-[node name="EnemyDeath" parent="." instance=ExtResource("12_7tw4s")]
-position = Vector2(76, 103)
+position = Vector2(535, 127)
 
 [node name="NextLevelTrigger" parent="." instance=ExtResource("13_03rqp")]
 position = Vector2(645, 320)
