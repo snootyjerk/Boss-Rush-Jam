@@ -1,17 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://do0wmin31njac"]
+[gd_scene load_steps=8 format=3 uid="uid://do0wmin31njac"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_10x31"]
 [ext_resource type="PackedScene" uid="uid://78ali1yoytib" path="res://Player/player.tscn" id="2_h2f61"]
 [ext_resource type="TileSet" uid="uid://7iu1neo0872o" path="res://Tile Sets/vacuum_boss_tileset.tres" id="3_fmav6"]
 [ext_resource type="PackedScene" uid="uid://pky0u0xtgc6h" path="res://next_level_trigger.tscn" id="4_o4xln"]
-[ext_resource type="Script" path="res://Bosses/boss.gd" id="5_r8cjp"]
 [ext_resource type="PackedScene" uid="uid://c0a1m6vnng1wy" path="res://Bosses/cello_boss.tscn" id="5_sl0xd"]
 [ext_resource type="PackedScene" uid="uid://brfn0l5o8s87q" path="res://Bosses/man_dancer.tscn" id="7_pedbl"]
 [ext_resource type="PackedScene" uid="uid://bayubd62rlo3u" path="res://Bosses/fem_dancer.tscn" id="8_libms"]
 
-[node name="Level Test" type="Node2D"]
+[node name="Level Test" type="Node2D" node_paths=PackedStringArray("_boss")]
 script = ExtResource("1_10x31")
 _next_level_name = "test3"
+_boss = NodePath("CelloBoss")
 
 [node name="Player" parent="." instance=ExtResource("2_h2f61")]
 position = Vector2(368, 269)
@@ -24,12 +24,8 @@ layer_0/tile_data = PackedInt32Array(1376256, 262144, 5, 1376295, 131072, 5, 137
 [node name="NextLevelTrigger" parent="." instance=ExtResource("4_o4xln")]
 position = Vector2(663, 293)
 
-[node name="Boss" type="Node2D" parent="."]
-position = Vector2(368, 269)
-script = ExtResource("5_r8cjp")
-
-[node name="CelloBoss" parent="Boss" instance=ExtResource("5_sl0xd")]
-position = Vector2(210, -18)
+[node name="CelloBoss" parent="." instance=ExtResource("5_sl0xd")]
+position = Vector2(578, 251)
 
 [node name="ManDancer" parent="." instance=ExtResource("7_pedbl")]
 

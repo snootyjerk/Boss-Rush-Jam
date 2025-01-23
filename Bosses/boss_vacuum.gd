@@ -23,7 +23,7 @@ var _action_timer = _action_timer_max
 func _boss_defeated_hook():
 	var dead_head = _boss_death_head.instantiate()
 	Main.node.current_level.add_child(dead_head)
-	dead_head.global_position = global_position
+	dead_head.global_position = _head.global_position
 
 
 func _process(delta: float) -> void:
