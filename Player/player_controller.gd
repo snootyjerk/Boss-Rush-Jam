@@ -27,6 +27,7 @@ var _fan_projectile_scene = preload("res://Player/fan_projectile.tscn")
 @onready var _jump_audio_player: AudioStreamPlayer = $AnimatedSprite2D/JumpAudioPlayer
 @onready var fly_audio_player: AudioStreamPlayer = $AnimatedSprite2D/FlyAudioPlayer
 @onready var fan_launch_point: Node2D = $AnimatedSprite2D/FanLaunchPoint
+@onready var fan_launch_cast: RayCast2D = $AnimatedSprite2D/FanLaunchCast
 
 var _fly_audio_original_db: float
 
@@ -168,19 +169,20 @@ func _fly():
 		
 func _throw_fan():
 	if _has_fan:
-		_animation_player.play("throw")
-		velocity = Vector2.ZERO
-		_is_flying = false
-		_has_fan = false
-		_state = States.THROW_FAN
-		
-		var fan_projectile = _fan_projectile_scene.instantiate()
-		Main.node.current_level.add_child(fan_projectile)
-		fan_projectile.global_position = fan_launch_point.global_position
-		fan_projectile.throw(_sprite.scale.x)
-		fan_projectile.recalled.connect(func():
-			_has_fan = true
-		)
+		if not fan_launch_cast.is_colliding():
+			_animation_player.play("throw")
+			velocity = Vector2.ZERO
+			_is_flying = false
+			_has_fan = false
+			_state = States.THROW_FAN
+			
+			var fan_projectile = _fan_projectile_scene.instantiate()
+			fan_projectile.global_position = fan_launch_point.global_position
+			Main.node.current_level.add_child(fan_projectile)
+			fan_projectile.throw(_sprite.scale.x)
+			fan_projectile.recalled.connect(func():
+				_has_fan = true
+			)
 	
 
 	

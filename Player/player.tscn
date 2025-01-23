@@ -347,6 +347,9 @@ volume_db = -30.0
 texture = ExtResource("6_lc2vo")
 offset = Vector2(0, -11)
 
+[node name="FanLaunchCast" type="RayCast2D" parent="AnimatedSprite2D"]
+target_position = Vector2(29, 0)
+
 [node name="FanLaunchPoint" type="Node2D" parent="AnimatedSprite2D"]
 position = Vector2(35, 3)
 

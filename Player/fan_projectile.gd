@@ -10,8 +10,8 @@ signal recalled
 @onready var recall_timer: Timer = $RecallTimer
 
 
-enum States { WITH_PLAYER, TRAVEL, DELAY, HOLD, RECALL }
-var _state: States = States.WITH_PLAYER
+enum States { TRAVEL, DELAY, HOLD, RECALL }
+var _state: States = States.TRAVEL
 
 var _direction_sign: int # -1 or 1
 
@@ -70,5 +70,4 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 	
 func _recall():
 	recalled.emit()
-	visible = false
-	_state = States.WITH_PLAYER
+	queue_free()
