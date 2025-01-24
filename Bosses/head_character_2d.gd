@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name VacuumHead
 
+signal damaged
 
 var _boss_death_head = preload("res://Bosses/vacuum_boss_death_head.tscn")
 var _suction_attack = preload("res://Bosses/suction_hitbox.tscn")
@@ -131,3 +132,4 @@ func _get_player_quadrant() -> Vector2:
 
 func take_damage():
 	Main.node.damage_boss()
+	damaged.emit()

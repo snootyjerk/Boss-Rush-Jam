@@ -10,7 +10,6 @@ signal death
 
 
 func _ready() -> void:
-	Main.node.boss_health_changed.connect(_on_boss_damaged)
 	Main.node.boss_defeated.connect(_on_level_boss_defeated)
 
 
@@ -23,7 +22,7 @@ func _on_level_boss_defeated() -> void:
 	queue_free()
 
 
-func _on_boss_damaged(new_health: int):
+func _on_damage_taken():
 	if _boss_animation_player:
 		_boss_animation_player.play("flash")
 
