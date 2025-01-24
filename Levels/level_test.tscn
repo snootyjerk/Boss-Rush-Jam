@@ -64,12 +64,12 @@ position = Vector2(645, 320)
 position = Vector2(567, 144)
 
 [node name="SpikeBwallSpawner" type="Node2D" parent="."]
-position = Vector2(187, -12)
+position = Vector2(187, 48)
 script = ExtResource("10_ou0wf")
 _enemy_scene = ExtResource("9_lm43w")
 
 [node name="SpikeBwallSpawner2" type="Node2D" parent="."]
-position = Vector2(451, -10)
+position = Vector2(453, 48)
 script = ExtResource("10_ou0wf")
 _enemy_scene = ExtResource("9_lm43w")
 
