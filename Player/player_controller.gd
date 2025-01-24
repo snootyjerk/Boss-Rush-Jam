@@ -99,6 +99,14 @@ func _state_mobile(delta: float):
 				_is_jump_buffered = true
 		elif Input.is_action_just_pressed("jump") and _current_energy > 0: # Start flying if jump is pressed midair 	
 			_is_flying = _has_fan
+			
+		# Flight audio stop
+		if fly_audio_player.playing:
+			var tween = get_tree().create_tween()
+			tween.tween_property(fly_audio_player, "volume_db", -80.0, 0.2)
+			tween.finished.connect(func():
+				fly_audio_player.stop()
+			)
 	#Flight
 	else:
 		_fly()
@@ -158,13 +166,8 @@ func _fly():
 		if not fly_audio_player.playing:
 			fly_audio_player.volume_db = _fly_audio_original_db
 			fly_audio_player.play()
-		if _current_energy <= 0 or Input.is_action_just_released("jump"):
-			_is_flying = false
-			var tween = get_tree().create_tween()
-			tween.tween_property(fly_audio_player, "volume_db", -80.0, 0.2)
-			tween.finished.connect(func():
-				fly_audio_player.stop()
-			)
+	if _current_energy <= 0 or Input.is_action_just_released("jump"):
+		_is_flying = false
 		
 		
 func _throw_fan():
