@@ -59,7 +59,7 @@ libraries = {
 autoplay = "spin"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.643137)
+self_modulate = Color(1, 1, 1, 0.415686)
 sprite_frames = ExtResource("1_3ksl5")
 autoplay = "default"
 

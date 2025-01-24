@@ -15,7 +15,7 @@ size = Vector2(22, 16)
 [node name="VacuumBoss" type="Node2D"]
 script = ExtResource("1_ljftc")
 boss_name = "Vac the Destroyer"
-boss_health = 4
+boss_health = 16
 _boss_death_scene = ExtResource("2_tn1ie")
 
 [node name="BodySprite" type="Sprite2D" parent="."]
