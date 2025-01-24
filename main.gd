@@ -96,6 +96,7 @@ func go_to_level(level_scene: PackedScene):
 		node.current_level.queue_free()
 		node.remove_child(node.current_level)
 	node.call_deferred("add_child", new_level)
+	node.boss_phase = 1
 
 
 func go_to_next_level():
@@ -105,6 +106,7 @@ func go_to_next_level():
 	if node.current_level:
 		node.remove_child(node.current_level)
 	node.call_deferred("add_child", new_level)
+	node.boss_phase = 1
 	
 	
 func retry():

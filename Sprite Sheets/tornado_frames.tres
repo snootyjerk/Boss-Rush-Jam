@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://ykvdh4vkcbv3"]
+
+[ext_resource type="Texture2D" uid="uid://b6riqdmcb0a4m" path="res://Sprite Sheets/tornado.png" id="1_oaouk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrera"]
+atlas = ExtResource("1_oaouk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnc6s"]
+atlas = ExtResource("1_oaouk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54713"]
+atlas = ExtResource("1_oaouk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcelo"]
+atlas = ExtResource("1_oaouk")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrera")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnc6s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54713")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcelo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]

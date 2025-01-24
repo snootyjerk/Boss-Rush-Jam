@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm4frvgdgai7h"]
+
+[ext_resource type="Script" path="res://Levels/tornado_spawner.gd" id="1_23liv"]
+[ext_resource type="PackedScene" uid="uid://ur5uk6ulsol0" path="res://Enemies/tornado.tscn" id="2_ukodp"]
+
+[node name="TornadoSpawner" type="Node2D"]
+position = Vector2(39, 280)
+script = ExtResource("1_23liv")
+_direction_1_or_neg1 = -1
+_tornado_scene = ExtResource("2_ukodp")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0

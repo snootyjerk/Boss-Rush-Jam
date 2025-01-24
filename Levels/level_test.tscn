@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dff4s57byf83y"]
+[gd_scene load_steps=12 format=3 uid="uid://dff4s57byf83y"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_cta5x"]
 [ext_resource type="Texture2D" uid="uid://djv0wop88b75l" path="res://Sprite Sheets/bg_vacuum.png" id="2_phtop"]
@@ -8,6 +8,8 @@
 [ext_resource type="TileSet" uid="uid://7iu1neo0872o" path="res://Tile Sets/vacuum_boss_tileset.tres" id="8_1ms8r"]
 [ext_resource type="PackedScene" uid="uid://q5fpykt0bb1v" path="res://Enemies/Spike/enemy_spike.tscn" id="9_lm43w"]
 [ext_resource type="TileSet" uid="uid://cct8db38hqdxt" path="res://Tile Sets/murky_water_tileset.tres" id="9_nh304"]
+[ext_resource type="Script" path="res://Levels/enemy_spawner.gd" id="10_ou0wf"]
+[ext_resource type="PackedScene" uid="uid://bm4frvgdgai7h" path="res://Enemies/tornado_spawner.tscn" id="11_1pxt2"]
 [ext_resource type="PackedScene" uid="uid://pky0u0xtgc6h" path="res://next_level_trigger.tscn" id="13_03rqp"]
 
 [node name="Level Vacuum" type="Node2D" node_paths=PackedStringArray("_boss")]
@@ -26,8 +28,10 @@ volume_db = -16.0
 autoplay = true
 parameters/looping = true
 
-[node name="VacuumBoss" parent="." instance=ExtResource("4_ttgys")]
+[node name="VacuumBoss" parent="." node_paths=PackedStringArray("_spike_bwall_spawner1", "_spike_bwall_spawner2") instance=ExtResource("4_ttgys")]
 position = Vector2(312, 168)
+_spike_bwall_spawner1 = NodePath("../SpikeBwallSpawner")
+_spike_bwall_spawner2 = NodePath("../SpikeBwallSpawner2")
 
 [node name="Player" parent="." instance=ExtResource("2_y52ef")]
 position = Vector2(162, 275)
@@ -58,5 +62,21 @@ position = Vector2(645, 320)
 
 [node name="BossJumpPoint1" type="Node2D" parent="."]
 position = Vector2(567, 144)
+
+[node name="SpikeBwallSpawner" type="Node2D" parent="."]
+position = Vector2(187, -12)
+script = ExtResource("10_ou0wf")
+_enemy_scene = ExtResource("9_lm43w")
+
+[node name="SpikeBwallSpawner2" type="Node2D" parent="."]
+position = Vector2(451, -10)
+script = ExtResource("10_ou0wf")
+_enemy_scene = ExtResource("9_lm43w")
+
+[node name="TornadoSpawner1" parent="." instance=ExtResource("11_1pxt2")]
+_direction_1_or_neg1 = 1
+
+[node name="TornadoSpawner2" parent="." instance=ExtResource("11_1pxt2")]
+position = Vector2(596, 280)
 
 [connection signal="boss_defeated" from="." to="VacuumBoss" method="_on_level_boss_defeated"]

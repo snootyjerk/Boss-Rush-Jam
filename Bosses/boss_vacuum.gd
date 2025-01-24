@@ -3,6 +3,8 @@ class_name BossVacuum
 
 var _boss_death_head = preload("res://Bosses/vacuum_boss_death_head.tscn")
 
+@export var _spike_bwall_spawner1: Node
+@export var _spike_bwall_spawner2: Node
 @export var _jump_delay_phase_2: float = 7.5
 @export var _jump_delay_phase_3: float = 6.0
 @export var _jump_delay_phase_4: float = 4.0
@@ -51,6 +53,7 @@ func _process(delta: float) -> void:
 			_jump_starting_point = _jump_points[_current_point]
 			_head._tether_point = global_position
 			_jump_process = 0
+			_land()
 	if Main.node.boss_phase > 1:
 		_action_timer -= 1*delta
 		if _action_timer <= 0:
@@ -63,6 +66,17 @@ func _jump_movement(endpoint: Vector2):
 	var curve_point0 = _jump_starting_point.lerp(jump_arc_point,_jump_process)
 	var curve_point1 = jump_arc_point.lerp(endpoint,_jump_process)
 	global_position = curve_point0.lerp(curve_point1,_jump_process)
+	
+	
+func _land():
+	if _spike_bwall_spawner1:
+		if _spike_bwall_spawner1.has_method("spawn"):
+			_spike_bwall_spawner1.spawn()
+			
+	if Main.node.boss_phase > 3:
+		if _spike_bwall_spawner2:
+			if _spike_bwall_spawner2.has_method("spawn"):
+				_spike_bwall_spawner2.spawn()
 	
 	
 func _on_phase_changed(new_phase: int):
