@@ -5,10 +5,12 @@ signal death
 
 @export var boss_name: String
 @export var boss_health: int = 1
+@export var _boss_animation_player: AnimationPlayer
 @export var _boss_death_scene: PackedScene
 
 
 func _ready() -> void:
+	Main.node.boss_health_changed.connect(_on_boss_damaged)
 	Main.node.boss_defeated.connect(_on_level_boss_defeated)
 
 
@@ -19,6 +21,11 @@ func _on_level_boss_defeated() -> void:
 		boss_death.global_position = global_position
 	_boss_defeated_hook()
 	queue_free()
+
+
+func _on_boss_damaged(new_health: int):
+	if _boss_animation_player:
+		_boss_animation_player.play("flash")
 
 
 func _boss_defeated_hook(): # override in child

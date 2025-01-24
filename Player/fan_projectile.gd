@@ -29,7 +29,6 @@ func _process(delta: float) -> void:
 		States.RECALL:
 			var dir = global_position.direction_to(Main.node.player_position)
 			velocity = dir * _speed
-			#print("Velocity = ", velocity)
 	move_and_slide()
 	
 	
@@ -64,7 +63,8 @@ func _on_recall_area_body_entered(body: Node2D) -> void:
 func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
 		body.take_damage()
-		#_state = States.RECALL
+		travel_timer.stop()
+		_state = States.RECALL
 	
 	
 	

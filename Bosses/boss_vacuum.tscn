@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dn6303lg03qwh"]
+[gd_scene load_steps=14 format=3 uid="uid://dn6303lg03qwh"]
 
 [ext_resource type="Script" path="res://Bosses/boss_vacuum.gd" id="1_ljftc"]
 [ext_resource type="PackedScene" uid="uid://cca1yaaya3ctj" path="res://Bosses/vacuum_boss_death.tscn" id="2_tn1ie"]
 [ext_resource type="Texture2D" uid="uid://ktyjmqe2qvix" path="res://Sprite Sheets/Vaccum_Body.png" id="3_bmp68"]
+[ext_resource type="Material" uid="uid://dp5u0eoc2y61n" path="res://Shaders/flash_shader_material.tres" id="3_rnjif"]
 [ext_resource type="Texture2D" uid="uid://1uq1jmjbyarw" path="res://Sprite Sheets/Vaccum_pipe.png" id="4_8j7h2"]
 [ext_resource type="Script" path="res://Bosses/vacuum_hose.gd" id="5_wtkhv"]
 [ext_resource type="PackedScene" uid="uid://d3k50v47wuhsr" path="res://Bosses/static_boss_hitbox.tscn" id="6_bk1ek"]
@@ -12,19 +13,60 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iq4wm"]
 size = Vector2(22, 16)
 
-[node name="VacuumBoss" type="Node2D"]
+[sub_resource type="Animation" id="Animation_snlx0"]
+resource_name = "flash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_pfhtk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f3w73"]
+_data = {
+"RESET": SubResource("Animation_pfhtk"),
+"flash": SubResource("Animation_snlx0")
+}
+
+[node name="VacuumBoss" type="Node2D" node_paths=PackedStringArray("_boss_animation_player")]
+material = ExtResource("3_rnjif")
 script = ExtResource("1_ljftc")
 boss_name = "Vac the Destroyer"
 boss_health = 16
+_boss_animation_player = NodePath("AnimationPlayer")
 _boss_death_scene = ExtResource("2_tn1ie")
 
 [node name="BodySprite" type="Sprite2D" parent="."]
 texture_filter = 1
+use_parent_material = true
 texture = ExtResource("3_bmp68")
 
 [node name="HoseLine" type="Line2D" parent="." node_paths=PackedStringArray("_tethered_node")]
 texture_filter = 1
 texture_repeat = 2
+use_parent_material = true
 points = PackedVector2Array(0, 16, 45.5, -23)
 width = 12.0
 texture = ExtResource("4_8j7h2")
@@ -41,6 +83,7 @@ collision_mask = 0
 position = Vector2(-0.25, 5.25)
 
 [node name="HeadCharacter2D" type="CharacterBody2D" parent="."]
+use_parent_material = true
 collision_layer = 96
 collision_mask = 0
 platform_on_leave = 2
@@ -48,10 +91,16 @@ script = ExtResource("7_ypr84")
 
 [node name="HeadSprite" type="Sprite2D" parent="HeadCharacter2D"]
 texture_filter = 1
+use_parent_material = true
 texture = ExtResource("8_qgdae")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HeadCharacter2D"]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_iq4wm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f3w73")
+}
 
 [editable path="StaticBossHitbox"]
