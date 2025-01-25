@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://brfn0l5o8s87q"]
+[gd_scene load_steps=8 format=3 uid="uid://brfn0l5o8s87q"]
 
 [ext_resource type="Texture2D" uid="uid://cluc3d6ed6xvm" path="res://Sprite Sheets/Dancers/ManDancersIdle.png" id="1_k8ppj"]
+[ext_resource type="Script" path="res://Bosses/man_dancer.gd" id="1_oxehy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mu5nh"]
 atlas = ExtResource("1_k8ppj")
@@ -35,7 +36,11 @@ animations = [{
 size = Vector2(14, 33)
 
 [node name="ManDancer" type="CharacterBody2D"]
-position = Vector2(508, 182)
+collision_layer = 0
+collision_mask = 32
+script = ExtResource("1_oxehy")
+_amplitude = null
+_frequency = null
 
 [node name="ManSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_87n75")

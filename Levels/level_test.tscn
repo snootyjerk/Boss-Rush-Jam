@@ -45,7 +45,6 @@ layer_0/tile_data = PackedInt32Array(1376256, 196608, 6, 1441792, 196608, 6, 137
 [node name="ExitBlockingTileMap" type="TileMap" parent="."]
 tile_set = ExtResource("8_1ms8r")
 format = 2
-layer_0/tile_data = PackedInt32Array(1245222, 0, 3, 1310758, 0, 4, 1245223, 65536, 3, 1310759, 65536, 4)
 
 [node name="MurkyWaterTileMap" type="TileMap" parent="."]
 tile_set = ExtResource("9_nh304")

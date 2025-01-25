@@ -1,12 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://do0wmin31njac"]
+[gd_scene load_steps=12 format=3 uid="uid://do0wmin31njac"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_10x31"]
 [ext_resource type="PackedScene" uid="uid://78ali1yoytib" path="res://Player/player.tscn" id="2_h2f61"]
 [ext_resource type="TileSet" uid="uid://7iu1neo0872o" path="res://Tile Sets/vacuum_boss_tileset.tres" id="3_fmav6"]
 [ext_resource type="PackedScene" uid="uid://pky0u0xtgc6h" path="res://next_level_trigger.tscn" id="4_o4xln"]
 [ext_resource type="PackedScene" uid="uid://c0a1m6vnng1wy" path="res://Bosses/cello_boss.tscn" id="5_sl0xd"]
+[ext_resource type="Script" path="res://Levels/dancer_controller.gd" id="6_p1f1i"]
 [ext_resource type="PackedScene" uid="uid://brfn0l5o8s87q" path="res://Bosses/man_dancer.tscn" id="7_pedbl"]
 [ext_resource type="PackedScene" uid="uid://bayubd62rlo3u" path="res://Bosses/fem_dancer.tscn" id="8_libms"]
+[ext_resource type="Script" path="res://Bosses/man_dancer.gd" id="9_srugl"]
+
+[sub_resource type="Curve2D" id="Curve2D_ii41n"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 632, 144, 0, 0, 0, 0, 8, 144, 0, 0, 0, 0, 632, 144)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_2rj1y"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 8, 144, 0, 0, 0, 0, 632, 144, 0, 0, 0, 0, 8, 144)
+}
+point_count = 3
 
 [node name="Level Test" type="Node2D" node_paths=PackedStringArray("_boss")]
 process_mode = 1
@@ -28,7 +42,30 @@ position = Vector2(663, 293)
 [node name="CelloBoss" parent="." instance=ExtResource("5_sl0xd")]
 position = Vector2(578, 251)
 
-[node name="ManDancer" parent="." instance=ExtResource("7_pedbl")]
+[node name="DancerController" type="Node2D" parent="."]
+script = ExtResource("6_p1f1i")
 
-[node name="FemDancer" parent="." instance=ExtResource("8_libms")]
-position = Vector2(510, 302)
+[node name="ManPath" type="Path2D" parent="DancerController"]
+curve = SubResource("Curve2D_ii41n")
+
+[node name="ManPathFollow" type="PathFollow2D" parent="DancerController/ManPath"]
+position = Vector2(632, 144)
+rotation = 3.14159
+rotates = false
+
+[node name="ManDancer" parent="DancerController/ManPath/ManPathFollow" instance=ExtResource("7_pedbl")]
+rotation = 3.14159
+_amplitude = 1
+_frequency = 5
+
+[node name="FemPath" type="Path2D" parent="DancerController"]
+position = Vector2(7.9, 144)
+scale = Vector2(0.9875, 1)
+curve = SubResource("Curve2D_2rj1y")
+
+[node name="FemPathFollow" type="PathFollow2D" parent="DancerController/FemPath"]
+position = Vector2(8, 144)
+rotates = false
+
+[node name="FemDancer" parent="DancerController/FemPath/FemPathFollow" instance=ExtResource("8_libms")]
+script = ExtResource("9_srugl")

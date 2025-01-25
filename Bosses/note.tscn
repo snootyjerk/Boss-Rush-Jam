@@ -25,7 +25,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hngfc"]
 size = Vector2(15, 24)
 
-[node name="Note" type="RigidBody2D"]
+[node name="Note" type="StaticBody2D"]
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("1_v4r2b")
@@ -35,5 +35,4 @@ sprite_frames = SubResource("SpriteFrames_1tbvc")
 frame_progress = 0.840544
 
 [node name="NoteShape" type="CollisionShape2D" parent="."]
-position = Vector2(2.5, 3)
 shape = SubResource("RectangleShape2D_hngfc")
