@@ -9,4 +9,4 @@ static var Layers = {
 }
 
 
-const PLAYER_MAX_HEALTH: int = 3
+const PLAYER_MAX_HEALTH: int = 4
