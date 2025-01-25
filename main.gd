@@ -14,6 +14,14 @@ signal boss_defeated
 static var node: Main
 
 @onready var hud: Control = $HUD
+@onready var pause: PanelContainer = $Pause
+
+var is_game_paused: bool = false:
+	get:
+		return is_game_paused
+	set(value):
+		is_game_paused = value
+		pause.visible = value
 
 var current_level: Level
 var player_health: int = Constants.PLAYER_MAX_HEALTH:
@@ -88,6 +96,11 @@ func _init():
 func _ready():
 	go_to_level(_first_level_scene)
 	player_health_changed.emit(player_health)
+	
+	
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("pause"):
+		_pause(!is_game_paused)
 
 
 func go_to_level(level_scene: PackedScene):
@@ -132,3 +145,8 @@ func _show_game_over_screen():
 	get_tree().paused = true
 	node.add_child(_game_over_node)
 	hud.visible = false
+	
+	
+func _pause(is_paused: bool):
+	is_game_paused = is_paused
+	get_tree().paused = is_paused

@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bayubd62rlo3u" path="res://Bosses/fem_dancer.tscn" id="8_libms"]
 
 [node name="Level Test" type="Node2D" node_paths=PackedStringArray("_boss")]
+process_mode = 1
 script = ExtResource("1_10x31")
 _next_level_name = "test3"
 _boss = NodePath("CelloBoss")

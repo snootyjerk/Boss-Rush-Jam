@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://pky0u0xtgc6h" path="res://next_level_trigger.tscn" id="13_03rqp"]
 
 [node name="Level Vacuum" type="Node2D" node_paths=PackedStringArray("_boss")]
+process_mode = 1
 script = ExtResource("1_cta5x")
 _next_level_name = "test2"
 _boss = NodePath("VacuumBoss")
