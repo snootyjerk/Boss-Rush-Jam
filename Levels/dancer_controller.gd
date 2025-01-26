@@ -14,28 +14,29 @@ signal dancers_downed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_man_dancer._right_reset_point = Vector2(632,144)
-	_man_dancer._left_reset_point = Vector2(8,144)
-	_fem_dancer._right_reset_point = Vector2(632,144)
-	_fem_dancer._left_reset_point = Vector2(8,144)
+	#_man_dancer._right_reset_point = Vector2(632,144)
+	#_man_dancer._left_reset_point = Vector2(8,144)
+	#_fem_dancer._right_reset_point = Vector2(632,144)
+	#_fem_dancer._left_reset_point = Vector2(8,144)
 	
 	_man_dancer._update_state(_states.DANCING)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	match _boss_stage:
-		0:	
-			if _man_dancer._current_state == _states.DANCING:
-				_man_path.progress += _dancer_speed * delta
-				if _fem_dancer._current_state != _states.STUN and (_man_path.progress_ratio >= .497 and _man_path.progress_ratio <= .503) or (_man_path.progress_ratio >= .997 or _man_path.progress_ratio <= .003):
-					_man_dancer._update_state(_states.IDLE)
-					_fem_dancer._update_state(_states.DANCING)
-			if _fem_dancer._current_state == _states.DANCING:
-				_fem_path.progress += _dancer_speed * delta
-				if _man_dancer._current_state != _states.STUN and (_fem_path.progress_ratio >= .497 and _fem_path.progress_ratio <= .503) or (_fem_path.progress_ratio >= .997 or _fem_path.progress_ratio <= .003):
-					_fem_dancer._update_state(_states.IDLE)
-					_man_dancer._update_state(_states.DANCING)
+	pass
+	#match _boss_stage:
+		#0:	
+			#if _man_dancer._current_state == _states.DANCING:
+				#_man_path.progress += _dancer_speed * delta
+				#if _fem_dancer._current_state != _states.STUN and (_man_path.progress_ratio >= .497 and _man_path.progress_ratio <= .503) or (_man_path.progress_ratio >= .997 or _man_path.progress_ratio <= .003):
+					#_man_dancer._update_state(_states.IDLE)
+					#_fem_dancer._update_state(_states.DANCING)
+			#if _fem_dancer._current_state == _states.DANCING:
+				#_fem_path.progress += _dancer_speed * delta
+				#if _man_dancer._current_state != _states.STUN and (_fem_path.progress_ratio >= .497 and _fem_path.progress_ratio <= .503) or (_fem_path.progress_ratio >= .997 or _fem_path.progress_ratio <= .003):
+					#_fem_dancer._update_state(_states.IDLE)
+					#_man_dancer._update_state(_states.DANCING)
 
 
 func _on_man_dancer_stunned() -> void:

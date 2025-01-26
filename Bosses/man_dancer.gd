@@ -25,33 +25,34 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	match _current_state:
+	pass
+	#match _current_state:
 		
-		_states.IDLE:
-			velocity.y = sin(_timer*_frequency) * _amplitude
-			global_position += velocity
-			_timer+= 1*delta
+		#_states.IDLE:
+			#velocity.y = sin(_timer*_frequency) * _amplitude
+			#global_position += velocity
+			#_timer+= 1*delta
 			
-		_states.DANCING:
-			pass
-			
-		_states.STUN:
-			velocity = Vector2(0,0)
-		
-		_states.ATTACK:
-			pass
-		
-		_states.RECOVER:
-			pass
-		
-		_states.RESET:
-			#velocity = global_position.direction_to(_target_point) * _reset_speed
-			#global_position = _target_point
-			if global_position == _target_point:
-				print("made it")
-				velocity = Vector2(0,0)
-				_update_state(_states.IDLE)
-				reset_complete.emit()
+		#_states.DANCING:
+			#pass
+			#
+		#_states.STUN:
+			#velocity = Vector2(0,0)
+		#
+		#_states.ATTACK:
+			#pass
+		#
+		#_states.RECOVER:
+			#pass
+		#
+		#_states.RESET:
+			##velocity = global_position.direction_to(_target_point) * _reset_speed
+			##global_position = _target_point
+			#if global_position == _target_point:
+				#print("made it")
+				#velocity = Vector2(0,0)
+				#_update_state(_states.IDLE)
+				#reset_complete.emit()
 			
 func take_damage():
 	_hp -= 1
