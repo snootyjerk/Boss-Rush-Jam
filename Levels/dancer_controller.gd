@@ -46,6 +46,7 @@ func _on_man_dancer_stunned() -> void:
 	_num_stunned += 1
 	if _num_stunned >= 2:
 		dancers_downed.emit()
+		_num_stunned = 0
 
 
 func _on_fem_dancer_stunned() -> void:
