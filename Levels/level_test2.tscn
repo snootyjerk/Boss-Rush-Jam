@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://do0wmin31njac"]
+[gd_scene load_steps=19 format=3 uid="uid://do0wmin31njac"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_10x31"]
 [ext_resource type="PackedScene" uid="uid://78ali1yoytib" path="res://Player/player.tscn" id="2_h2f61"]
@@ -15,6 +15,51 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 36, 321, 0, 0, 0, 0, 201, 319, 0, 0, 0, 0, 334, 319, 0, 0, 0, 0, 474, 321)
 }
 point_count = 4
+
+[sub_resource type="Animation" id="Animation_q70vt"]
+resource_name = "dance_man"
+length = 38.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ManPathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10, 14, 19, 24, 29, 33, 38),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.525, 0.525, 1.0, 1.0, 0.525, 0.525, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_e0yij"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ManPathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_grbyo"]
+_data = {
+"RESET": SubResource("Animation_e0yij"),
+"dance_man": SubResource("Animation_q70vt")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_2rj1y"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 474.025, 176, 0, 0, 0, 0, 174.278, 174, 0, 0, 0, 0, 24.4051, 174)
+}
+point_count = 3
 
 [sub_resource type="Animation" id="Animation_hdwhi"]
 resource_name = "dance"
@@ -36,18 +81,42 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_0fvsa"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ManPathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_fvt4r"]
+resource_name = "dance_man"
+length = 38.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ManPathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xkgck"]
 _data = {
 "RESET": SubResource("Animation_0fvsa"),
-"dance": SubResource("Animation_hdwhi")
+"dance": SubResource("Animation_hdwhi"),
+"dance_man": SubResource("Animation_fvt4r")
 }
-
-[sub_resource type="Curve2D" id="Curve2D_2rj1y"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 474.025, 176, 0, 0, 0, 0, 174.278, 174, 0, 0, 0, 0, 24.4051, 174)
-}
-point_count = 3
 
 [node name="Level Test" type="Node2D" node_paths=PackedStringArray("_boss")]
 process_mode = 1
@@ -83,9 +152,9 @@ rotates = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DancerController/ManPath"]
 libraries = {
-"": SubResource("AnimationLibrary_xkgck")
+"": SubResource("AnimationLibrary_grbyo")
 }
-autoplay = "dance"
+autoplay = "dance_man"
 
 [node name="FemPath" type="Path2D" parent="DancerController"]
 position = Vector2(7.9, 144)
