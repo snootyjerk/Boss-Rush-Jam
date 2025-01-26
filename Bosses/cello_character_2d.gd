@@ -35,6 +35,6 @@ func _on_boss_phase_changed(phase: int):
 		2:
 			pass
 		3:
-			pass
+			_note_timer_max = 2.6
 		4:
-			pass
+			_note_timer_max = 2.0

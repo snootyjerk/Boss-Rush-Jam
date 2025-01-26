@@ -194,6 +194,7 @@ autoplay = "dance"
 stream = ExtResource("10_lmld0")
 volume_db = -12.0
 autoplay = true
+parameters/looping = true
 
 [connection signal="cello_reset" from="CelloBoss" to="DancerController" method="_on_cello_boss_cello_reset"]
 [connection signal="dancers_downed" from="DancerController" to="CelloBoss" method="_on_dancer_controller_dancers_downed"]
