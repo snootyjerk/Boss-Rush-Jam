@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0a1m6vnng1wy"]
+[gd_scene load_steps=21 format=3 uid="uid://c0a1m6vnng1wy"]
 
 [ext_resource type="Texture2D" uid="uid://d3ndnxjrgu63b" path="res://Sprite Sheets/Cello/celloIdle1.png" id="1_3doic"]
+[ext_resource type="Material" uid="uid://dp5u0eoc2y61n" path="res://Shaders/flash_shader_material.tres" id="1_4vstg"]
 [ext_resource type="Script" path="res://Bosses/cello_boss.gd" id="1_afp2d"]
 [ext_resource type="Texture2D" uid="uid://4t3mcyelxlsl" path="res://Sprite Sheets/Cello/bowedge vertical.png" id="2_n4n6s"]
 [ext_resource type="Script" path="res://Bosses/cello_character_2d.gd" id="2_scaj8"]
@@ -81,17 +82,58 @@ animations = [{
 "speed": 1.0
 }]
 
-[node name="CelloBoss" type="Node2D"]
+[sub_resource type="Animation" id="Animation_pfhtk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_snlx0"]
+resource_name = "flash"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f3w73"]
+_data = {
+"RESET": SubResource("Animation_pfhtk"),
+"flash": SubResource("Animation_snlx0")
+}
+
+[node name="CelloBoss" type="Node2D" node_paths=PackedStringArray("_boss_animation_player")]
+material = ExtResource("1_4vstg")
 script = ExtResource("1_afp2d")
 boss_name = "Doom String"
 boss_health = 16
+_boss_animation_player = NodePath("AnimationPlayer")
 
 [node name="Cello" type="CharacterBody2D" parent="."]
-collision_layer = 65
-collision_mask = 96
+use_parent_material = true
+collision_layer = 96
+collision_mask = 0
 script = ExtResource("2_scaj8")
 
 [node name="BodySprite" type="AnimatedSprite2D" parent="Cello"]
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_vclxq")
 autoplay = "default"
 frame_progress = 0.672209
@@ -101,11 +143,18 @@ position = Vector2(0, 4.5)
 shape = SubResource("RectangleShape2D_pkaw6")
 
 [node name="BowSprite" type="AnimatedSprite2D" parent="Cello"]
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_1cwmp")
 frame_progress = 0.761039
 
 [node name="VulnerableTimer" type="Timer" parent="."]
 wait_time = 10.0
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f3w73")
+}
+
+[connection signal="damaged" from="Cello" to="." method="_on_damage_taken"]
 [connection signal="reset" from="Cello" to="." method="_on_cello_reset"]
 [connection signal="timeout" from="VulnerableTimer" to="." method="_on_vulnerable_timer_timeout"]

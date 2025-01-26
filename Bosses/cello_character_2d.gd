@@ -5,6 +5,7 @@ var _note_timer_max = 3
 var _note_timer = _note_timer_max
 var vulnerable = false
 
+signal damaged
 signal reset
 
 
@@ -24,6 +25,7 @@ func _physics_process(delta: float) -> void:
 func take_damage():
 	if vulnerable == true:
 		Main.node.damage_boss()
+		damaged.emit()
 		
 		
 func _on_boss_phase_changed(phase: int):
