@@ -1,5 +1,7 @@
 extends Node2D
 
+signal dancers_downed
+
 @onready var _man_path = $ManPath/ManPathFollow
 @onready var _fem_path = $FemPath/FemPathFollow
 @onready var _man_dancer = $ManPath/ManPathFollow/ManDancer
@@ -10,7 +12,8 @@ enum _states {IDLE,DANCING,STUN,ATTACK,RECOVER,RESET}
 @export var _dancer_speed = 50
 
 var _boss_stage: int = 0
-signal dancers_downed
+var _num_stunned: int = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -40,29 +43,23 @@ func _process(delta: float) -> void:
 
 
 func _on_man_dancer_stunned() -> void:
-	if _fem_dancer._current_state != _states.STUN:
-		print("man down")
-		_fem_dancer._update_state(_states.DANCING)
-	else:
-		print("both down")
-		#Cello becomes vulnerable
+	_num_stunned += 1
+	if _num_stunned >= 2:
+		dancers_downed.emit()
 
 
 func _on_fem_dancer_stunned() -> void:
-	if _man_dancer._current_state != _states.STUN:
-		print("fem down")
-		_man_dancer._update_state(_states.DANCING)
-	else:
-		print("both down")
+	_num_stunned += 1
+	if _num_stunned >= 2:
 		dancers_downed.emit()
+	#if _man_dancer._current_state != _states.STUN:
+		#print("fem down")
+		#_man_dancer._update_state(_states.DANCING)
+	#else:
+		#print("both down")
+		#dancers_downed.emit()
 
 func _reset_dancers():
-	_man_path.progress_ratio = 0
-	_fem_path.progress_ratio = 0
-	_man_dancer._update_state(_states.DANCING)
-	_fem_dancer._update_state(_states.IDLE)
-	#_man_dancer._reset_position("right")
-	#_fem_dancer._reset_position("left")
 	_man_dancer._revive()
 	_fem_dancer._revive()
 
@@ -74,3 +71,7 @@ func _on_man_dancer_reset_complete() -> void:
 func _on_cello_boss_cello_damaged() -> void:
 	_reset_dancers()
 	print("dancers reset")
+
+
+func _on_cello_boss_cello_reset() -> void:
+	_reset_dancers()

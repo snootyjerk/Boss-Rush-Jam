@@ -1,9 +1,13 @@
 extends CharacterBody2D
 
-@export var _amplitude = 1
-@export var _frequency = 5
+@export var sprite: AnimatedSprite2D
+@export var animation_player: AnimationPlayer
+@export var dance_anim_name: String = "dance"
+#@export var _amplitude = 1
+#@export var _frequency = 5
 @export var _max_hp = 3
 var _hp = _max_hp
+
 
 var _timer = 0
 enum _states {IDLE,DANCING,STUN,ATTACK,RECOVER,RESET}
@@ -54,6 +58,7 @@ func _process(delta: float) -> void:
 				#_update_state(_states.IDLE)
 				#reset_complete.emit()
 			
+
 func take_damage():
 	_hp -= 1
 	if _hp <= 0:
@@ -61,7 +66,10 @@ func take_damage():
 		set_collision_layer_value(Constants.Layers.enemy, false)
 		stunned.emit()
 		rotation = 90
+		animation_player.pause()
+		sprite.pause()
 		_update_state(_states.STUN)
+
 
 func _reset_position(side: String):
 	_update_state(_states.RESET)
@@ -69,12 +77,16 @@ func _reset_position(side: String):
 		_target_point = _right_reset_point
 	else:
 		_target_point = _left_reset_point
+	
 		
 func _revive():
 	_hp = _max_hp
 	rotation = 0
 	set_collision_layer_value(Constants.Layers.player_hurt, true)
 	set_collision_layer_value(Constants.Layers.enemy, true)
+	sprite.play()
+	animation_player.play(dance_anim_name)
+
 
 func _update_state(new_state):
 	_prev_state = _current_state

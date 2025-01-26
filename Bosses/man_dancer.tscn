@@ -35,10 +35,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dd02t"]
 size = Vector2(14, 33)
 
-[node name="ManDancer" type="CharacterBody2D"]
+[node name="ManDancer" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 collision_layer = 64
 collision_mask = 96
 script = ExtResource("1_oxehy")
+sprite = NodePath("ManSprite")
 
 [node name="ManSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_87n75")

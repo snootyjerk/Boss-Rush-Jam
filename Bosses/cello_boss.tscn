@@ -84,7 +84,7 @@ animations = [{
 [node name="CelloBoss" type="Node2D"]
 script = ExtResource("1_afp2d")
 boss_name = "Doom String"
-boss_health = 4
+boss_health = 16
 
 [node name="Cello" type="CharacterBody2D" parent="."]
 collision_layer = 65
@@ -104,4 +104,8 @@ shape = SubResource("RectangleShape2D_pkaw6")
 sprite_frames = SubResource("SpriteFrames_1cwmp")
 frame_progress = 0.761039
 
-[connection signal="damaged" from="Cello" to="." method="_on_cello_damaged"]
+[node name="VulnerableTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="reset" from="Cello" to="." method="_on_cello_reset"]
+[connection signal="timeout" from="VulnerableTimer" to="." method="_on_vulnerable_timer_timeout"]

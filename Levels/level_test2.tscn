@@ -148,7 +148,9 @@ curve = SubResource("Curve2D_ii41n")
 position = Vector2(36, 321)
 rotates = false
 
-[node name="ManDancer" parent="DancerController/ManPath/ManPathFollow" instance=ExtResource("7_pedbl")]
+[node name="ManDancer" parent="DancerController/ManPath/ManPathFollow" node_paths=PackedStringArray("animation_player") instance=ExtResource("7_pedbl")]
+animation_player = NodePath("../../AnimationPlayer")
+dance_anim_name = "dance_man"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DancerController/ManPath"]
 libraries = {
@@ -165,8 +167,10 @@ curve = SubResource("Curve2D_2rj1y")
 position = Vector2(474.025, 176)
 rotates = false
 
-[node name="FemDancer" parent="DancerController/FemPath/FemPathFollow" instance=ExtResource("8_libms")]
+[node name="FemDancer" parent="DancerController/FemPath/FemPathFollow" node_paths=PackedStringArray("sprite", "animation_player") instance=ExtResource("8_libms")]
 script = ExtResource("9_srugl")
+sprite = NodePath("FemSprite")
+animation_player = NodePath("../../AnimationPlayer")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="DancerController/FemPath"]
 libraries = {
@@ -174,8 +178,10 @@ libraries = {
 }
 autoplay = "dance"
 
-[connection signal="cello_damaged" from="CelloBoss" to="DancerController" method="_on_cello_boss_cello_damaged"]
+[connection signal="cello_reset" from="CelloBoss" to="DancerController" method="_on_cello_boss_cello_reset"]
 [connection signal="dancers_downed" from="DancerController" to="CelloBoss" method="_on_dancer_controller_dancers_downed"]
 [connection signal="reset_complete" from="DancerController/ManPath/ManPathFollow/ManDancer" to="DancerController" method="_on_man_dancer_reset_complete"]
 [connection signal="stunned" from="DancerController/ManPath/ManPathFollow/ManDancer" to="DancerController" method="_on_man_dancer_stunned"]
 [connection signal="stunned" from="DancerController/FemPath/FemPathFollow/FemDancer" to="DancerController" method="_on_fem_dancer_stunned"]
+
+[editable path="DancerController/FemPath/FemPathFollow/FemDancer"]
