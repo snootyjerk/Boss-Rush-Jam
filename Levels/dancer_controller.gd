@@ -7,9 +7,10 @@ extends Node2D
 enum _states {IDLE,DANCING,STUN,ATTACK,RECOVER,RESET}
 
 
-@export var _dancer_speed = 200
+@export var _dancer_speed = 50
 
 var _boss_stage: int = 0
+signal _dancers_downed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,14 +25,36 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	match _boss_stage:
-		0:
+		0:	
 			if _man_dancer._current_state == _states.DANCING:
 				_man_path.progress += _dancer_speed * delta
-				if (_man_path.progress_ratio >= .497 and _man_path.progress_ratio <= .503) or (_man_path.progress_ratio >= .997 or _man_path.progress_ratio <= .003):
+				if _fem_dancer._current_state != _states.STUN and (_man_path.progress_ratio >= .497 and _man_path.progress_ratio <= .503) or (_man_path.progress_ratio >= .997 or _man_path.progress_ratio <= .003):
 					_man_dancer._update_state(_states.IDLE)
 					_fem_dancer._update_state(_states.DANCING)
 			if _fem_dancer._current_state == _states.DANCING:
 				_fem_path.progress += _dancer_speed * delta
-				if (_fem_path.progress_ratio >= .497 and _fem_path.progress_ratio <= .503) or (_fem_path.progress_ratio >= .997 or _fem_path.progress_ratio <= .003):
+				if _man_dancer._current_state != _states.STUN and (_fem_path.progress_ratio >= .497 and _fem_path.progress_ratio <= .503) or (_fem_path.progress_ratio >= .997 or _fem_path.progress_ratio <= .003):
 					_fem_dancer._update_state(_states.IDLE)
 					_man_dancer._update_state(_states.DANCING)
+
+
+func _on_man_dancer_stunned() -> void:
+	if _fem_dancer._current_state != _states.STUN:
+		print("man down")
+		_fem_dancer._update_state(_states.DANCING)
+	else:
+		print("both down")
+		#Cello becomes vulnerable
+
+
+func _on_fem_dancer_stunned() -> void:
+	if _man_dancer._current_state != _states.STUN:
+		print("fem down")
+		_man_dancer._update_state(_states.DANCING)
+	else:
+		print("both down")
+		#Cello becomes vulnerable
+
+func _reset_dancers():
+	_man_dancer._reset_position("right")
+	_fem_dancer._reset_position("left")

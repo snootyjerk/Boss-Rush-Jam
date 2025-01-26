@@ -54,7 +54,10 @@ func _process(delta: float) -> void:
 func take_damage():
 	_hp -= 1
 	if _hp <= 0:
+		set_collision_layer_value(Constants.Layers.player_hurt, false)
+		set_collision_layer_value(Constants.Layers.enemy, false)
 		stunned.emit()
+		rotation = 90
 		_update_state(_states.STUN)
 
 func _reset_position(side: String):
@@ -64,6 +67,7 @@ func _reset_position(side: String):
 		
 func _revive():
 	_hp = _max_hp
+	rotation = 0
 
 func _update_state(new_state):
 	_prev_state = _current_state

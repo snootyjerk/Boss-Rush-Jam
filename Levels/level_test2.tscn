@@ -55,8 +55,6 @@ rotates = false
 
 [node name="ManDancer" parent="DancerController/ManPath/ManPathFollow" instance=ExtResource("7_pedbl")]
 rotation = 3.14159
-_amplitude = 1
-_frequency = 5
 
 [node name="FemPath" type="Path2D" parent="DancerController"]
 position = Vector2(7.9, 144)
@@ -69,3 +67,6 @@ rotates = false
 
 [node name="FemDancer" parent="DancerController/FemPath/FemPathFollow" instance=ExtResource("8_libms")]
 script = ExtResource("9_srugl")
+
+[connection signal="stunned" from="DancerController/ManPath/ManPathFollow/ManDancer" to="DancerController" method="_on_man_dancer_stunned"]
+[connection signal="stunned" from="DancerController/FemPath/FemPathFollow/FemDancer" to="DancerController" method="_on_fem_dancer_stunned"]
