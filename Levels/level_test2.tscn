@@ -50,11 +50,9 @@ curve = SubResource("Curve2D_ii41n")
 
 [node name="ManPathFollow" type="PathFollow2D" parent="DancerController/ManPath"]
 position = Vector2(632, 144)
-rotation = 3.14159
 rotates = false
 
 [node name="ManDancer" parent="DancerController/ManPath/ManPathFollow" instance=ExtResource("7_pedbl")]
-rotation = 3.14159
 
 [node name="FemPath" type="Path2D" parent="DancerController"]
 position = Vector2(7.9, 144)
@@ -68,5 +66,8 @@ rotates = false
 [node name="FemDancer" parent="DancerController/FemPath/FemPathFollow" instance=ExtResource("8_libms")]
 script = ExtResource("9_srugl")
 
+[connection signal="cello_damaged" from="CelloBoss" to="DancerController" method="_on_cello_boss_cello_damaged"]
+[connection signal="dancers_downed" from="DancerController" to="CelloBoss" method="_on_dancer_controller_dancers_downed"]
+[connection signal="reset_complete" from="DancerController/ManPath/ManPathFollow/ManDancer" to="DancerController" method="_on_man_dancer_reset_complete"]
 [connection signal="stunned" from="DancerController/ManPath/ManPathFollow/ManDancer" to="DancerController" method="_on_man_dancer_stunned"]
 [connection signal="stunned" from="DancerController/FemPath/FemPathFollow/FemDancer" to="DancerController" method="_on_fem_dancer_stunned"]

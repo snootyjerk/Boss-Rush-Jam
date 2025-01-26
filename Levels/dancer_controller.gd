@@ -10,7 +10,7 @@ enum _states {IDLE,DANCING,STUN,ATTACK,RECOVER,RESET}
 @export var _dancer_speed = 50
 
 var _boss_stage: int = 0
-signal _dancers_downed
+signal dancers_downed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -53,8 +53,23 @@ func _on_fem_dancer_stunned() -> void:
 		_man_dancer._update_state(_states.DANCING)
 	else:
 		print("both down")
-		#Cello becomes vulnerable
+		dancers_downed.emit()
 
 func _reset_dancers():
-	_man_dancer._reset_position("right")
-	_fem_dancer._reset_position("left")
+	_man_path.progress_ratio = 0
+	_fem_path.progress_ratio = 0
+	_man_dancer._update_state(_states.DANCING)
+	_fem_dancer._update_state(_states.IDLE)
+	#_man_dancer._reset_position("right")
+	#_fem_dancer._reset_position("left")
+	_man_dancer._revive()
+	_fem_dancer._revive()
+
+
+func _on_man_dancer_reset_complete() -> void:
+	_man_dancer._update_state(_states.DANCING)
+
+
+func _on_cello_boss_cello_damaged() -> void:
+	_reset_dancers()
+	print("dancers reset")

@@ -87,6 +87,8 @@ boss_name = "Doom String"
 boss_health = 4
 
 [node name="Cello" type="CharacterBody2D" parent="."]
+collision_layer = 65
+collision_mask = 96
 script = ExtResource("2_scaj8")
 
 [node name="BodySprite" type="AnimatedSprite2D" parent="Cello"]
@@ -101,3 +103,5 @@ shape = SubResource("RectangleShape2D_pkaw6")
 [node name="BowSprite" type="AnimatedSprite2D" parent="Cello"]
 sprite_frames = SubResource("SpriteFrames_1cwmp")
 frame_progress = 0.761039
+
+[connection signal="damaged" from="Cello" to="." method="_on_cello_damaged"]

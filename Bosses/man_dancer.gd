@@ -11,9 +11,9 @@ var _current_state = _states.IDLE
 var _prev_state = _states.IDLE
 
 #Return to these points
-var _right_reset_point = Vector2(632,144)
-var _left_reset_point = Vector2(8,144)
-var _target_point = _right_reset_point
+var _right_reset_point: Vector2
+var _left_reset_point: Vector2
+var _target_point: Vector2
 var _reset_speed = 100
 
 signal stunned
@@ -45,8 +45,10 @@ func _process(delta: float) -> void:
 			pass
 		
 		_states.RESET:
-			velocity = global_position.direction_to(_target_point) * _reset_speed
+			#velocity = global_position.direction_to(_target_point) * _reset_speed
+			#global_position = _target_point
 			if global_position == _target_point:
+				print("made it")
 				velocity = Vector2(0,0)
 				_update_state(_states.IDLE)
 				reset_complete.emit()
@@ -64,10 +66,14 @@ func _reset_position(side: String):
 	_update_state(_states.RESET)
 	if side == "right":
 		_target_point = _right_reset_point
+	else:
+		_target_point = _left_reset_point
 		
 func _revive():
 	_hp = _max_hp
 	rotation = 0
+	set_collision_layer_value(Constants.Layers.player_hurt, true)
+	set_collision_layer_value(Constants.Layers.enemy, true)
 
 func _update_state(new_state):
 	_prev_state = _current_state
