@@ -10,7 +10,12 @@ var _note_multi_projectile = preload("res://Bosses/note_multi.tscn")
 var _starting_position: Vector2
 var _note_timer_max = 3
 var _note_timer = _note_timer_max
-var vulnerable = false
+var vulnerable = false:
+	get:
+		return vulnerable
+	set(value):
+		vulnerable = value
+		$ShieldSprite.visible = !value
 
 signal damaged
 signal reset

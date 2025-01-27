@@ -74,7 +74,6 @@ func take_damage():
 		set_collision_layer_value(Constants.Layers.enemy, false)
 		stunned.emit()
 		rotation = 90
-		sprite.pause()
 		_update_state(_states.STUN)
 
 

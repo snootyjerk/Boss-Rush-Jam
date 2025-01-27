@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c0a1m6vnng1wy"]
+[gd_scene load_steps=28 format=3 uid="uid://c0a1m6vnng1wy"]
 
 [ext_resource type="Texture2D" uid="uid://d3ndnxjrgu63b" path="res://Sprite Sheets/Cello/celloIdle1.png" id="1_3doic"]
 [ext_resource type="Material" uid="uid://dp5u0eoc2y61n" path="res://Shaders/flash_shader_material.tres" id="1_4vstg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cfg0cqa7g5oku" path="res://Sprite Sheets/Cello/bowRightDiagonal.png" id="3_ydhom"]
 [ext_resource type="Texture2D" uid="uid://dj3kmcq8twt81" path="res://Sprite Sheets/Cello/bowStraight.png" id="4_uob8s"]
 [ext_resource type="Texture2D" uid="uid://pfxf51wah5i4" path="res://Sprite Sheets/Cello/bowLeftDiagonal.png" id="5_bjyrc"]
+[ext_resource type="Texture2D" uid="uid://s6y5jtinqhyp" path="res://Sprite Sheets/MusicSheild.png" id="9_31k77"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r56jh"]
 atlas = ExtResource("1_3doic")
@@ -157,6 +158,68 @@ _data = {
 "teleport": SubResource("Animation_v4ldu")
 }
 
+[sub_resource type="Animation" id="Animation_3pqih"]
+resource_name = "shield"
+length = 2.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.26667, 2.13333, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.90735e-06, 9), Vector2(0, -1), Vector2(0, -19), Vector2(0, -1), Vector2(1.90735e-06, 9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.26667, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.286275), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_veybg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.90735e-06, 9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y7gk2"]
+_data = {
+"RESET": SubResource("Animation_veybg"),
+"shield": SubResource("Animation_3pqih")
+}
+
 [sub_resource type="Animation" id="Animation_pfhtk"]
 length = 0.001
 tracks/0/type = "value"
@@ -226,6 +289,18 @@ frame_progress = 0.761039
 libraries = {
 "": SubResource("AnimationLibrary_w7bkg")
 }
+
+[node name="ShieldSprite" type="Sprite2D" parent="Cello"]
+texture_filter = 1
+position = Vector2(1.90735e-06, 9)
+scale = Vector2(1.5, 2)
+texture = ExtResource("9_31k77")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cello/ShieldSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_y7gk2")
+}
+autoplay = "shield"
 
 [node name="VulnerableTimer" type="Timer" parent="."]
 wait_time = 10.0
