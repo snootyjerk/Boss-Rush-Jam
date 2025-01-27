@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwfdh2vowje6y"]
+
+[ext_resource type="Script" path="res://Levels/water_level.gd" id="1_2r82i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obhkx"]
+size = Vector2(660, 450)
+
+[node name="WaterLevel" type="Area2D"]
+collision_layer = 0
+collision_mask = 16
+gravity = 814.505
+linear_damp = 68.787
+script = ExtResource("1_2r82i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(320, 224)
+shape = SubResource("RectangleShape2D_obhkx")
+
+[node name="Polygon2D" type="Polygon2D" parent="CollisionShape2D"]
+color = Color(0, 0.6, 0.701961, 0.301961)
+polygon = PackedVector2Array(-328, -224, 328, -224, 328, 224, -328, 224)

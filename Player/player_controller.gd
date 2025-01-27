@@ -229,3 +229,27 @@ func _on_foot_step():
 	
 func _on_jump():
 	_jump_audio_player.play()
+
+
+func _on_water_level_body_entered(body: Node2D) -> void:
+	print("in water")
+	_max_run_speed = 50
+	_jump_speed = 150
+	_acceleration = 225
+	_air_acceleration = 30
+	_air_friction = 5000
+	_friction = 5000
+	_gravity = 250
+	_flight_acceleration = 25
+
+
+func _on_water_level_body_exited(body: Node2D) -> void:
+	print("out of water")
+	_max_run_speed = 100
+	_jump_speed = 300
+	_acceleration = 450
+	_air_acceleration = 60
+	_air_friction = 2500
+	_friction = 2500
+	_gravity = 500
+	_flight_acceleration = 100
