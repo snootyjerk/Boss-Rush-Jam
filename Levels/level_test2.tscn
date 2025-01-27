@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://do0wmin31njac"]
+[gd_scene load_steps=15 format=3 uid="uid://do0wmin31njac"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_10x31"]
 [ext_resource type="Texture2D" uid="uid://djv0wop88b75l" path="res://Sprite Sheets/bg_vacuum.png" id="2_36h8q"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" path="res://Levels/dancer_controller.gd" id="6_p1f1i"]
 [ext_resource type="PackedScene" uid="uid://brfn0l5o8s87q" path="res://Bosses/man_dancer.tscn" id="7_pedbl"]
 [ext_resource type="PackedScene" uid="uid://bayubd62rlo3u" path="res://Bosses/fem_dancer.tscn" id="8_libms"]
-[ext_resource type="Script" path="res://Bosses/man_dancer.gd" id="9_srugl"]
 [ext_resource type="AudioStream" uid="uid://xf45o77vkv07" path="res://Music/boss_celloreal.ogg" id="10_lmld0"]
 
 [sub_resource type="Curve2D" id="Curve2D_ii41n"]
@@ -57,69 +56,6 @@ _data = {
 "dance_man": SubResource("Animation_q70vt")
 }
 
-[sub_resource type="Curve2D" id="Curve2D_2rj1y"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 474.025, 176, 0, 0, 0, 0, 174.278, 174, 0, 0, 0, 0, 24.4051, 174)
-}
-point_count = 3
-
-[sub_resource type="Animation" id="Animation_0fvsa"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../ManPathFollow:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-
-[sub_resource type="Animation" id="Animation_hdwhi"]
-resource_name = "dance"
-length = 38.0
-loop_mode = 1
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FemPathFollow:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5, 10, 14, 19, 24, 29, 33, 38),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 0.525, 0.525, 1.0, 1.0, 0.525, 0.525, 0.0]
-}
-
-[sub_resource type="Animation" id="Animation_fvt4r"]
-resource_name = "dance_man"
-length = 38.0
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ManPathFollow:progress_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 0,
-"values": []
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_xkgck"]
-_data = {
-"RESET": SubResource("Animation_0fvsa"),
-"dance": SubResource("Animation_hdwhi"),
-"dance_man": SubResource("Animation_fvt4r")
-}
-
 [node name="Level Test" type="Node2D" node_paths=PackedStringArray("_boss")]
 process_mode = 1
 script = ExtResource("1_10x31")
@@ -153,6 +89,10 @@ position = Vector2(578, 251)
 [node name="DancerController" type="Node2D" parent="."]
 script = ExtResource("6_p1f1i")
 
+[node name="FemDancer" parent="DancerController" instance=ExtResource("8_libms")]
+position = Vector2(476, 320)
+scale = Vector2(0.9875, 1)
+
 [node name="ManPath" type="Path2D" parent="DancerController"]
 curve = SubResource("Curve2D_ii41n")
 
@@ -170,26 +110,6 @@ libraries = {
 }
 autoplay = "dance_man"
 
-[node name="FemPath" type="Path2D" parent="DancerController"]
-position = Vector2(7.9, 144)
-scale = Vector2(0.9875, 1)
-curve = SubResource("Curve2D_2rj1y")
-
-[node name="FemPathFollow" type="PathFollow2D" parent="DancerController/FemPath"]
-position = Vector2(474.025, 176)
-rotates = false
-
-[node name="FemDancer" parent="DancerController/FemPath/FemPathFollow" node_paths=PackedStringArray("sprite", "animation_player") instance=ExtResource("8_libms")]
-script = ExtResource("9_srugl")
-sprite = NodePath("FemSprite")
-animation_player = NodePath("../../AnimationPlayer")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="DancerController/FemPath"]
-libraries = {
-"": SubResource("AnimationLibrary_xkgck")
-}
-autoplay = "dance"
-
 [node name="BossMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_lmld0")
 volume_db = -12.0
@@ -198,8 +118,8 @@ parameters/looping = true
 
 [connection signal="cello_reset" from="CelloBoss" to="DancerController" method="_on_cello_boss_cello_reset"]
 [connection signal="dancers_downed" from="DancerController" to="CelloBoss" method="_on_dancer_controller_dancers_downed"]
+[connection signal="stunned" from="DancerController/FemDancer" to="DancerController" method="_on_fem_dancer_stunned"]
 [connection signal="reset_complete" from="DancerController/ManPath/ManPathFollow/ManDancer" to="DancerController" method="_on_man_dancer_reset_complete"]
 [connection signal="stunned" from="DancerController/ManPath/ManPathFollow/ManDancer" to="DancerController" method="_on_man_dancer_stunned"]
-[connection signal="stunned" from="DancerController/FemPath/FemPathFollow/FemDancer" to="DancerController" method="_on_fem_dancer_stunned"]
 
-[editable path="DancerController/FemPath/FemPathFollow/FemDancer"]
+[editable path="DancerController/FemDancer"]

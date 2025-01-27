@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bayubd62rlo3u"]
+[gd_scene load_steps=11 format=3 uid="uid://bayubd62rlo3u"]
 
 [ext_resource type="Texture2D" uid="uid://csco3x5ingfhe" path="res://Sprite Sheets/Dancers/FemDancerIdle.png" id="1_eboif"]
+[ext_resource type="Script" path="res://Bosses/fem_dancer.gd" id="1_vomnh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hsess"]
 atlas = ExtResource("1_eboif")
@@ -34,15 +35,86 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c47fb"]
 size = Vector2(13, 33)
 
-[node name="FemDancer" type="CharacterBody2D"]
+[sub_resource type="Animation" id="Animation_oc8y0"]
+resource_name = "attack"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FemSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.9, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_attack_jump"
+}, {
+"args": [],
+"method": &"_attack_dive"
+}, {
+"args": [],
+"method": &"_attack_recover"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_kiipu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FemSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gw1aq"]
+_data = {
+"RESET": SubResource("Animation_kiipu"),
+"attack": SubResource("Animation_oc8y0")
+}
+
+[node name="FemDancer" type="CharacterBody2D" node_paths=PackedStringArray("animation_player")]
 collision_layer = 96
-collision_mask = 0
+script = ExtResource("1_vomnh")
+_move_speed = 100.0
+_player_detection_distance = 100.0
+animation_player = NodePath("AnimationPlayer")
 
 [node name="FemSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_qfo2l")
 autoplay = "default"
-frame_progress = 0.714773
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_c47fb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gw1aq")
+}
+
+[node name="RecoverTimer" type="Timer" parent="."]
+wait_time = 2.5
+
+[connection signal="timeout" from="RecoverTimer" to="." method="_on_recover_timer_timeout"]

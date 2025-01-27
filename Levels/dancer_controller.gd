@@ -5,7 +5,7 @@ signal dancers_downed
 @onready var _man_path = $ManPath/ManPathFollow
 @onready var _fem_path = $FemPath/FemPathFollow
 @onready var _man_dancer = $ManPath/ManPathFollow/ManDancer
-@onready var _fem_dancer = $FemPath/FemPathFollow/FemDancer
+@onready var _fem_dancer = Main.node.fem_dancer
 enum _states {IDLE,DANCING,STUN,ATTACK,RECOVER,RESET}
 
 
