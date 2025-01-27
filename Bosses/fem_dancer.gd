@@ -121,5 +121,6 @@ func _attack_recover():
 
 
 func _on_recover_timer_timeout() -> void:
-	velocity.x = [-1, 1].pick_random() * _move_speed
-	_update_state(_states.DANCING)
+	if _hp > 0:
+		velocity.x = [-1, 1].pick_random() * _move_speed
+		_update_state(_states.DANCING)

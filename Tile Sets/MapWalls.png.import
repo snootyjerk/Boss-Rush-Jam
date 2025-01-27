@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jwpj2d3qnild"
-path="res://.godot/imported/MapWalls.png-c209c8bb74ddf581180994dfdbe6210f.ctex"
+path="res://.godot/imported/MapWalls.png-16595965ef3b0ec947ede13965ba9303.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprite Sheets/MapWalls.png"
-dest_files=["res://.godot/imported/MapWalls.png-c209c8bb74ddf581180994dfdbe6210f.ctex"]
+source_file="res://Tile Sets/MapWalls.png"
+dest_files=["res://.godot/imported/MapWalls.png-16595965ef3b0ec947ede13965ba9303.ctex"]
 
 [params]
 

@@ -73,6 +73,9 @@ func _on_teleport():
 	global_position = _starting_position
 
 
+func timeout():
+	vulnerable = false
+	visibility_animation.play("teleport")
 
 func _choose_direction() -> float:
 	return deg_to_rad([45.0, 135.0, 225.0, 315.0].pick_random())

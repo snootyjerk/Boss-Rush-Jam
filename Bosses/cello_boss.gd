@@ -14,6 +14,7 @@ func _on_dancer_controller_dancers_downed() -> void:
 
 func _on_vulnerable_timer_timeout() -> void:
 	if _cello_body.vulnerable:
+		_cello_body.timeout()
 		cello_reset.emit()
 
 
