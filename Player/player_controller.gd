@@ -43,7 +43,7 @@ var _is_flying = false:
 var _current_energy = _max_energy:
 	set(energy):
 		_current_energy = energy
-		#Main.node.player_energy = _current_energy
+		Main.node.player_energy = _current_energy
 
 enum States { MOBILE, THROW_FAN }
 var _state: States = States.MOBILE
@@ -123,7 +123,7 @@ func _state_mobile(delta: float):
 	if Input.is_action_just_pressed("throw") and _has_fan:
 		_throw_fan()
 	
-	#Main.node.player_position = global_position
+	Main.node.player_position = global_position
 	
 	
 func _state_throw_fan(delta: float):
@@ -231,7 +231,7 @@ func _on_jump():
 	_jump_audio_player.play()
 
 
-func _on_water_level_body_entered(body: Node2D) -> void:
+func _submerge():
 	print("in water")
 	_max_run_speed = 75
 	_jump_speed = 250
@@ -243,7 +243,7 @@ func _on_water_level_body_entered(body: Node2D) -> void:
 	_flight_acceleration = 25
 
 
-func _on_water_level_body_exited(body: Node2D) -> void:
+func _emerge():
 	print("out of water")
 	_max_run_speed = 150
 	_jump_speed = 500
