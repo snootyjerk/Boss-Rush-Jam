@@ -7,6 +7,10 @@ class_name CelloBoss
 signal cello_reset
 
 
+func _ready() -> void:
+	material.set("shader_parameter/flash_value", 0)
+
+
 func _on_dancer_controller_dancers_downed() -> void:
 	_cello_body.vulnerable = true
 	_vulnerable_timer.start()

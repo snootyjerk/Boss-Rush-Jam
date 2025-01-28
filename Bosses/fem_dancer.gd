@@ -30,6 +30,7 @@ signal reset_complete
 
 
 func _ready() -> void:
+	material.set("shader_parameter/flash_value", 0)
 	Main.node.fem_dancer = self # used to add exception for note collisions
 	Main.node.boss_phase_changed.connect(_on_boss_phase_changed)
 	velocity.x = -_move_speed
@@ -50,7 +51,9 @@ func _process(delta: float) -> void:
 				#_update_state(_states.ATTACK)
 			
 		_states.STUN:
-			velocity = Vector2(0,0)
+			velocity.x = 0.0
+			velocity.y = sin(_timer * _frequency) * (_amplitude / 4)
+			move_and_slide()
 		
 		#_states.ATTACK:
 			#if not animation_player.is_playing():
@@ -78,7 +81,8 @@ func take_damage():
 		set_collision_layer_value(Constants.Layers.enemy, false)
 		stunned.emit()
 		sprite.pause()
-		rotation = 90
+		$StunParticles.visible = true
+		sprite.rotation_degrees = -90
 		_update_state(_states.STUN)
 	else:
 		animation_player.play("flash")
@@ -94,8 +98,9 @@ func _reset_position(side: String):
 		
 func _revive():
 	_hp = _max_hp
-	rotation = 0
+	sprite.rotation_degrees = 0
 	velocity.x = -_move_speed
+	$StunParticles.visible = false
 	sprite.play()
 	set_collision_layer_value(Constants.Layers.player_hurt, true)
 	set_collision_layer_value(Constants.Layers.enemy, true)

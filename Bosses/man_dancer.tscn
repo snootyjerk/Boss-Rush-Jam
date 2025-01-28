@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://brfn0l5o8s87q"]
+[gd_scene load_steps=15 format=3 uid="uid://brfn0l5o8s87q"]
 
 [ext_resource type="Shader" path="res://Shaders/flash_shader.gdshader" id="1_nfvfo"]
 [ext_resource type="Script" path="res://Bosses/man_dancer.gd" id="1_oxehy"]
 [ext_resource type="SpriteFrames" uid="uid://c26g8kxvxgodu" path="res://Sprite Sheets/Dancers/man_dancer_frames.tres" id="2_fbq6j"]
+[ext_resource type="Texture2D" uid="uid://b7xj64vtw3ox" path="res://Sprite Sheets/heart_particle.png" id="4_lh3i7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_f1cmt"]
 shader = ExtResource("1_nfvfo")
@@ -126,6 +127,10 @@ _data = {
 "flash": SubResource("Animation_wisqf")
 }
 
+[sub_resource type="Curve" id="Curve_62ox6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.460591, 1), 0.0, 0.0, 0, 0, Vector2(0.992611, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="ManDancer" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation_player")]
 material = SubResource("ShaderMaterial_f1cmt")
 collision_layer = 96
@@ -135,10 +140,11 @@ animation_player = NodePath("AnimationPlayer")
 _move_speed = 75.0
 
 [node name="ManSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 use_parent_material = true
 sprite_frames = ExtResource("2_fbq6j")
 autoplay = "default"
-offset = Vector2(-8, 0)
+offset = Vector2(-6, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -0.5)
@@ -157,5 +163,13 @@ wait_time = 4.0
 libraries = {
 "": SubResource("AnimationLibrary_gx62o")
 }
+
+[node name="StunParticles" type="CPUParticles2D" parent="."]
+visible = false
+amount = 2
+lifetime = 4.5
+texture = ExtResource("4_lh3i7")
+gravity = Vector2(0, -8)
+scale_amount_curve = SubResource("Curve_62ox6")
 
 [connection signal="timeout" from="RecoverTimer" to="." method="_on_recover_timer_timeout"]

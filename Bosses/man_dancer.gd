@@ -33,6 +33,7 @@ signal reset_complete
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	material.set("shader_parameter/flash_value", 0)
 	Main.node.boss_phase_changed.connect(_on_boss_phase_changed)
 	Main.node.man_dancer = self # used to add exception for note collisions
 	sprite.pause()
@@ -63,7 +64,9 @@ func _process(delta: float) -> void:
 				#_update_state(_states.ATTACK)
 			
 		_states.STUN:
-			velocity = Vector2(0,0)
+			velocity.x = 0.0
+			velocity.y = sin(_timer * _frequency) * (_amplitude / 4)
+			move_and_slide()
 		#
 		#_states.ATTACK:
 			#if not animation_player.current_animation == "attack":
@@ -103,7 +106,9 @@ func take_damage():
 		set_collision_layer_value(Constants.Layers.player_hurt, false)
 		set_collision_layer_value(Constants.Layers.enemy, false)
 		stunned.emit()
-		rotation = 90
+		$StunParticles.visible = true
+		var rot_dir = -1 if sprite.flip_h else 1
+		sprite.rotation_degrees = 90 * rot_dir
 		animation_player.pause()
 		_update_state(_states.STUN)
 	else:
@@ -120,8 +125,9 @@ func _reset_position(side: String):
 		
 func _revive():
 	_hp = _max_hp
-	rotation = 0
+	sprite.rotation_degrees = 0
 	velocity.x = _move_speed
+	$StunParticles.visible = false
 	set_collision_layer_value(Constants.Layers.player_hurt, true)
 	set_collision_layer_value(Constants.Layers.enemy, true)
 	animation_player.play(dance_anim_name)
