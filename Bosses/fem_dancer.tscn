@@ -1,7 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://bayubd62rlo3u"]
+[gd_scene load_steps=14 format=3 uid="uid://bayubd62rlo3u"]
 
 [ext_resource type="Texture2D" uid="uid://csco3x5ingfhe" path="res://Sprite Sheets/Dancers/FemDancerIdle.png" id="1_eboif"]
+[ext_resource type="Shader" path="res://Shaders/flash_shader.gdshader" id="1_ivr6h"]
 [ext_resource type="Script" path="res://Bosses/fem_dancer.gd" id="1_vomnh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7xxxh"]
+shader = ExtResource("1_ivr6h")
+shader_parameter/flash_color = Color(0.85, 0.85, 0.85, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hsess"]
 atlas = ExtResource("1_eboif")
@@ -49,6 +55,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_oc8y0"]
 resource_name = "attack"
@@ -87,13 +105,32 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_y6hw4"]
+resource_name = "flash"
+length = 0.3
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.142857, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gw1aq"]
 _data = {
 "RESET": SubResource("Animation_kiipu"),
-"attack": SubResource("Animation_oc8y0")
+"attack": SubResource("Animation_oc8y0"),
+"flash": SubResource("Animation_y6hw4")
 }
 
 [node name="FemDancer" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation_player")]
+material = SubResource("ShaderMaterial_7xxxh")
 collision_layer = 96
 script = ExtResource("1_vomnh")
 _move_speed = 100.0
@@ -103,6 +140,7 @@ animation_player = NodePath("AnimationPlayer")
 
 [node name="FemSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_qfo2l")
 autoplay = "default"
 

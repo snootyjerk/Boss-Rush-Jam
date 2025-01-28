@@ -106,6 +106,8 @@ func take_damage():
 		rotation = 90
 		animation_player.pause()
 		_update_state(_states.STUN)
+	else:
+		$FlashAnimation.play("flash")
 
 
 func _reset_position(side: String):

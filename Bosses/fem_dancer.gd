@@ -80,6 +80,8 @@ func take_damage():
 		sprite.pause()
 		rotation = 90
 		_update_state(_states.STUN)
+	else:
+		animation_player.play("flash")
 
 
 func _reset_position(side: String):
