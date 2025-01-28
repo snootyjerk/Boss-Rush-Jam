@@ -1,6 +1,6 @@
 extends AnimatableBody2D
 
-var velocity = Vector2(0,-.1)
+var velocity = Vector2(0,-.5)
 @export var _amplitude = .5
 @export var _frequency = 5
 @export var _max_time = 10
@@ -19,4 +19,8 @@ func _process(delta: float) -> void:
 	velocity.x = sin(_timer*_frequency) * _amplitude
 	global_position += velocity
 	if _timer >= _max_time:
-		queue_free()
+		take_damage()
+
+func take_damage():
+	#Play popping animation
+	queue_free()

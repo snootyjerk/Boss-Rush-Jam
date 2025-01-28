@@ -43,7 +43,7 @@ var _is_flying = false:
 var _current_energy = _max_energy:
 	set(energy):
 		_current_energy = energy
-		Main.node.player_energy = _current_energy
+		#Main.node.player_energy = _current_energy
 
 enum States { MOBILE, THROW_FAN }
 var _state: States = States.MOBILE
@@ -123,7 +123,7 @@ func _state_mobile(delta: float):
 	if Input.is_action_just_pressed("throw") and _has_fan:
 		_throw_fan()
 	
-	Main.node.player_position = global_position
+	#Main.node.player_position = global_position
 	
 	
 func _state_throw_fan(delta: float):
@@ -233,23 +233,23 @@ func _on_jump():
 
 func _on_water_level_body_entered(body: Node2D) -> void:
 	print("in water")
-	_max_run_speed = 50
-	_jump_speed = 150
-	_acceleration = 225
-	_air_acceleration = 30
-	_air_friction = 5000
-	_friction = 5000
-	_gravity = 250
+	_max_run_speed = 75
+	_jump_speed = 250
+	_acceleration = 250
+	_air_acceleration = 250
+	_air_friction = 1600
+	_friction = 3000
+	_gravity = 600
 	_flight_acceleration = 25
 
 
 func _on_water_level_body_exited(body: Node2D) -> void:
 	print("out of water")
-	_max_run_speed = 100
-	_jump_speed = 300
-	_acceleration = 450
-	_air_acceleration = 60
-	_air_friction = 2500
-	_friction = 2500
-	_gravity = 500
-	_flight_acceleration = 100
+	_max_run_speed = 150
+	_jump_speed = 500
+	_acceleration = 500
+	_air_acceleration = 500
+	_air_friction = 800
+	_friction = 1500
+	_gravity = 1201
+	_flight_acceleration = 150

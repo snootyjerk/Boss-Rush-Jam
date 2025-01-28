@@ -35,6 +35,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c47fb"]
 size = Vector2(13, 33)
 
+[sub_resource type="Animation" id="Animation_kiipu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FemSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_oc8y0"]
 resource_name = "attack"
 length = 2.0
@@ -70,21 +85,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"_attack_recover"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_kiipu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FemSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gw1aq"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6rnsad658li4"]
+
+[ext_resource type="Script" path="res://Levels/bubble_spawner.gd" id="1_asv72"]
+
+[node name="BubbleSpawner" type="Node2D"]
+position = Vector2(128, 328)
+script = ExtResource("1_asv72")

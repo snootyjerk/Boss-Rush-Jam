@@ -8,6 +8,7 @@ size = Vector2(32, 32)
 
 [node name="Bubble" type="AnimatableBody2D"]
 position = Vector2(312, 304)
+collision_layer = 33
 sync_to_physics = false
 script = ExtResource("1_5uce6")
 
