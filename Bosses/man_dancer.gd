@@ -3,16 +3,24 @@ extends CharacterBody2D
 @export var sprite: AnimatedSprite2D
 @export var animation_player: AnimationPlayer
 @export var dance_anim_name: String = "dance"
-#@export var _amplitude = 1
-#@export var _frequency = 5
+@export var _player_detection_distance: float = 150.0
+@export var _amplitude = 100
+@export var _frequency = 5
 @export var _max_hp = 3
+@export var _move_speed = 150.0
+@export var _dash_max_speed: float = 200.0
+@export var _dash_accel: float = 300.0
+@export var _dash_decel: float = 300.0
+
 var _hp = _max_hp
 
 
 var _timer = 0
 enum _states {IDLE,DANCING,STUN,ATTACK,RECOVER,RESET}
-var _current_state = _states.IDLE
-var _prev_state = _states.IDLE
+var _current_state = _states.DANCING
+var _prev_state = _states.DANCING
+
+var _is_dashing: bool = false
 
 #Return to these points
 var _right_reset_point: Vector2
@@ -26,26 +34,46 @@ signal reset_complete
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Main.node.boss_phase_changed.connect(_on_boss_phase_changed)
+	Main.node.man_dancer = self # used to add exception for note collisions
+	sprite.pause()
+	velocity.x = _move_speed
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-	#match _current_state:
+	sprite.flip_h = false if sign(velocity.x) == -1 else true
+	_timer += delta
+	match _current_state:
 		
 		#_states.IDLE:
 			#velocity.y = sin(_timer*_frequency) * _amplitude
 			#global_position += velocity
 			#_timer+= 1*delta
 			
-		#_states.DANCING:
-			#pass
-			#
-		#_states.STUN:
-			#velocity = Vector2(0,0)
+		_states.DANCING:
+			if animation_player.current_animation != dance_anim_name:
+				animation_player.play(dance_anim_name)
+			
+			velocity.y = sin(_timer * _frequency) * _amplitude
+			var collision = move_and_collide(velocity * delta)
+			if collision:
+				velocity = velocity.bounce(collision.get_normal())
+				
+			#if global_position.distance_to(Main.node.player_position) < _player_detection_distance:
+				#velocity = Vector2.ZERO
+				#_update_state(_states.ATTACK)
+			
+		_states.STUN:
+			velocity = Vector2(0,0)
 		#
 		#_states.ATTACK:
-			#pass
-		#
+			#if not animation_player.current_animation == "attack":
+				#animation_player.play("attack")
+			#if _is_dashing:
+				#velocity.x = move_toward(velocity.x, _dash_max_speed, _dash_accel * delta)
+			#else:
+				#velocity.x = move_toward(velocity.x, _dash_max_speed, _dash_decel * delta)
+			#move_and_slide()
+			#
 		#_states.RECOVER:
 			#pass
 		#
@@ -77,7 +105,6 @@ func take_damage():
 		stunned.emit()
 		rotation = 90
 		animation_player.pause()
-		sprite.pause()
 		_update_state(_states.STUN)
 
 
@@ -92,12 +119,31 @@ func _reset_position(side: String):
 func _revive():
 	_hp = _max_hp
 	rotation = 0
+	velocity.x = _move_speed
 	set_collision_layer_value(Constants.Layers.player_hurt, true)
 	set_collision_layer_value(Constants.Layers.enemy, true)
-	sprite.play()
 	animation_player.play(dance_anim_name)
+	_update_state(_states.DANCING)
 
 
 func _update_state(new_state):
 	_prev_state = _current_state
 	_current_state = new_state
+	
+	
+#func _attack_accelerate():
+	#_is_dashing = true
+	#
+	#
+#func _attack_decelerate():
+	#_is_dashing = false
+	#
+	#
+#func _attack_finish():
+	#_update_state(_states.RECOVER)
+	#$RecoverTimer.start()
+#
+#
+#func _on_recover_timer_timeout() -> void:
+	#_update_state(_states.DANCING)
+	#velocity.x = _move_speed * [-1, 1].pick_random()

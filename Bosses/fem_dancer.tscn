@@ -93,11 +93,12 @@ _data = {
 "attack": SubResource("Animation_oc8y0")
 }
 
-[node name="FemDancer" type="CharacterBody2D" node_paths=PackedStringArray("animation_player")]
+[node name="FemDancer" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation_player")]
 collision_layer = 96
 script = ExtResource("1_vomnh")
 _move_speed = 100.0
 _player_detection_distance = 100.0
+sprite = NodePath("FemSprite")
 animation_player = NodePath("AnimationPlayer")
 
 [node name="FemSprite" type="AnimatedSprite2D" parent="."]

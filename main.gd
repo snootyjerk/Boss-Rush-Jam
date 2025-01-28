@@ -17,6 +17,7 @@ static var node: Main
 @onready var pause: PanelContainer = $Pause
 
 var fem_dancer: CharacterBody2D
+var man_dancer: CharacterBody2D
 
 var is_game_paused: bool = false:
 	get:

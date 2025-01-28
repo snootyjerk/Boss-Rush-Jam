@@ -4,7 +4,7 @@ signal dancers_downed
 
 @onready var _man_path = $ManPath/ManPathFollow
 @onready var _fem_path = $FemPath/FemPathFollow
-@onready var _man_dancer = $ManPath/ManPathFollow/ManDancer
+@onready var _man_dancer = Main.node.man_dancer
 @onready var _fem_dancer = Main.node.fem_dancer
 enum _states {IDLE,DANCING,STUN,ATTACK,RECOVER,RESET}
 
@@ -17,12 +17,11 @@ var _num_stunned: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	pass
 	#_man_dancer._right_reset_point = Vector2(632,144)
 	#_man_dancer._left_reset_point = Vector2(8,144)
 	#_fem_dancer._right_reset_point = Vector2(632,144)
 	#_fem_dancer._left_reset_point = Vector2(8,144)
-	
-	_man_dancer._update_state(_states.DANCING)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

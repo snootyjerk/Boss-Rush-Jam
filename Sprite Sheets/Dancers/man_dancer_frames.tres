@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://c26g8kxvxgodu"]
+
+[ext_resource type="Texture2D" uid="uid://cluc3d6ed6xvm" path="res://Sprite Sheets/Dancers/ManDancersIdle.png" id="1_gxiba"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws8up"]
+atlas = ExtResource("1_gxiba")
+region = Rect2(0, 0, 32, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64kgc"]
+atlas = ExtResource("1_gxiba")
+region = Rect2(0, 44, 32, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfvui"]
+atlas = ExtResource("1_gxiba")
+region = Rect2(0, 88, 32, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l5cj"]
+atlas = ExtResource("1_gxiba")
+region = Rect2(0, 132, 32, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwvxq"]
+atlas = ExtResource("1_gxiba")
+region = Rect2(0, 176, 32, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60pm6"]
+atlas = ExtResource("1_gxiba")
+region = Rect2(0, 220, 32, 44)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws8up")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64kgc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfvui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l5cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwvxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60pm6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
