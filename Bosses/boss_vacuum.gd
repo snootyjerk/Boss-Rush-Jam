@@ -27,6 +27,7 @@ var _action_timer = _action_timer_max
 
 
 func _ready() -> void:
+	material.set("shader_parameter/flash_value", 0)
 	Main.node.boss_phase_changed.connect(_on_phase_changed)
 
 
