@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ba2g4ofnehaba"]
+[gd_scene load_steps=20 format=3 uid="uid://ba2g4ofnehaba"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_wael7"]
 [ext_resource type="PackedScene" uid="uid://do0wmin31njac" path="res://Levels/level_test2.tscn" id="2_6w10l"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b7qi1smdrdoi7" path="res://Bosses/boss_health_bar.tscn" id="7_hl8cs"]
 [ext_resource type="Texture2D" uid="uid://qhymaalkqe3p" path="res://Sprite Sheets/UI/Energy Bar.png" id="8_1rwwb"]
 [ext_resource type="FontFile" uid="uid://b8bkntbvtd4tt" path="res://Fonts/Geo-Regular.ttf" id="10_8tx6f"]
+[ext_resource type="Script" path="res://time_label.gd" id="11_kqn2q"]
 
 [sub_resource type="Animation" id="Animation_e8ry5"]
 length = 0.001
@@ -53,6 +54,10 @@ bg_color = Color(0.15, 0.15, 0.15, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4cnt5"]
 bg_color = Color(0.288, 0.616533, 0.64, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_03ksw"]
+font = ExtResource("10_8tx6f")
+font_size = 24
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8iqt0"]
 bg_color = Color(0.11, 0.11, 0.11, 0.517647)
@@ -170,10 +175,19 @@ anchors_preset = 0
 anchor_left = 0.0
 anchor_right = 0.0
 offset_left = 0.0
-offset_top = 7.0
 offset_right = 638.0
-offset_bottom = 62.0
+offset_bottom = 60.0
 grow_horizontal = 1
+
+[node name="TimeLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 566.0
+offset_top = 8.0
+offset_right = 620.0
+offset_bottom = 34.0
+text = "00:00"
+label_settings = SubResource("LabelSettings_03ksw")
+script = ExtResource("11_kqn2q")
 
 [node name="Pause" type="PanelContainer" parent="."]
 visible = false
