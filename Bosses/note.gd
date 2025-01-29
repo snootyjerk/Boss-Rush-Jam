@@ -10,6 +10,11 @@ var _timer = 0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	add_collision_exception_with(Main.node.fem_dancer)
+	Main.node.boss_defeated.connect(_on_boss_defeated)
+	
+	
+func _on_boss_defeated():
+	queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

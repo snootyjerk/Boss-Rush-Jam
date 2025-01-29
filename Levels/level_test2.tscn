@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://do0wmin31njac"]
+[gd_scene load_steps=12 format=3 uid="uid://do0wmin31njac"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_10x31"]
 [ext_resource type="Texture2D" uid="uid://djv0wop88b75l" path="res://Sprite Sheets/bg_vacuum.png" id="2_36h8q"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://brfn0l5o8s87q" path="res://Bosses/man_dancer.tscn" id="7_pedbl"]
 [ext_resource type="PackedScene" uid="uid://bayubd62rlo3u" path="res://Bosses/fem_dancer.tscn" id="8_libms"]
 [ext_resource type="AudioStream" uid="uid://xf45o77vkv07" path="res://Music/boss_celloreal.ogg" id="10_lmld0"]
+[ext_resource type="PackedScene" uid="uid://73vy5yfs1cwk" path="res://Bosses/cello_dead.tscn" id="11_ettos"]
 
 [node name="Level Test" type="Node2D" node_paths=PackedStringArray("_boss")]
 process_mode = 1
@@ -57,6 +58,9 @@ stream = ExtResource("10_lmld0")
 volume_db = -12.0
 autoplay = true
 parameters/looping = true
+
+[node name="CelloDead" parent="." instance=ExtResource("11_ettos")]
+position = Vector2(185, 182)
 
 [connection signal="cello_reset" from="CelloBoss" to="DancerController" method="_on_cello_boss_cello_reset"]
 [connection signal="dancers_downed" from="DancerController" to="CelloBoss" method="_on_dancer_controller_dancers_downed"]

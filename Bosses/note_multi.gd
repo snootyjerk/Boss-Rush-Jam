@@ -8,6 +8,13 @@ var direction_degrees: float:
 	set(deg):
 		direction_degrees = deg_to_rad(deg)
 
+func _ready() -> void:
+	Main.node.boss_defeated.connect(_on_boss_defeated)
+	
+	
+func _on_boss_defeated():
+	queue_free()
+	
 
 func _physics_process(delta: float):
 	global_position.x += cos(direction_degrees) * _speed * delta

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var _man_dead_scene = preload("res://Bosses/man_dancer_dead.tscn")
+
 @export var sprite: AnimatedSprite2D
 @export var animation_player: AnimationPlayer
 @export var dance_anim_name: String = "dance"
@@ -35,9 +37,18 @@ signal reset_complete
 func _ready() -> void:
 	material.set("shader_parameter/flash_value", 0)
 	Main.node.boss_phase_changed.connect(_on_boss_phase_changed)
+	Main.node.boss_defeated.connect(_on_boss_defeated)
 	Main.node.man_dancer = self # used to add exception for note collisions
 	sprite.pause()
 	velocity.x = _move_speed
+
+	
+func _on_boss_defeated():
+	var dead = _man_dead_scene.instantiate()
+	Main.node.current_level.add_child(dead)
+	dead.global_position = global_position
+	queue_free()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

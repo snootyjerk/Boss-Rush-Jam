@@ -268,7 +268,7 @@ _boss_animation_player = NodePath("AnimationPlayer")
 use_parent_material = true
 collision_layer = 96
 script = ExtResource("2_scaj8")
-_move_speed = 180.0
+_move_speed = 150.0
 
 [node name="BodySprite" type="AnimatedSprite2D" parent="Cello"]
 use_parent_material = true

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://jpc6kpgwbyu8"]
+
+[ext_resource type="Texture2D" uid="uid://cluc3d6ed6xvm" path="res://Sprite Sheets/Dancers/ManDancersIdle.png" id="1_eappa"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f6uui"]
+radius = 6.29974
+height = 41.6902
+
+[node name="ManDead" type="RigidBody2D"]
+rotation = 1.80393
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6.06871, -0.413218)
+texture = ExtResource("1_eappa")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_f6uui")

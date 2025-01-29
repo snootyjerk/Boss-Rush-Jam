@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdiduqgfpkt3i"]
+
+[ext_resource type="Texture2D" uid="uid://csco3x5ingfhe" path="res://Sprite Sheets/Dancers/FemDancerIdle.png" id="1_b3kuw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f6uui"]
+radius = 8.0
+height = 34.0
+
+[node name="FemDead" type="RigidBody2D"]
+rotation = 1.80393
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_b3kuw")
+region_enabled = true
+region_rect = Rect2(0, 0, 24, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_f6uui")

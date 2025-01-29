@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var _fem_dead_scene = preload("res://Bosses/fem_dancer_dead.tscn")
+
 @export var _move_speed: float = 200.0
 @export var _jump_speed: float = 150.0
 @export var _dive_speed: float = 500.0
@@ -33,8 +35,15 @@ func _ready() -> void:
 	material.set("shader_parameter/flash_value", 0)
 	Main.node.fem_dancer = self # used to add exception for note collisions
 	Main.node.boss_phase_changed.connect(_on_boss_phase_changed)
+	Main.node.boss_defeated.connect(_on_boss_defeated)
 	velocity.x = -_move_speed
 	
+	
+func _on_boss_defeated():
+	var dead = _fem_dead_scene.instantiate()
+	Main.node.current_level.add_child(dead)
+	dead.global_position = global_position
+	queue_free()
 
 
 func _process(delta: float) -> void:
