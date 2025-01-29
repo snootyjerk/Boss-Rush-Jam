@@ -1,0 +1,137 @@
+[gd_scene load_steps=18 format=3 uid="uid://bw64y1ck7tjv4"]
+
+[ext_resource type="FontFile" uid="uid://b8bkntbvtd4tt" path="res://Fonts/Geo-Regular.ttf" id="1_1tvp6"]
+[ext_resource type="Script" path="res://title_screen.gd" id="1_3osmr"]
+[ext_resource type="PackedScene" uid="uid://ba2g4ofnehaba" path="res://main.tscn" id="2_putf0"]
+[ext_resource type="FontFile" uid="uid://cwbu6sa072b5f" path="res://Fonts/Orbitron-Medium.ttf" id="2_rmxdq"]
+[ext_resource type="Texture2D" uid="uid://bjvkcp2pdaia3" path="res://Sprite Sheets/Cello/KnocbackNote1.png" id="3_3nxph"]
+[ext_resource type="Texture2D" uid="uid://d3ndnxjrgu63b" path="res://Sprite Sheets/Cello/celloIdle1.png" id="4_qn15c"]
+[ext_resource type="Texture2D" uid="uid://dmoma4gey6mu7" path="res://Sprite Sheets/Cello/KnocbackNote2.png" id="5_aqwwd"]
+[ext_resource type="Texture2D" uid="uid://b7352t6gf5q6h" path="res://Sprite Sheets/Cello/KnocbackNote3.png" id="6_yfeic"]
+[ext_resource type="Texture2D" uid="uid://ktyjmqe2qvix" path="res://Sprite Sheets/Vaccum_Body.png" id="7_ijfaq"]
+[ext_resource type="Texture2D" uid="uid://dy00dfrvlhb67" path="res://Sprite Sheets/Vaccum_Head.png" id="8_bgbyu"]
+[ext_resource type="SpriteFrames" uid="uid://0etm6emh483o" path="res://Sprite Sheets/spinny_frames.tres" id="9_g6osk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dln28"]
+bg_color = Color(0.11, 0.11, 0.11, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21jvg"]
+bg_color = Color(0.4758, 0.78, 0.76479, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dyd0o"]
+bg_color = Color(0.1078, 0.49, 0.47089, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wrxy6"]
+bg_color = Color(0.274657, 0.673395, 0.652539, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_odyfv"]
+font = ExtResource("1_1tvp6")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_sqtxb"]
+font = ExtResource("2_rmxdq")
+font_size = 48
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3osmr")
+_main_scene = ExtResource("2_putf0")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dln28")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = 99.0
+offset_right = 32.0
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_1tvp6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_21jvg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dyd0o")
+theme_override_styles/normal = SubResource("StyleBoxFlat_wrxy6")
+text = "PLAY"
+
+[node name="Credits" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "a game by kokoku, kayupla, snootyjerk, and PixelsToPrevail"
+label_settings = SubResource("LabelSettings_odyfv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -281.0
+offset_right = 4.0
+offset_bottom = -258.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Spin Cycle"
+label_settings = SubResource("LabelSettings_sqtxb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KnocbackNote1" type="Sprite2D" parent="."]
+position = Vector2(88, 226)
+texture = ExtResource("3_3nxph")
+
+[node name="CelloIdle1" type="Sprite2D" parent="."]
+position = Vector2(116, 223)
+rotation = -0.264053
+texture = ExtResource("4_qn15c")
+region_enabled = true
+region_rect = Rect2(0, 0, 90, 161)
+
+[node name="KnocbackNote2" type="Sprite2D" parent="."]
+position = Vector2(36, 166)
+texture = ExtResource("5_aqwwd")
+
+[node name="KnocbackNote3" type="Sprite2D" parent="."]
+position = Vector2(156, 168)
+texture = ExtResource("6_yfeic")
+
+[node name="VaccumBody" type="Sprite2D" parent="."]
+position = Vector2(320, 255)
+texture = ExtResource("7_ijfaq")
+
+[node name="VaccumHead" type="Sprite2D" parent="."]
+position = Vector2(321, 263)
+texture = ExtResource("8_bgbyu")
+
+[node name="Spinny" type="AnimatedSprite2D" parent="."]
+position = Vector2(315, 149)
+sprite_frames = ExtResource("9_g6osk")
+
+[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
