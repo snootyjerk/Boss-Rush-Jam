@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://do0wmin31njac"]
+[gd_scene load_steps=17 format=3 uid="uid://do0wmin31njac"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_10x31"]
 [ext_resource type="Texture2D" uid="uid://knmc2kfw8lyj" path="res://Sprite Sheets/BackgroundCello.png" id="2_656ok"]
@@ -196,6 +196,9 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_0j7gj")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwrh3"]
+size = Vector2(970, 405)
+
 [node name="Level Test" type="Node2D" node_paths=PackedStringArray("_boss")]
 process_mode = 1
 script = ExtResource("1_10x31")
@@ -233,6 +236,7 @@ position = Vector2(333, 452)
 
 [node name="CollisionShape2D" parent="NextLevelTrigger/Area2D" index="0"]
 position = Vector2(-6, 192.5)
+shape = SubResource("RectangleShape2D_mwrh3")
 
 [node name="CelloBoss" parent="." instance=ExtResource("5_sl0xd")]
 position = Vector2(578, 251)

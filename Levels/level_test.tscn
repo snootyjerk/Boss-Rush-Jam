@@ -60,6 +60,9 @@ position = Vector2(535, 127)
 [node name="NextLevelTrigger" parent="." instance=ExtResource("13_03rqp")]
 position = Vector2(645, 320)
 
+[node name="CollisionShape2D" parent="NextLevelTrigger/Area2D" index="0"]
+position = Vector2(56, -2)
+
 [node name="BossJumpPoint1" type="Node2D" parent="."]
 position = Vector2(567, 144)
 
@@ -80,3 +83,5 @@ _direction_1_or_neg1 = 1
 position = Vector2(596, 280)
 
 [connection signal="boss_defeated" from="." to="VacuumBoss" method="_on_level_boss_defeated"]
+
+[editable path="NextLevelTrigger"]
