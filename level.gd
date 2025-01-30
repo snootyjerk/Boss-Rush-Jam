@@ -31,6 +31,7 @@ var is_boss_defeated: bool:
 func _ready() -> void:
 	Main.node.boss_defeated.connect(_on_boss_death)
 	
+	Main.node.player_health = Constants.PLAYER_MAX_HEALTH
 	Main.node.boss_max_health = _boss.boss_health
 	Main.node.boss_health = _boss.boss_health
 	HUD.node.set_boss_name_text(_boss.boss_name)
