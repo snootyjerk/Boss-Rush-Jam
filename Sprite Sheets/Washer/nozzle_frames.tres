@@ -1,0 +1,33 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://ca54fekog5nek"]
+
+[ext_resource type="Texture2D" uid="uid://dykunvnxqys71" path="res://Sprite Sheets/Washer/NozzleftAppear.png" id="1_m5gm7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31iub"]
+atlas = ExtResource("1_m5gm7")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vi5sv"]
+atlas = ExtResource("1_m5gm7")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb4am"]
+atlas = ExtResource("1_m5gm7")
+region = Rect2(32, 0, 16, 32)
+
+[resource]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31iub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vi5sv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb4am")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]

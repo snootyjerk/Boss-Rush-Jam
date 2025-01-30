@@ -1,7 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://be88ir8aduyjl"]
+[gd_scene load_steps=9 format=3 uid="uid://be88ir8aduyjl"]
 
 [ext_resource type="Script" path="res://Levels/Features/water_nozzle.gd" id="1_dt1g7"]
-[ext_resource type="Texture2D" uid="uid://cico2gnt6y2ej" path="res://Sprite Sheets/Vaccum_hose.png" id="1_r50a2"]
+[ext_resource type="Shader" path="res://Shaders/flash_shader.gdshader" id="1_okd7l"]
+[ext_resource type="SpriteFrames" uid="uid://ca54fekog5nek" path="res://Sprite Sheets/Washer/nozzle_frames.tres" id="2_w43a4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aapmx"]
+resource_local_to_scene = true
+shader = ExtResource("1_okd7l")
+shader_parameter/flash_color = Color(0.85, 0.85, 0.85, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8i6a0"]
 size = Vector2(16, 16)
@@ -44,16 +51,18 @@ _data = {
 }
 
 [node name="WaterNozzle" type="StaticBody2D"]
-visible = false
+material = SubResource("ShaderMaterial_aapmx")
 collision_layer = 65
+collision_mask = 0
 script = ExtResource("1_dt1g7")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+use_parent_material = true
 position = Vector2(8, 0)
-texture = ExtResource("1_r50a2")
+sprite_frames = ExtResource("2_w43a4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_8i6a0")
 
@@ -74,3 +83,4 @@ libraries = {
 
 [connection signal="emerged" from="." to="." method="_on_emerged"]
 [connection signal="submerged" from="." to="." method="_on_submerged"]
+[connection signal="animation_finished" from="Sprite2D" to="." method="_on_sprite_2d_animation_finished"]

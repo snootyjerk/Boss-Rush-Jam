@@ -16,7 +16,8 @@ var _nozz_count = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_repair_nozzles()
+	#_repair_nozzles()
+	_nozz_count = nozz_list.filter(func(nozz): return not nozz._broken).size()
 	_adjust_water_level()
 	Main.node.boss_phase_changed.connect(_on_boss_phase_changed)
 	
