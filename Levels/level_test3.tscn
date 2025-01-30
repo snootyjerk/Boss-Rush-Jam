@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cb5lqane2i3b8"]
+[gd_scene load_steps=13 format=3 uid="uid://cb5lqane2i3b8"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_mrqov"]
 [ext_resource type="PackedScene" uid="uid://bwfdh2vowje6y" path="res://Levels/Features/water_level.tscn" id="3_7v1i2"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Levels/washer_boss.gd" id="6_c8hk5"]
 [ext_resource type="PackedScene" uid="uid://bngw1q7ma6u25" path="res://Bosses/washer_dead.tscn" id="7_bh0ui"]
 [ext_resource type="PackedScene" uid="uid://keu34hegqnu6" path="res://Bosses/washer_eyes.tscn" id="9_1qgpv"]
+[ext_resource type="AudioStream" uid="uid://djnbiiy5vlq67" path="res://Music/boss_washer.ogg" id="11_vul5i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6iin"]
 size = Vector2(94, 95)
@@ -76,6 +77,12 @@ rotation = 1.5708
 [node name="WaterNozzle5" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 position = Vector2(448, 32)
 rotation = 1.5708
+
+[node name="BossMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_vul5i")
+volume_db = -6.009
+autoplay = true
+parameters/looping = true
 
 [connection signal="body_entered" from="WasherBoss/WaterLevel" to="WasherBoss/WaterLevel" method="_on_body_entered"]
 [connection signal="body_exited" from="WasherBoss/WaterLevel" to="WasherBoss/WaterLevel" method="_on_body_exited"]
