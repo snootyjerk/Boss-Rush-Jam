@@ -1,16 +1,37 @@
-[gd_scene load_steps=13 format=3 uid="uid://cb5lqane2i3b8"]
+[gd_scene load_steps=22 format=3 uid="uid://cb5lqane2i3b8"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_mrqov"]
+[ext_resource type="Texture2D" uid="uid://b7csvcyq02swy" path="res://Sprite Sheets/Washer/BackgroundLayer3.png" id="2_ijcpp"]
 [ext_resource type="PackedScene" uid="uid://bwfdh2vowje6y" path="res://Levels/Features/water_level.tscn" id="3_7v1i2"]
 [ext_resource type="PackedScene" uid="uid://78ali1yoytib" path="res://Player/player.tscn" id="3_clgp8"]
-[ext_resource type="TileSet" uid="uid://7iu1neo0872o" path="res://Tile Sets/vacuum_boss_tileset.tres" id="4_b234p"]
+[ext_resource type="Texture2D" uid="uid://bo4w4fsa2l8qp" path="res://Sprite Sheets/Washer/BackgroundLayer2.png" id="3_oh0py"]
+[ext_resource type="Texture2D" uid="uid://d0gfk1fjavp6v" path="res://Sprite Sheets/Washer/BackgroundLayer1.png" id="4_esq3y"]
 [ext_resource type="PackedScene" uid="uid://pky0u0xtgc6h" path="res://next_level_trigger.tscn" id="5_0kcp1"]
+[ext_resource type="Texture2D" uid="uid://bcyrj6i37job6" path="res://Sprite Sheets/Washer/theWallsandCelling.png" id="5_4gfed"]
 [ext_resource type="PackedScene" uid="uid://c6rnsad658li4" path="res://Levels/Features/bubble_spawner.tscn" id="5_5axnj"]
 [ext_resource type="PackedScene" uid="uid://be88ir8aduyjl" path="res://Levels/Features/water_nozzle.tscn" id="6_6nnh0"]
 [ext_resource type="Script" path="res://Levels/washer_boss.gd" id="6_c8hk5"]
 [ext_resource type="PackedScene" uid="uid://bngw1q7ma6u25" path="res://Bosses/washer_dead.tscn" id="7_bh0ui"]
 [ext_resource type="PackedScene" uid="uid://keu34hegqnu6" path="res://Bosses/washer_eyes.tscn" id="9_1qgpv"]
 [ext_resource type="AudioStream" uid="uid://djnbiiy5vlq67" path="res://Music/boss_washer.ogg" id="11_vul5i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wsfav"]
+size = Vector2(320.5, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mhmx4"]
+size = Vector2(24.75, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kfe8u"]
+size = Vector2(24.75, 144)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_44w5b"]
+size = Vector2(64, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0g8x"]
+size = Vector2(16.5, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g28i8"]
+size = Vector2(356.5, 57.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6iin"]
 size = Vector2(94, 95)
@@ -19,13 +40,73 @@ size = Vector2(94, 95)
 script = ExtResource("1_mrqov")
 _boss = NodePath("WasherBoss")
 
+[node name="Background3" type="Sprite2D" parent="."]
+self_modulate = Color(0.5346, 0.66, 0.66, 1)
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_ijcpp")
+centered = false
+
+[node name="Background2" type="Sprite2D" parent="."]
+self_modulate = Color(0.5346, 0.66, 0.66, 1)
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("3_oh0py")
+centered = false
+
+[node name="Background" type="Sprite2D" parent="."]
+self_modulate = Color(0.5346, 0.66, 0.66, 1)
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("4_esq3y")
+centered = false
+
+[node name="Walls" type="StaticBody2D" parent="."]
+scale = Vector2(2, 2)
+collision_mask = 0
+
+[node name="Sprite" type="Sprite2D" parent="Walls"]
+texture_filter = 1
+texture = ExtResource("5_4gfed")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(160.25, 16)
+shape = SubResource("RectangleShape2D_wsfav")
+debug_color = Color(0.83, 0.525667, 0, 0.643137)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(3.125, 112)
+shape = SubResource("RectangleShape2D_mhmx4")
+debug_color = Color(0.83, 0.525667, 0, 0.643137)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(316.5, 104)
+shape = SubResource("RectangleShape2D_kfe8u")
+debug_color = Color(0.83, 0.525667, 0, 0.643137)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(160, 128)
+shape = SubResource("RectangleShape2D_44w5b")
+debug_color = Color(0.83, 0.525667, 0, 0.643137)
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Walls"]
+position = Vector2(23.75, 128)
+shape = SubResource("RectangleShape2D_k0g8x")
+debug_color = Color(0.83, 0.525667, 0, 0.643137)
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Walls"]
+position = Vector2(296, 128)
+shape = SubResource("RectangleShape2D_k0g8x")
+debug_color = Color(0.83, 0.525667, 0, 0.643137)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
+position = Vector2(147.25, 205.125)
+shape = SubResource("RectangleShape2D_g28i8")
+debug_color = Color(0.83, 0.525667, 0, 0.643137)
+
 [node name="Player" parent="." instance=ExtResource("3_clgp8")]
 position = Vector2(320, 328)
-
-[node name="CollisionTileMap" type="TileMap" parent="."]
-tile_set = ExtResource("4_b234p")
-format = 2
-layer_0/tile_data = PackedInt32Array(1441830, 196608, 3, 1441829, 196608, 3, 1441828, 196608, 3, 1441827, 196608, 3, 1441826, 196608, 3, 1441825, 196608, 3, 1441824, 196608, 3, 1441823, 196608, 3, 1441822, 196608, 3, 1441821, 196608, 3, 1441820, 196608, 3, 1441819, 196608, 3, 1441818, 196608, 3, 1441817, 196608, 3, 1441816, 196608, 3, 1441815, 196608, 3, 1441814, 196608, 3, 1441813, 196608, 3, 1441812, 196608, 3, 1441811, 196608, 3, 1441810, 196608, 3, 1441809, 196608, 3, 1441808, 196608, 3, 1441807, 196608, 3, 1441806, 196608, 3, 1441805, 196608, 3, 1441804, 196608, 3, 1441803, 196608, 3, 1441802, 196608, 3, 1441801, 196608, 3, 1441800, 196608, 3, 1441799, 196608, 3, 1441798, 196608, 3, 1441797, 196608, 3, 1441796, 196608, 3, 1441795, 196608, 3, 1441794, 196608, 3, 1441793, 196608, 3, 1441831, 262144, 3, 1441792, 131072, 3, 1376256, 262144, 5, 1310720, 262144, 5, 1245184, 262144, 5, 1179648, 262144, 5, 1114112, 262144, 5, 1048576, 262144, 5, 983040, 262144, 5, 917504, 262144, 5, 851968, 262144, 5, 786432, 262144, 5, 720896, 262144, 5, 655360, 262144, 5, 589824, 262144, 5, 524288, 262144, 5, 458752, 262144, 5, 393216, 262144, 5, 327680, 262144, 5, 262144, 262144, 5, 196608, 262144, 5, 131072, 262144, 5, 65536, 262144, 5, 0, 262144, 5, 39, 131072, 5, 65575, 131072, 5, 131111, 131072, 5, 196647, 131072, 5, 262183, 131072, 5, 327719, 131072, 5, 393255, 131072, 5, 458791, 131072, 5, 524327, 131072, 5, 589863, 131072, 5, 655399, 131072, 5, 720935, 131072, 5, 786471, 131072, 5, 852007, 131072, 5, 917543, 131072, 5, 983079, 131072, 5, 1048615, 131072, 5, 1114151, 131072, 5, 1179687, 131072, 5, 1245223, 131072, 5, 1310759, 131072, 5, 1376295, 131072, 5, 458772, 196608, 3, 458771, 196608, 3, 458773, 262144, 3, 458770, 131072, 3, 524306, 131072, 4, 524309, 262144, 4, 524308, 196608, 4, 524307, 196608, 4, 589842, 131072, 5, 589845, 262144, 5, 655382, 131072, 3, 655383, 196608, 3, 655384, 262144, 3, 589844, 196608, 5, 589843, 196608, 5, 655379, 196608, 5, 655380, 196608, 5, 655377, 262144, 3, 655376, 196608, 3, 655375, 131072, 3, 720911, 131072, 4, 786447, 131072, 5, 720912, 196608, 4, 786448, 196608, 5, 720919, 196608, 4, 786455, 196608, 5, 720920, 262144, 4, 786456, 262144, 5, 655378, 131072, 5, 655381, 262144, 5, 720913, 196608, 4, 720918, 196608, 4, 720917, 196608, 5, 720916, 196608, 5, 720915, 196608, 5, 720914, 196608, 5, 786449, 196608, 5, 786450, 196608, 5, 786451, 196608, 5, 786452, 196608, 5, 786453, 196608, 5, 786454, 196608, 5, 983058, 131072, 7, 983059, 196608, 7, 983060, 196608, 7, 983061, 262144, 7, 917522, 131072, 6, 917523, 196608, 6, 917524, 196608, 6, 917525, 262144, 6, 851988, 196608, 6, 851989, 262144, 6, 851986, 131072, 6, 851987, 196608, 6, 1376262, 262144, 3, 1310725, 262144, 3, 1245188, 262144, 3, 1179651, 262144, 3, 1114114, 262144, 3, 1048577, 262144, 3, 1376263, 262144, 3, 1376264, 262144, 3, 1376265, 262144, 3, 1376266, 262144, 3, 1376267, 262144, 3, 1376287, 262144, 3, 1376286, 262144, 3, 1376285, 262144, 3, 1376284, 262144, 3, 1376288, 262144, 3, 1376289, 262144, 3, 1310754, 262144, 3, 1245219, 262144, 3, 1179684, 262144, 3, 1114149, 262144, 3, 1048614, 262144, 3, 1310722, 196608, 5, 1245186, 196608, 5, 1179650, 196608, 5, 1179649, 196608, 5, 1114113, 196608, 5, 1245185, 196608, 5, 1310721, 196608, 5, 1376257, 196608, 5, 1376258, 196608, 5, 1376259, 196608, 5, 1310723, 196608, 5, 1245187, 196608, 5, 1310724, 196608, 5, 1376260, 196608, 5, 1376261, 196608, 5, 1310757, 196608, 5, 1245221, 196608, 5, 1179685, 196608, 5, 1179686, 196608, 5, 1114150, 196608, 5, 1245222, 196608, 5, 1310758, 196608, 5, 1376294, 196608, 5, 1376293, 196608, 5, 1376292, 196608, 5, 1310756, 196608, 5, 1245220, 196608, 5, 1310755, 196608, 5, 1376291, 196608, 5, 1376290, 196608, 5, 1, 196608, 8, 65537, 196608, 8, 2, 196608, 8, 65538, 196608, 8, 3, 196608, 8, 65539, 196608, 8, 4, 196608, 8, 65540, 196608, 8, 5, 196608, 8, 65541, 196608, 8, 6, 196608, 8, 65542, 196608, 8, 7, 196608, 8, 65543, 196608, 8, 8, 196608, 8, 65544, 196608, 8, 9, 196608, 8, 65545, 196608, 8, 10, 196608, 8, 65546, 196608, 8, 11, 196608, 8, 65547, 196608, 8, 12, 196608, 8, 65548, 196608, 8, 13, 196608, 8, 65549, 196608, 8, 14, 196608, 8, 65550, 196608, 8, 15, 196608, 8, 65551, 196608, 8, 16, 196608, 8, 65552, 196608, 8, 17, 196608, 8, 65553, 196608, 8, 18, 196608, 8, 65554, 196608, 8, 19, 196608, 8, 65555, 196608, 8, 20, 196608, 8, 65556, 196608, 8, 21, 196608, 8, 65557, 196608, 8, 22, 196608, 8, 65558, 196608, 8, 23, 196608, 8, 65559, 196608, 8, 24, 196608, 8, 65560, 196608, 8, 25, 196608, 8, 65561, 196608, 8, 26, 196608, 8, 65562, 196608, 8, 27, 196608, 8, 65563, 196608, 8, 28, 196608, 8, 65564, 196608, 8, 29, 196608, 8, 65565, 196608, 8, 30, 196608, 8, 65566, 196608, 8, 31, 196608, 8, 65567, 196608, 8, 32, 196608, 8, 65568, 196608, 8, 33, 196608, 8, 65569, 196608, 8, 34, 196608, 8, 65570, 196608, 8, 35, 196608, 8, 65571, 196608, 8, 36, 196608, 8, 65572, 196608, 8, 37, 196608, 8, 65573, 196608, 8, 38, 196608, 8, 65574, 196608, 8)
 
 [node name="NextLevelTrigger" parent="." instance=ExtResource("5_0kcp1")]
 position = Vector2(645, 320)
@@ -58,25 +139,37 @@ collision_layer = 0
 
 [node name="WaterNozzle0" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 position = Vector2(16, 232)
+collision_layer = 64
+collision_mask = 0
 
 [node name="WaterNozzle1" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 position = Vector2(624, 232)
 rotation = 3.14159
+collision_layer = 64
+collision_mask = 0
 
 [node name="WaterNozzle2" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 position = Vector2(16, 120)
+collision_layer = 64
+collision_mask = 0
 
 [node name="WaterNozzle3" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 position = Vector2(624, 120)
 rotation = 3.14159
+collision_layer = 64
+collision_mask = 0
 
 [node name="WaterNozzle4" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 position = Vector2(152, 32)
 rotation = 1.5708
+collision_layer = 64
+collision_mask = 0
 
 [node name="WaterNozzle5" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 position = Vector2(448, 32)
 rotation = 1.5708
+collision_layer = 64
+collision_mask = 0
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_vul5i")
