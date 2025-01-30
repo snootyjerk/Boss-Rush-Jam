@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c0a1m6vnng1wy"]
+[gd_scene load_steps=29 format=3 uid="uid://c0a1m6vnng1wy"]
 
 [ext_resource type="Texture2D" uid="uid://d3ndnxjrgu63b" path="res://Sprite Sheets/Cello/celloIdle1.png" id="1_3doic"]
 [ext_resource type="Material" uid="uid://dp5u0eoc2y61n" path="res://Shaders/flash_shader_material.tres" id="1_4vstg"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dj3kmcq8twt81" path="res://Sprite Sheets/Cello/bowStraight.png" id="4_uob8s"]
 [ext_resource type="Texture2D" uid="uid://pfxf51wah5i4" path="res://Sprite Sheets/Cello/bowLeftDiagonal.png" id="5_bjyrc"]
 [ext_resource type="Texture2D" uid="uid://s6y5jtinqhyp" path="res://Sprite Sheets/MusicSheild.png" id="9_31k77"]
+[ext_resource type="AudioStream" uid="uid://4j4uq42vwst1" path="res://Music/hit_metal.wav" id="10_18ce5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r56jh"]
 atlas = ExtResource("1_3doic")
@@ -301,6 +302,10 @@ libraries = {
 "": SubResource("AnimationLibrary_y7gk2")
 }
 autoplay = "shield"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Cello"]
+stream = ExtResource("10_18ce5")
+volume_db = -5.547
 
 [node name="VulnerableTimer" type="Timer" parent="."]
 wait_time = 10.0

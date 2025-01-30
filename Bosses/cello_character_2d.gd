@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var _move_speed: float = 100.0
 
 @onready var visibility_animation: AnimationPlayer = $VisibilityAnimation
+@onready var hit_audio: AudioStreamPlayer = $AudioStreamPlayer
 
 var _note_projectile = preload("res://Bosses/note.tscn")
 var _note_multi_projectile = preload("res://Bosses/note_multi.tscn")
@@ -54,6 +55,8 @@ func take_damage():
 	if vulnerable == true:
 		Main.node.damage_boss()
 		damaged.emit()
+	else:
+		hit_audio.play()
 		
 		
 func _on_boss_phase_changed(phase: int):
