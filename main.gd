@@ -8,8 +8,9 @@ signal boss_health_changed(new_health: int)
 signal boss_phase_changed(new_phase: int)
 signal boss_defeated
 
-@export var _first_level_scene: PackedScene
-@export var _game_over_scene: PackedScene
+var _title_scene = preload("res://title_screen.tscn")
+var _first_level_scene = preload("res://Levels/level_test.tscn")
+var _game_over_scene = preload("res://Scenes/game_over.tscn")
 
 static var node: Main
 
@@ -130,12 +131,12 @@ func go_to_next_level():
 	
 	
 func retry():
-	if _game_over_node:
-		node.remove_child(_game_over_node)
-	call_deferred("go_to_level", _first_level_scene)
+	Test.level = 0
 	get_tree().paused = false
-	player_health = Constants.PLAYER_MAX_HEALTH
-	hud.visible = true
+	get_tree().change_scene_to_packed(_title_scene)
+	#get_tree().paused = false
+	#player_health = Constants.PLAYER_MAX_HEALTH
+	#hud.visible = true
 	
 
 func quit():

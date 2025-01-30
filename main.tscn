@@ -1,8 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://ba2g4ofnehaba"]
+[gd_scene load_steps=18 format=3 uid="uid://ba2g4ofnehaba"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_wael7"]
-[ext_resource type="PackedScene" uid="uid://cb5lqane2i3b8" path="res://Levels/level_test3.tscn" id="2_lm7xn"]
-[ext_resource type="PackedScene" uid="uid://bypwi50itfktm" path="res://Scenes/game_over.tscn" id="3_j2noh"]
 [ext_resource type="Script" path="res://hud.gd" id="4_a8hih"]
 [ext_resource type="Texture2D" uid="uid://c2ulmq61icia5" path="res://Sprite Sheets/UI/healthBattery.png" id="5_1pasg"]
 [ext_resource type="Texture2D" uid="uid://cvcujqft62ljc" path="res://Sprite Sheets/UI/Health.png" id="5_ilqmy"]
@@ -69,8 +67,6 @@ font_size = 24
 [node name="Main" type="Node"]
 process_mode = 3
 script = ExtResource("1_wael7")
-_first_level_scene = ExtResource("2_lm7xn")
-_game_over_scene = ExtResource("3_j2noh")
 
 [node name="HUD" type="Control" parent="." node_paths=PackedStringArray("boss_hud_root", "boss_health_bar", "boss_name_label")]
 z_index = 4095
@@ -175,9 +171,8 @@ anchors_preset = 0
 anchor_left = 0.0
 anchor_right = 0.0
 offset_left = 0.0
-offset_top = 0.0
 offset_right = 638.0
-offset_bottom = 70.0
+offset_bottom = 75.0
 grow_horizontal = 1
 
 [node name="TimeLabel" type="Label" parent="HUD"]

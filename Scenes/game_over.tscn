@@ -1,16 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bypwi50itfktm"]
+[gd_scene load_steps=3 format=3 uid="uid://bypwi50itfktm"]
 
 [ext_resource type="Script" path="res://Scenes/game_over.gd" id="1_4b457"]
-[ext_resource type="Texture2D" uid="uid://bf1buu3s1vuhj" path="res://Sprite Sheets/cursor.png" id="2_8iqux"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8xvm"]
 bg_color = Color(0, 0, 0, 0.611765)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vt0o2"]
-bg_color = Color(0.325591, 0.67604, 0.572199, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pt4gp"]
-bg_color = Color(0.877891, 0.443417, 0.535123, 1)
 
 [node name="GameOver" type="Node2D"]
 process_mode = 2
@@ -35,55 +28,3 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "You Died!"
 horizontal_alignment = 1
-
-[node name="TryAgain" type="Panel" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 24)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_vt0o2")
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/TryAgain"]
-layout_mode = 0
-offset_right = 166.0
-offset_bottom = 25.0
-text = "Try again"
-horizontal_alignment = 1
-
-[node name="Quit" type="Panel" parent="CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 24)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pt4gp")
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/Quit"]
-layout_mode = 0
-offset_right = 165.0
-offset_bottom = 25.0
-text = "Quit
-"
-horizontal_alignment = 1
-
-[node name="Cursor" type="TextureRect" parent="."]
-offset_left = 362.0
-offset_top = 193.0
-offset_right = 385.0
-offset_bottom = 216.0
-texture = ExtResource("2_8iqux")
-expand_mode = 3
-stretch_mode = 2
-
-[node name="CursorTargets" type="Node" parent="."]
-
-[node name="Target1" type="Control" parent="CursorTargets"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 365.0
-offset_top = 194.0
-offset_right = 405.0
-offset_bottom = 234.0
-
-[node name="Target2" type="Control" parent="CursorTargets"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 365.0
-offset_top = 220.0
-offset_right = 405.0
-offset_bottom = 260.0

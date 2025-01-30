@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bw64y1ck7tjv4"]
+[gd_scene load_steps=12 format=3 uid="uid://bw64y1ck7tjv4"]
 
 [ext_resource type="FontFile" uid="uid://b8bkntbvtd4tt" path="res://Fonts/Geo-Regular.ttf" id="1_1tvp6"]
 [ext_resource type="Script" path="res://title_screen.gd" id="1_3osmr"]
-[ext_resource type="PackedScene" uid="uid://ba2g4ofnehaba" path="res://main.tscn" id="2_putf0"]
 [ext_resource type="FontFile" uid="uid://cwbu6sa072b5f" path="res://Fonts/Orbitron-Medium.ttf" id="2_rmxdq"]
 [ext_resource type="Texture2D" uid="uid://1ohop6mitry0" path="res://Sprite Sheets/titleScreen.png" id="3_rt3v8"]
 [ext_resource type="AudioStream" uid="uid://dghwx5x1hy6ik" path="res://Music/title.ogg" id="6_jqu8i"]
@@ -39,7 +38,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3osmr")
-_main_scene = ExtResource("2_putf0")
 
 [node name="Panel" type="Panel" parent="."]
 texture_filter = 1
