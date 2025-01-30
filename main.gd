@@ -97,7 +97,11 @@ func _init():
 	
 	
 func _ready():
-	go_to_level(_first_level_scene)
+	if Test.level < 1: # Remove for final build
+		go_to_level(_first_level_scene)
+	else:
+		go_to_level(Test.levels[Test.level - 1])
+		
 	player_health_changed.emit(player_health)
 	
 	

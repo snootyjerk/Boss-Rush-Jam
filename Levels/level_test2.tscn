@@ -240,7 +240,6 @@ shape = SubResource("RectangleShape2D_mwrh3")
 
 [node name="CelloBoss" parent="." instance=ExtResource("5_sl0xd")]
 position = Vector2(578, 251)
-boss_health = 1
 
 [node name="DancerController" type="Node2D" parent="."]
 script = ExtResource("6_p1f1i")

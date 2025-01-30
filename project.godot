@@ -16,9 +16,13 @@ warnings/check_angle_interpolation_type_conflicting=false
 [application]
 
 config/name="Boss Rush Jam"
-run/main_scene="res://main.tscn"
+run/main_scene="res://title_screen.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Test="*res://test.gd"
 
 [display]
 
