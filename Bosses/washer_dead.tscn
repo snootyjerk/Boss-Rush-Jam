@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bngw1q7ma6u25"]
+
+[ext_resource type="Texture2D" uid="uid://d3ndnxjrgu63b" path="res://Sprite Sheets/Cello/celloIdle1.png" id="1_gqbuo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f6uui"]
+radius = 22.0
+height = 142.0
+
+[node name="CelloDead" type="RigidBody2D"]
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gqbuo")
+region_enabled = true
+region_rect = Rect2(0, 0, 96, 160)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_f6uui")

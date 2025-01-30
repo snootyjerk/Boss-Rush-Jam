@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://be88ir8aduyjl"]
+[gd_scene load_steps=7 format=3 uid="uid://keu34hegqnu6"]
 
-[ext_resource type="Script" path="res://Levels/Features/water_nozzle.gd" id="1_dt1g7"]
-[ext_resource type="Texture2D" uid="uid://cico2gnt6y2ej" path="res://Sprite Sheets/Vaccum_hose.png" id="1_r50a2"]
+[ext_resource type="Texture2D" uid="uid://dy00dfrvlhb67" path="res://Sprite Sheets/Vaccum_Head.png" id="1_arre4"]
+[ext_resource type="Script" path="res://Bosses/washer_eyes.gd" id="1_paed8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8i6a0"]
-size = Vector2(16, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0dfg"]
 
 [sub_resource type="Animation" id="Animation_k07pi"]
 length = 0.001
@@ -43,34 +42,17 @@ _data = {
 "flash": SubResource("Animation_wisqf")
 }
 
-[node name="WaterNozzle" type="StaticBody2D"]
-visible = false
-collision_layer = 65
-script = ExtResource("1_dt1g7")
+[node name="WasherEyes" type="RigidBody2D"]
+collision_mask = 33
+script = ExtResource("1_paed8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(8, 0)
-texture = ExtResource("1_r50a2")
+texture = ExtResource("1_arre4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(8, 0)
-shape = SubResource("RectangleShape2D_8i6a0")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2(16, 0)
-amount = 20
-lifetime = 0.2
-randomness = 0.21
-initial_velocity_min = 282.83
-initial_velocity_max = 444.44
-scale_amount_max = 3.0
-color = Color(0, 0.6, 0.701961, 1)
+shape = SubResource("RectangleShape2D_a0dfg")
 
 [node name="FlashAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_gx62o")
 }
-
-[connection signal="emerged" from="." to="." method="_on_emerged"]
-[connection signal="submerged" from="." to="." method="_on_submerged"]

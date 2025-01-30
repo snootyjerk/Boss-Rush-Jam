@@ -1,7 +1,10 @@
 extends Area2D
 
 @export var _high_point = 50
-@export var _low_point = 340
+@export var _mid_point = 150
+@export var _low_point = 220
+@export var _lower_point = 300
+@export var _lowest_point = 340
 @export var _x_current = 10
 
 #Variables for 'passive' water movement when not being raised/ lowered
@@ -49,11 +52,27 @@ func _adjust_level(delta):
 		_current_level = _target_level
 		_adjusting = false
 
-func _set_level(height):
+func _set_level(nozz_count):
+	var height
+	match nozz_count:
+		0:
+			height = _lowest_point
+		1:
+			height = _lower_point
+		2:
+			height = _low_point
+		3:
+			height = _mid_point
+		4:
+			height = _mid_point
+		5:
+			height = _high_point
+		_:
+			height = _high_point
+			
 	if height != _current_level:
 		_adjusting = true
 		_target_level = height
-		
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("_submerge"):
