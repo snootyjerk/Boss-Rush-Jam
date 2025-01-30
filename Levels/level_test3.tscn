@@ -74,6 +74,7 @@ shader_parameter/flash_color = Color(0.85, 0.85, 0.85, 1)
 shader_parameter/flash_value = 0.0
 
 [node name="WasherLevel" type="Node2D" node_paths=PackedStringArray("_boss")]
+process_mode = 1
 script = ExtResource("1_mrqov")
 _boss = NodePath("WasherBoss")
 

@@ -51,6 +51,7 @@ _data = {
 }
 
 [node name="WaterNozzle" type="StaticBody2D"]
+process_mode = 1
 material = SubResource("ShaderMaterial_aapmx")
 collision_layer = 65
 collision_mask = 0
