@@ -163,58 +163,49 @@ _max_timer = 6
 [node name="WasherBoss" type="Node2D" parent="."]
 script = ExtResource("6_c8hk5")
 boss_name = "Cyclone of Torment"
-boss_health = 4
+boss_health = 16
 _boss_death_scene = ExtResource("7_bh0ui")
+
+[node name="WasherEyes" parent="WasherBoss" instance=ExtResource("9_1qgpv")]
+position = Vector2(321, 48)
 
 [node name="WaterLevel" parent="WasherBoss" instance=ExtResource("3_7v1i2")]
 position = Vector2(0, 304)
 collision_mask = 80
 
-[node name="WasherEyes" parent="WasherBoss" instance=ExtResource("9_1qgpv")]
-position = Vector2(176, 24)
-collision_layer = 0
-
 [node name="WaterNozzle0" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 material = SubResource("ShaderMaterial_vvikr")
 position = Vector2(32, 325)
 collision_layer = 64
-collision_mask = 0
 
 [node name="WaterNozzle1" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 material = SubResource("ShaderMaterial_kceea")
 position = Vector2(608, 325)
 rotation = 3.14159
 collision_layer = 64
-collision_mask = 0
 
 [node name="WaterNozzle2" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 material = SubResource("ShaderMaterial_fxa65")
 position = Vector2(32, 148)
 collision_layer = 64
-collision_mask = 0
 
 [node name="WaterNozzle3" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 material = SubResource("ShaderMaterial_m82cd")
 position = Vector2(608, 148)
 rotation = 3.14159
 collision_layer = 64
-collision_mask = 0
 
 [node name="WaterNozzle4" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 material = SubResource("ShaderMaterial_d3c58")
 position = Vector2(160, 64)
 rotation = 1.5708
 collision_layer = 64
-collision_mask = 0
-_broken = true
 
 [node name="WaterNozzle5" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 material = SubResource("ShaderMaterial_17w0g")
 position = Vector2(480, 64)
 rotation = 1.5708
 collision_layer = 64
-collision_mask = 0
-_broken = true
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_vul5i")

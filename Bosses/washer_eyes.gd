@@ -1,21 +1,34 @@
-extends RigidBody2D
+extends Node2D
 
-# Called when the node enters the scene tree for the first time.
+
+
+@export var left_eye: WasherEye
+@export var right_eye: WasherEye
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
 func _ready() -> void:
-	pass # Replace with function body.
+	left_eye.damaged.connect(_on_damaged)
+	right_eye.damaged.connect(_on_damaged)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
+	
 func _drop():
-	set_collision_layer_value(Constants.Layers.enemy, true)
-	global_position.y -= 20
+	left_eye.drop()
+	right_eye.drop()
+	animation_player.play("drop")
+	
 	
 func _repair():
-	set_collision_layer_value(Constants.Layers.enemy, false)
-	global_position.y +=20
-
-func take_damage():
-	Main.node.damage_boss()
+	left_eye.repair()
+	right_eye.repair()
+	animation_player.play("lift")
+	
+	
+func _on_damaged():
+	left_eye.flash_animation()
+	right_eye.flash_animation()

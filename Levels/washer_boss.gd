@@ -14,10 +14,9 @@ var _current_phase = 0
 var _max_phases = 1
 var _nozz_count = 0
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
-	#_repair_nozzles()
-	_nozz_count = nozz_list.filter(func(nozz): return not nozz._broken).size()
+	_repair_nozzles()
 	_adjust_water_level()
 	Main.node.boss_phase_changed.connect(_on_boss_phase_changed)
 	
@@ -30,13 +29,16 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
+	
 func _drop_eyes():
 	_eyes._drop()
 	_vulnerable = true
 	
+	
 func _revive_eyes():
 	_eyes._repair()
 	_vulnerable = false
+
 
 func on_nozzle_broken():
 	print("lost a nozzle!")
@@ -44,6 +46,7 @@ func on_nozzle_broken():
 	_adjust_water_level()
 	if _nozz_count <= 0:
 		_drop_eyes()
+
 
 func _repair_nozzles():
 	var phase_list = phase_lists[_current_phase]
@@ -53,8 +56,10 @@ func _repair_nozzles():
 		nozzle._repair()
 		_nozz_count +=1
 		
+		
 func _adjust_water_level():
 	_water_level._set_level(_nozz_count)
+
 
 func _on_boss_phase_changed(phase):
 	print(phase)

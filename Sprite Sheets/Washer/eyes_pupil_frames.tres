@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://bjfc40eaxcamx"]
+
+[ext_resource type="Texture2D" uid="uid://dqeky5v81tpls" path="res://Sprite Sheets/Washer/EyesgetAngey1.png" id="1_g0prk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2a86f"]
+atlas = ExtResource("1_g0prk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krvew"]
+atlas = ExtResource("1_g0prk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v15rn"]
+atlas = ExtResource("1_g0prk")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27mte"]
+atlas = ExtResource("1_g0prk")
+region = Rect2(48, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2a86f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krvew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v15rn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27mte")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]

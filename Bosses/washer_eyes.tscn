@@ -1,58 +1,125 @@
-[gd_scene load_steps=7 format=3 uid="uid://keu34hegqnu6"]
+[gd_scene load_steps=10 format=3 uid="uid://keu34hegqnu6"]
 
-[ext_resource type="Texture2D" uid="uid://dy00dfrvlhb67" path="res://Sprite Sheets/Vaccum_Head.png" id="1_arre4"]
 [ext_resource type="Script" path="res://Bosses/washer_eyes.gd" id="1_paed8"]
+[ext_resource type="PackedScene" uid="uid://7bn840scr8hl" path="res://Bosses/washer_eye.tscn" id="2_g6wof"]
+[ext_resource type="Shader" path="res://Shaders/flash_shader.gdshader" id="3_o7dko"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0dfg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r0mbi"]
+resource_local_to_scene = true
+shader = ExtResource("3_o7dko")
+shader_parameter/flash_color = Color(0.85, 0.85, 0.85, 1)
+shader_parameter/flash_value = 0.0
 
-[sub_resource type="Animation" id="Animation_k07pi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7qxty"]
+resource_local_to_scene = true
+shader = ExtResource("3_o7dko")
+shader_parameter/flash_color = Color(0.85, 0.85, 0.85, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="Animation" id="Animation_8b2jw"]
+resource_name = "drop"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WasherEyeLeft:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-48, 0), Vector2(-48, 60), Vector2(-48, 75), Vector2(-48, 86)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WasherEyeRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(48, 0), Vector2(48, 60), Vector2(48, 75), Vector2(48, 86)]
+}
+
+[sub_resource type="Animation" id="Animation_rl64o"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/path = NodePath("WasherEyeLeft:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Vector2(-48, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WasherEyeRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_wisqf"]
-resource_name = "flash"
-length = 0.3
+[sub_resource type="Animation" id="Animation_63p24"]
+resource_name = "lift"
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:material:shader_parameter/flash_value")
+tracks/0/path = NodePath("WasherEyeLeft:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.266667, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 1.0, 0.0]
+"values": [Vector2(-48, 86), Vector2(-48, 26), Vector2(-48, 11), Vector2(-48, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WasherEyeRight:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(48, 86), Vector2(48, 26), Vector2(48, 11), Vector2(48, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_gx62o"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fv5l5"]
 _data = {
-"RESET": SubResource("Animation_k07pi"),
-"flash": SubResource("Animation_wisqf")
+"RESET": SubResource("Animation_rl64o"),
+"drop": SubResource("Animation_8b2jw"),
+"lift": SubResource("Animation_63p24")
 }
 
-[node name="WasherEyes" type="RigidBody2D"]
-collision_mask = 33
+[node name="WasherEyes" type="Node2D" node_paths=PackedStringArray("left_eye", "right_eye")]
 script = ExtResource("1_paed8")
+left_eye = NodePath("WasherEyeLeft")
+right_eye = NodePath("WasherEyeRight")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_arre4")
+[node name="WasherEyeLeft" parent="." instance=ExtResource("2_g6wof")]
+material = SubResource("ShaderMaterial_r0mbi")
+position = Vector2(-48, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_a0dfg")
+[node name="WasherEyeRight" parent="." instance=ExtResource("2_g6wof")]
+material = SubResource("ShaderMaterial_7qxty")
+position = Vector2(48, 0)
 
-[node name="FlashAnimation" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_gx62o")
+"": SubResource("AnimationLibrary_fv5l5")
 }
