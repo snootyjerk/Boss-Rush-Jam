@@ -197,7 +197,7 @@ physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_0j7gj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwrh3"]
-size = Vector2(970, 405)
+size = Vector2(3131, 405)
 
 [node name="Level Test" type="Node2D" node_paths=PackedStringArray("_boss")]
 process_mode = 1
@@ -235,7 +235,7 @@ position = Vector2(368, 269)
 position = Vector2(333, 452)
 
 [node name="CollisionShape2D" parent="NextLevelTrigger/Area2D" index="0"]
-position = Vector2(-6, 192.5)
+position = Vector2(390.5, 192.5)
 shape = SubResource("RectangleShape2D_mwrh3")
 
 [node name="CelloBoss" parent="." instance=ExtResource("5_sl0xd")]

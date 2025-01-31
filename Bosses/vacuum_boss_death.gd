@@ -15,4 +15,5 @@ func _physics_process(delta: float) -> void:
 	else:
 		_sprite.speed_scale = 1.0
 		
+		
 	move_and_slide()
