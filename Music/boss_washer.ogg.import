@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/boss_washer.ogg-221abef9f3aa6cf0ce71f6d6fba2c
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4
