@@ -8,7 +8,6 @@ func _on_button_button_up() -> void:
 
 # REMOVE FOR FINAL BUILD!!!!!!
 func _process(delta: float) -> void:
-	print("SLKDFJLSKDJFLKJ")
 	if Input.is_key_pressed(KEY_1):
 		Test.level = 1
 		print("And a 1!")

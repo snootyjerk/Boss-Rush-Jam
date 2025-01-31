@@ -1,28 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bngw1q7ma6u25"]
+[gd_scene load_steps=2 format=3 uid="uid://betrfxcbyuxaa"]
 
-[ext_resource type="Texture2D" uid="uid://bntfo2vqvqxqv" path="res://Sprite Sheets/Washer/EyeWhite.png" id="1_fbypy"]
-[ext_resource type="SpriteFrames" uid="uid://bjfc40eaxcamx" path="res://Sprite Sheets/Washer/eyes_pupil_frames.tres" id="2_5srvu"]
+[ext_resource type="PackedScene" uid="uid://bngw1q7ma6u25" path="res://Bosses/washer_dead_eye.tscn" id="1_ety48"]
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ajvmw"]
-bounce = 0.31
+[node name="WasherDead" type="Node2D"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ikoyv"]
-radius = 15.0
+[node name="WasherEyeDeadLeft" parent="." instance=ExtResource("1_ety48")]
 
-[node name="WasherEyeDead" type="RigidBody2D"]
-collision_layer = 0
-collision_mask = 17
-physics_material_override = SubResource("PhysicsMaterial_ajvmw")
-
-[node name="EyeWhites" type="Sprite2D" parent="."]
-texture_filter = 1
-use_parent_material = true
-texture = ExtResource("1_fbypy")
-
-[node name="EyePupil" type="AnimatedSprite2D" parent="EyeWhites"]
-texture_filter = 1
-use_parent_material = true
-sprite_frames = ExtResource("2_5srvu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_ikoyv")
+[node name="WasherEyeDeadRight" parent="." instance=ExtResource("1_ety48")]
+position = Vector2(96, 0)

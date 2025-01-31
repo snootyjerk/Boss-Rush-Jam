@@ -16,6 +16,7 @@ var _nozz_count = 0
 
 
 func _ready() -> void:
+	super._ready()
 	_repair_nozzles()
 	_adjust_water_level()
 	Main.node.boss_phase_changed.connect(_on_boss_phase_changed)
@@ -62,9 +63,10 @@ func _adjust_water_level():
 
 
 func _on_boss_phase_changed(phase):
-	print(phase)
-	print("new phase")
-	_repair_nozzles()
-	_adjust_water_level()
-	_revive_eyes()
-	_current_phase = phase -1
+	if Main.node.boss_health > 0:
+		print(phase)
+		print("new phase")
+		_repair_nozzles()
+		_adjust_water_level()
+		_revive_eyes()
+		_current_phase = phase -1

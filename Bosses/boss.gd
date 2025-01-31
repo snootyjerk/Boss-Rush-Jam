@@ -6,6 +6,7 @@ signal death
 @export var boss_name: String
 @export var boss_health: int = 1
 @export var _boss_animation_player: AnimationPlayer
+@export var _boss_death_spawn_node: Node2D
 @export var _boss_death_scene: PackedScene
 
 
@@ -17,7 +18,10 @@ func _on_level_boss_defeated() -> void:
 	if _boss_death_scene:
 		var boss_death = _boss_death_scene.instantiate()
 		get_parent().add_child(boss_death)
-		boss_death.global_position = global_position
+		if _boss_death_spawn_node:
+			boss_death.global_position = _boss_death_spawn_node.global_position
+		else:
+			boss_death.global_position = global_position
 	_boss_defeated_hook()
 	queue_free()
 

@@ -25,7 +25,8 @@ var is_boss_defeated: bool:
 		if defeated:
 			boss_music.stop()
 			boss_defeated.emit()
-			exit_blocking_tile_map.clear()
+			if exit_blocking_tile_map:
+				exit_blocking_tile_map.clear()
 			
 			
 func _ready() -> void:

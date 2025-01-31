@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cb5lqane2i3b8"]
+[gd_scene load_steps=31 format=3 uid="uid://cb5lqane2i3b8"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_mrqov"]
 [ext_resource type="Texture2D" uid="uid://b7csvcyq02swy" path="res://Sprite Sheets/Washer/BackgroundLayer3.png" id="2_ijcpp"]
@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c6rnsad658li4" path="res://Levels/Features/bubble_spawner.tscn" id="5_5axnj"]
 [ext_resource type="PackedScene" uid="uid://be88ir8aduyjl" path="res://Levels/Features/water_nozzle.tscn" id="6_6nnh0"]
 [ext_resource type="Script" path="res://Levels/washer_boss.gd" id="6_c8hk5"]
-[ext_resource type="PackedScene" uid="uid://bngw1q7ma6u25" path="res://Bosses/washer_dead.tscn" id="7_bh0ui"]
+[ext_resource type="PackedScene" uid="uid://betrfxcbyuxaa" path="res://Bosses/washer_dead.tscn" id="7_bh0ui"]
 [ext_resource type="PackedScene" uid="uid://keu34hegqnu6" path="res://Bosses/washer_eyes.tscn" id="9_1qgpv"]
 [ext_resource type="AudioStream" uid="uid://djnbiiy5vlq67" path="res://Music/boss_washer.ogg" id="11_vul5i"]
 [ext_resource type="Shader" path="res://Shaders/flash_shader.gdshader" id="14_8jvry"]
@@ -36,6 +36,18 @@ size = Vector2(356.5, 57.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6iin"]
 size = Vector2(94, 95)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hpu7y"]
+resource_local_to_scene = true
+shader = ExtResource("14_8jvry")
+shader_parameter/flash_color = Color(0.85, 0.85, 0.85, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q376l"]
+resource_local_to_scene = true
+shader = ExtResource("14_8jvry")
+shader_parameter/flash_color = Color(0.85, 0.85, 0.85, 1)
+shader_parameter/flash_value = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vvikr"]
 resource_local_to_scene = true
@@ -161,14 +173,20 @@ _timer = 3
 position = Vector2(512, 328)
 _max_timer = 6
 
-[node name="WasherBoss" type="Node2D" parent="."]
+[node name="WasherBoss" type="Node2D" parent="." node_paths=PackedStringArray("_boss_death_spawn_node")]
 script = ExtResource("6_c8hk5")
 boss_name = "Cyclone of Torment"
-boss_health = 16
+_boss_death_spawn_node = NodePath("WasherEyes/WasherEyeLeft")
 _boss_death_scene = ExtResource("7_bh0ui")
 
 [node name="WasherEyes" parent="WasherBoss" instance=ExtResource("9_1qgpv")]
 position = Vector2(321, 48)
+
+[node name="WasherEyeLeft" parent="WasherBoss/WasherEyes" index="0"]
+material = SubResource("ShaderMaterial_hpu7y")
+
+[node name="WasherEyeRight" parent="WasherBoss/WasherEyes" index="1"]
+material = SubResource("ShaderMaterial_q376l")
 
 [node name="WaterLevel" parent="WasherBoss" instance=ExtResource("3_7v1i2")]
 position = Vector2(0, 304)
@@ -219,3 +237,4 @@ parameters/looping = true
 [connection signal="just_broken" from="WasherBoss/WaterNozzle0" to="WasherBoss" method="_on_water_nozzle_0_just_broken"]
 
 [editable path="NextLevelTrigger"]
+[editable path="WasherBoss/WasherEyes"]
