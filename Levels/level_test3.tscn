@@ -176,6 +176,7 @@ _max_timer = 6
 [node name="WasherBoss" type="Node2D" parent="." node_paths=PackedStringArray("_boss_death_spawn_node")]
 script = ExtResource("6_c8hk5")
 boss_name = "Cyclone of Torment"
+boss_health = 20
 _boss_death_spawn_node = NodePath("WasherEyes/WasherEyeLeft")
 _boss_death_scene = ExtResource("7_bh0ui")
 

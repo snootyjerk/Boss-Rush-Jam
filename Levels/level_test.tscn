@@ -36,7 +36,7 @@ parameters/looping = true
 position = Vector2(312, 168)
 _spike_bwall_spawner1 = NodePath("../SpikeBwallSpawner")
 _spike_bwall_spawner2 = NodePath("../SpikeBwallSpawner2")
-boss_health = 4
+boss_health = 12
 
 [node name="Player" parent="." instance=ExtResource("2_y52ef")]
 position = Vector2(162, 275)
