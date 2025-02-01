@@ -26,3 +26,19 @@ func _process(delta: float) -> void:
 	if Input.is_key_pressed(KEY_3):
 		Test.level = 3
 		get_tree().change_scene_to_packed(_main_scene)
+
+
+func _on_casual_button_mouse_entered() -> void:
+	$CasualModeDescription.visible = true
+
+
+func _on_casual_button_mouse_exited() -> void:
+	$CasualModeDescription.visible = false
+
+
+func _on_hardcore_button_mouse_entered() -> void:
+	$HardcoreModeDescription.visible = true
+
+
+func _on_hardcore_button_mouse_exited() -> void:
+	$HardcoreModeDescription.visible = false
