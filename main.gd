@@ -11,6 +11,7 @@ signal boss_defeated
 var _title_scene = preload("res://title_screen.tscn")
 var _first_level_scene = preload("res://Levels/level_test.tscn")
 var _game_over_scene = preload("res://Scenes/game_over.tscn")
+var _credits_scene = preload("res://credits.tscn")
 
 static var node: Main
 
@@ -19,6 +20,8 @@ static var node: Main
 
 var fem_dancer: CharacterBody2D
 var man_dancer: CharacterBody2D
+
+var run_time_elapsed_str: String
 
 var is_game_paused: bool = false:
 	get:
@@ -97,8 +100,15 @@ func _init():
 	node = self
 	child_entered_tree.connect(_on_child_entered_tree)
 	
-	
+var current_best_time: int = 0
+
 func _ready():
+	var mode = "hardcore" if GlobalState.is_hardcore else "casual"
+	if FileAccess.file_exists("user://best_time_" + mode + ".dat"):
+		var file = FileAccess.open("user://best_time_" + mode + ".dat", FileAccess.READ)
+		var time_str: String = file.get_line()
+		current_best_time = _convert_time_str_to_secs(time_str)
+	
 	if Test.level < 1: # Remove for final build
 		go_to_level(_first_level_scene)
 	else:
@@ -152,6 +162,16 @@ func retry():
 	#
 	#
 	
+	
+func game_completed():
+	var new_time = _convert_time_str_to_secs(node.run_time_elapsed_str)
+	if new_time < current_best_time:
+		var mode = "hardcore" if GlobalState.is_hardcore else "casual"
+		var file = FileAccess.open("user://best_time_" + mode + ".dat", FileAccess.WRITE)
+		file.store_string(node.run_time_elapsed_str)
+	
+	get_tree().change_scene_to_packed(_credits_scene)
+	
 
 func quit():
 	get_tree().quit() # later will be main menu
@@ -175,3 +195,10 @@ func _hide_game_over_screen():
 func _pause(is_paused: bool):
 	is_game_paused = is_paused
 	get_tree().paused = is_paused
+	
+
+func _convert_time_str_to_secs(time_str: String) -> int:
+	var strings = time_str.split(":")
+	var min = strings[0].to_int()
+	var sec = strings[1].to_int()
+	return (min * 60) + sec

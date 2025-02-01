@@ -5,6 +5,7 @@ extends Label
 #var _current_time_ms: int
 
 var _time_passed: int = 0
+var is_stopped = false
 
 
 #func _ready() -> void:
@@ -14,15 +15,17 @@ var _time_passed: int = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	_time_passed += round(delta * 1000)
-	var seconds = (_time_passed / 1000) % 60
-	var minutes = (_time_passed / 1000) / 60
-	
-	var str_seconds = str(seconds)
-	if seconds < 10:
-		str_seconds = "0" + str_seconds
-	var str_minutes = str(minutes)
-	if minutes < 10:
-		str_minutes = "0" + str_minutes
+	if not is_stopped:
+		_time_passed += round(delta * 1000)
+		var seconds = (_time_passed / 1000) % 60
+		var minutes = (_time_passed / 1000) / 60
 		
-	text = str_minutes + ":" + str_seconds
+		var str_seconds = str(seconds)
+		if seconds < 10:
+			str_seconds = "0" + str_seconds
+		var str_minutes = str(minutes)
+		if minutes < 10:
+			str_minutes = "0" + str_minutes
+			
+		text = str_minutes + ":" + str_seconds
+		Main.node.run_time_elapsed_str = text
