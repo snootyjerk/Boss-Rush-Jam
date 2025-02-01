@@ -1,4 +1,4 @@
-extends Area2D
+extends StaticBody2D
 
 @export var _speed: float = 300.0
 
