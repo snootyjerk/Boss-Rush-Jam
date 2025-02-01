@@ -10,7 +10,7 @@ bounce = 0.2
 radius = 6.0
 
 [node name="EnemyDeath" type="RigidBody2D"]
-collision_layer = 96
+collision_layer = 0
 mass = 0.1
 physics_material_override = SubResource("PhysicsMaterial_tav0t")
 script = ExtResource("1_4vyla")
@@ -25,3 +25,9 @@ texture = ExtResource("2_sjf68")
 hframes = 2
 region_enabled = true
 region_rect = Rect2(0, 0, 64, 32)
+
+[node name="DisappearTimer" type="Timer" parent="."]
+wait_time = 6.0
+autostart = true
+
+[connection signal="timeout" from="DisappearTimer" to="." method="_on_disappear_timer_timeout"]

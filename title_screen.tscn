@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bw64y1ck7tjv4"]
+[gd_scene load_steps=27 format=3 uid="uid://bw64y1ck7tjv4"]
 
 [ext_resource type="FontFile" uid="uid://b8bkntbvtd4tt" path="res://Fonts/Geo-Regular.ttf" id="1_1tvp6"]
 [ext_resource type="Script" path="res://title_screen.gd" id="1_3osmr"]
@@ -22,6 +22,69 @@ texture = ExtResource("5_nua02")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cyvj0"]
 texture = ExtResource("6_v8g0k")
+
+[sub_resource type="Animation" id="Animation_d153u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CloudsFar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloudsFar2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(638, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CloudsNear:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CloudsNear2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(638, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CloudsNear3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1276, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_qk7vg"]
 resource_name = "scroll"
@@ -89,69 +152,6 @@ tracks/4/keys = {
 "values": [Vector2(1276, 0), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_d153u"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CloudsFar:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CloudsFar2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(638, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CloudsNear:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CloudsNear2:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(638, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CloudsNear3:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1276, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5ucq3"]
 _data = {
 "RESET": SubResource("Animation_d153u"),
@@ -160,6 +160,15 @@ _data = {
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t25oq"]
 texture = ExtResource("7_q24eq")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce1pu"]
+bg_color = Color(0.623, 0.68975, 0.89, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lik1b"]
+bg_color = Color(0.1495, 0.274625, 0.65, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6lr5s"]
+bg_color = Color(0.378, 0.4935, 0.84, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_21jvg"]
 bg_color = Color(1, 0.55, 0.64, 1)
@@ -303,7 +312,28 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_t25oq")
 
-[node name="Button" type="Button" parent="."]
+[node name="CasualButton" type="Button" parent="."]
+z_index = 99
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = 56.0
+offset_right = 32.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_1tvp6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ce1pu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lik1b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_6lr5s")
+text = "CASUAL"
+
+[node name="HardcoreButton" type="Button" parent="."]
 z_index = 99
 custom_minimum_size = Vector2(64, 32)
 layout_mode = 1
@@ -322,7 +352,7 @@ theme_override_fonts/font = ExtResource("1_1tvp6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_21jvg")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_dyd0o")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wrxy6")
-text = "PLAY"
+text = "HARDCORE"
 
 [node name="Credits" type="Label" parent="."]
 z_index = 99
@@ -364,4 +394,5 @@ volume_db = -9.245
 autoplay = true
 parameters/looping = true
 
-[connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="CasualButton" to="." method="_on_casual_button_button_up"]
+[connection signal="button_up" from="HardcoreButton" to="." method="_on_hardcore_button_button_up"]

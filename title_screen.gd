@@ -1,10 +1,18 @@
 extends Control
 
 var _main_scene = preload("res://main.tscn")
+#
 
 
-func _on_button_button_up() -> void:
+func _on_casual_button_button_up() -> void:
+	GlobalState.is_hardcore = false
 	get_tree().change_scene_to_packed(_main_scene)
+
+
+func _on_hardcore_button_button_up() -> void:
+	GlobalState.is_hardcore = true
+	get_tree().change_scene_to_packed(_main_scene)
+
 
 # REMOVE FOR FINAL BUILD!!!!!!
 func _process(delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cb5lqane2i3b8"]
+[gd_scene load_steps=32 format=3 uid="uid://cb5lqane2i3b8"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_mrqov"]
 [ext_resource type="Texture2D" uid="uid://b7csvcyq02swy" path="res://Sprite Sheets/Washer/BackgroundLayer3.png" id="2_ijcpp"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://keu34hegqnu6" path="res://Bosses/washer_eyes.tscn" id="9_1qgpv"]
 [ext_resource type="AudioStream" uid="uid://djnbiiy5vlq67" path="res://Music/boss_washer.ogg" id="11_vul5i"]
 [ext_resource type="Shader" path="res://Shaders/flash_shader.gdshader" id="14_8jvry"]
+[ext_resource type="PackedScene" uid="uid://ds2n7mhwba2c7" path="res://Levels/seed.tscn" id="16_ocq77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wsfav"]
 size = Vector2(320.5, 31)
@@ -230,6 +231,9 @@ stream = ExtResource("11_vul5i")
 volume_db = -6.009
 autoplay = true
 parameters/looping = true
+
+[node name="Seed" parent="." instance=ExtResource("16_ocq77")]
+position = Vector2(436, 326)
 
 [connection signal="body_entered" from="WasherBoss/WaterLevel" to="WasherBoss/WaterLevel" method="_on_body_entered"]
 [connection signal="body_exited" from="WasherBoss/WaterLevel" to="WasherBoss/WaterLevel" method="_on_body_exited"]

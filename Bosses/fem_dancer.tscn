@@ -1,9 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://bayubd62rlo3u"]
+[gd_scene load_steps=14 format=3 uid="uid://bayubd62rlo3u"]
 
 [ext_resource type="Texture2D" uid="uid://csco3x5ingfhe" path="res://Sprite Sheets/Dancers/FemDancerIdle.png" id="1_eboif"]
 [ext_resource type="Shader" path="res://Shaders/flash_shader.gdshader" id="1_ivr6h"]
 [ext_resource type="Script" path="res://Bosses/fem_dancer.gd" id="1_vomnh"]
-[ext_resource type="Texture2D" uid="uid://b7xj64vtw3ox" path="res://Sprite Sheets/heart_particle.png" id="4_vuv2f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7xxxh"]
 shader = ExtResource("1_ivr6h")
@@ -130,10 +129,6 @@ _data = {
 "flash": SubResource("Animation_y6hw4")
 }
 
-[sub_resource type="Curve" id="Curve_7acpp"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.460591, 1), 0.0, 0.0, 0, 0, Vector2(0.992611, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [node name="FemDancer" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation_player")]
 material = SubResource("ShaderMaterial_7xxxh")
 collision_layer = 96
@@ -160,13 +155,5 @@ libraries = {
 
 [node name="RecoverTimer" type="Timer" parent="."]
 wait_time = 2.5
-
-[node name="StunParticles" type="CPUParticles2D" parent="."]
-visible = false
-amount = 2
-lifetime = 4.5
-texture = ExtResource("4_vuv2f")
-gravity = Vector2(0, -8)
-scale_amount_curve = SubResource("Curve_7acpp")
 
 [connection signal="timeout" from="RecoverTimer" to="." method="_on_recover_timer_timeout"]

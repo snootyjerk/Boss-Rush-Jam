@@ -27,6 +27,7 @@ var is_game_paused: bool = false:
 		is_game_paused = value
 		pause.visible = value
 
+var _current_level_scene: PackedScene
 var current_level: Level
 var player_health: int = Constants.PLAYER_MAX_HEALTH:
 	get:
@@ -112,17 +113,23 @@ func _input(event: InputEvent) -> void:
 
 
 func go_to_level(level_scene: PackedScene):
+	_current_level_scene = level_scene
 	var new_level: Level = level_scene.instantiate()
 	if node.current_level:
 		node.current_level.queue_free()
 		node.remove_child(node.current_level)
 	node.call_deferred("add_child", new_level)
 	node.boss_phase = 1
+	
+	
+func _restart_level():
+	go_to_level(_current_level_scene)
 
 
 func go_to_next_level():
 	var new_level_path: String = node.current_level.get_next_level_path()
 	var new_level_scene := load(new_level_path)
+	_current_level_scene = new_level_scene
 	var new_level: Level = new_level_scene.instantiate()
 	if node.current_level:
 		node.remove_child(node.current_level)
@@ -133,10 +140,17 @@ func go_to_next_level():
 func retry():
 	Test.level = 0
 	get_tree().paused = false
-	get_tree().change_scene_to_packed(_title_scene)
+	if GlobalState.is_hardcore:
+		get_tree().change_scene_to_packed(_title_scene)
+	else:
+		player_health = Constants.PLAYER_MAX_HEALTH
+		player_energy = 100
+		_hide_game_over_screen()
+		hud.visible = true
+		_restart_level()
 	#get_tree().paused = false
-	#player_health = Constants.PLAYER_MAX_HEALTH
-	#hud.visible = true
+	#
+	#
 	
 
 func quit():
@@ -154,6 +168,9 @@ func _show_game_over_screen():
 	node.add_child(_game_over_node)
 	hud.visible = false
 	
+	
+func _hide_game_over_screen():
+	node.remove_child(_game_over_node)
 	
 func _pause(is_paused: bool):
 	is_game_paused = is_paused

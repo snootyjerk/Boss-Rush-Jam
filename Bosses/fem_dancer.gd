@@ -90,7 +90,6 @@ func take_damage():
 		set_collision_layer_value(Constants.Layers.enemy, false)
 		stunned.emit()
 		sprite.pause()
-		$StunParticles.visible = true
 		sprite.rotation_degrees = -90
 		_update_state(_states.STUN)
 	else:
@@ -109,7 +108,6 @@ func _revive():
 	_hp = _max_hp
 	sprite.rotation_degrees = 0
 	velocity.x = -_move_speed
-	$StunParticles.visible = false
 	sprite.play()
 	set_collision_layer_value(Constants.Layers.player_hurt, true)
 	set_collision_layer_value(Constants.Layers.enemy, true)
