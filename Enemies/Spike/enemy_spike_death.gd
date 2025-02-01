@@ -11,3 +11,7 @@ func _ready() -> void:
 	#queue_free()
 func _add_velocity(added_velocity: Vector2):
 	apply_central_force(added_velocity*_force_magnifier)
+
+
+func _on_disappear_timer_timeout() -> void:
+	queue_free()
