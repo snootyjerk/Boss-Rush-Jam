@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://78ali1yoytib"]
+[gd_scene load_steps=25 format=3 uid="uid://78ali1yoytib"]
 
 [ext_resource type="Script" path="res://Player/player_controller.gd" id="1_36ivf"]
 [ext_resource type="SpriteFrames" uid="uid://0etm6emh483o" path="res://Sprite Sheets/spinny_frames.tres" id="2_5ntfa"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Player/player_hitbox.gd" id="4_digm6"]
 [ext_resource type="SpriteFrames" uid="uid://cbw6nrg0a6ctr" path="res://Sprite Sheets/spinny_fan_frames.tres" id="5_c7d3u"]
 [ext_resource type="Texture2D" uid="uid://cchmkse2oq8m" path="res://Sprite Sheets/spinny_arms.png" id="6_lc2vo"]
+[ext_resource type="AudioStream" uid="uid://hknex2qbjc0d" path="res://Sound Effects/player_damaged.wav" id="10_xy7p6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c781r"]
 size = Vector2(18, 20)
@@ -356,12 +357,13 @@ position = Vector2(35, 3)
 [node name="JumpBufferCast" type="RayCast2D" parent="."]
 target_position = Vector2(0, 22)
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("_sfx")]
 collision_layer = 0
 collision_mask = 32
 script = ExtResource("3_dgb65")
 _sprite_flash_frequency = 0.15
 _sprite_flash_count = 5
+_sfx = NodePath("../DamagedAudioPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, 1)
@@ -390,6 +392,10 @@ position = Vector2(0, -26)
 sprite_frames = ExtResource("5_c7d3u")
 autoplay = "default"
 frame_progress = 0.727165
+
+[node name="DamagedAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_xy7p6")
+volume_db = -19.413
 
 [connection signal="body_entered" from="Hurtbox" to="Hurtbox" method="_on_body_entered"]
 [connection signal="body_exited" from="Hurtbox" to="Hurtbox" method="_on_body_exited"]
