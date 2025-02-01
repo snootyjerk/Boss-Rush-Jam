@@ -4,13 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://7bn840scr8hl" path="res://Bosses/washer_eye.tscn" id="2_g6wof"]
 [ext_resource type="Shader" path="res://Shaders/flash_shader.gdshader" id="3_o7dko"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pev5m"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vh6bi"]
 resource_local_to_scene = true
 shader = ExtResource("3_o7dko")
 shader_parameter/flash_color = Color(0.85, 0.85, 0.85, 1)
 shader_parameter/flash_value = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fxt0b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mguoq"]
 resource_local_to_scene = true
 shader = ExtResource("3_o7dko")
 shader_parameter/flash_color = Color(0.85, 0.85, 0.85, 1)
@@ -112,11 +112,11 @@ left_eye = NodePath("WasherEyeLeft")
 right_eye = NodePath("WasherEyeRight")
 
 [node name="WasherEyeLeft" parent="." instance=ExtResource("2_g6wof")]
-material = SubResource("ShaderMaterial_pev5m")
+material = SubResource("ShaderMaterial_vh6bi")
 position = Vector2(-48, 0)
 
 [node name="WasherEyeRight" parent="." instance=ExtResource("2_g6wof")]
-material = SubResource("ShaderMaterial_fxt0b")
+material = SubResource("ShaderMaterial_mguoq")
 position = Vector2(48, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

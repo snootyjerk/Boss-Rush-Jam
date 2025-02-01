@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cb5lqane2i3b8"]
+[gd_scene load_steps=33 format=3 uid="uid://cb5lqane2i3b8"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_mrqov"]
 [ext_resource type="Texture2D" uid="uid://b7csvcyq02swy" path="res://Sprite Sheets/Washer/BackgroundLayer3.png" id="2_ijcpp"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://keu34hegqnu6" path="res://Bosses/washer_eyes.tscn" id="9_1qgpv"]
 [ext_resource type="AudioStream" uid="uid://djnbiiy5vlq67" path="res://Music/boss_washer.ogg" id="11_vul5i"]
 [ext_resource type="Shader" path="res://Shaders/flash_shader.gdshader" id="14_8jvry"]
-[ext_resource type="PackedScene" uid="uid://ds2n7mhwba2c7" path="res://Levels/seed.tscn" id="16_ocq77"]
+[ext_resource type="PackedScene" path="res://Levels/seed.tscn" id="16_ocq77"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wsfav"]
 size = Vector2(320.5, 31)
@@ -85,6 +85,12 @@ resource_local_to_scene = true
 shader = ExtResource("14_8jvry")
 shader_parameter/flash_color = Color(0.85, 0.85, 0.85, 1)
 shader_parameter/flash_value = 0.0
+
+[sub_resource type="Curve2D" id="Curve2D_rwmj8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 124, 76, -3.86177, -11.671, 3.86177, 11.671, 124, 252, -57.9401, -19.0488, 57.9401, 19.0488, 196, 308, -42.8598, 21.4299, 42.8598, -21.4299, 452, 312, -11.9055, 31.748, 11.9055, -31.748, 492, 256, 11.9055, 20.6362, -11.9055, -20.6362, 504, 160, 52.3842, -0.7937, -52.3842, 0.7937, 324, 128, 9.87939, -43.2035, -9.87939, 43.2035, 124, 160, -8.85699, -46.6341, 8.85699, 46.6341, 124, 252, -36.5102, -17.4614, 36.5102, 17.4614, 196, 308, -32.5417, 24.6047, 32.5417, -24.6047, 452, 312, -6.3496, 26.9858, 6.3496, -26.9858, 492, 256, 0, 0, 0, 0, 512, 64)
+}
+point_count = 13
 
 [node name="WasherLevel" type="Node2D" node_paths=PackedStringArray("_boss")]
 process_mode = 1
@@ -225,6 +231,9 @@ material = SubResource("ShaderMaterial_17w0g")
 position = Vector2(480, 64)
 rotation = 1.5708
 collision_layer = 64
+
+[node name="Path2D" type="Path2D" parent="WasherBoss"]
+curve = SubResource("Curve2D_rwmj8")
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_vul5i")

@@ -49,7 +49,7 @@ func _process(delta: float) -> void:
 	if _in_range == true and _broken == false:
 		_shot_timer -=1*delta
 		if _shot_timer <=0:
-			print("should be shooting")
+			#print("should be shooting")
 			_fire_shots()
 			_shot_timer = _shot_timer_max
 
@@ -59,7 +59,7 @@ func _submerge():
 	submerged.emit()
 
 func _fire_shots():
-	print("shots fired")
+	#print("shots fired")
 	var player_angle = global_position.direction_to(Main.node.player_position)
 	var new_shot
 	var angle = player_angle.rotated(_shot_offset)
@@ -77,7 +77,7 @@ func _emerge():
 
 func _repair():
 	_broken = false
-	print(name, " repaired!")
+	#print(name, " repaired!")
 	_detector.monitoring = true
 	_hp = _max_hp
 	
@@ -87,7 +87,7 @@ func _repair():
 
 func take_damage():
 	if _broken == false:
-		print("hit")
+		#print("hit")
 		$FlashAnimation.play("flash")
 		_hp -=1 
 	if _hp <= 0:
@@ -95,7 +95,7 @@ func take_damage():
 		
 		
 func _break():
-	print("broken")
+	#print("broken")
 	just_broken.emit()
 	_broken = true
 	set_collision_layer_value(Constants.Layers.player_hurt, false)
@@ -117,10 +117,10 @@ func _on_sprite_2d_animation_finished() -> void:
 func _on_detector_body_entered(body: Node2D) -> void:
 	if body is PlayerController:
 		_in_range = true
-		print("in range")
+		#print("in range")
 		
 
 func _on_detector_body_exited(body: Node2D) -> void:
 	if body is PlayerController:
 		_in_range = false
-		print("out of range")
+		#print("out of range")

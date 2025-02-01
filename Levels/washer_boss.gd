@@ -1,7 +1,13 @@
 extends Boss
 
+var _sock = preload("res://Bosses/sock.tscn")
+var _shirt = preload("res://Bosses/shirt.tscn")
+var _pants = preload("res://Bosses/pants.tscn")
+var laundry_list = [_sock,_shirt,_pants]
+
 @onready var _water_level = $WaterLevel
 @onready var _eyes = $WasherEyes
+@onready var _clothes_path = $Path2D
 @onready var nozz_list = [$WaterNozzle0,$WaterNozzle1,$WaterNozzle2,$WaterNozzle3,$WaterNozzle4,$WaterNozzle5]
 @onready var phase0_list = [nozz_list[5],nozz_list[4]]
 @onready var phase1_list = [nozz_list[2],nozz_list[3]]
@@ -13,6 +19,19 @@ var _vulnerable = false
 var _current_phase = 0
 var _max_phases = 1
 var _nozz_count = 0
+
+
+# Laundry attack Variables
+var _clothes_timer_phase1 = 15
+var _clothes_timer_phase2 = 10
+var _clothes_timer_phase3 = 8
+var _clothes_timer_phase4 = 5
+var clothes_timer_list = [_clothes_timer_phase1,_clothes_timer_phase2,_clothes_timer_phase3,_clothes_timer_phase4]
+var _clothes_timer_max = _clothes_timer_phase1
+var _clothes_timer_min = -.3
+var _clothes_timer = 3
+var _clothes_density = 1
+
 
 
 func _ready() -> void:
@@ -28,12 +47,22 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	_clothes_timer -=1*delta
+	if _clothes_timer <= 0:
+		_clothes_attack()
+	if _clothes_timer <= _clothes_timer_min:
+			_clothes_timer = _clothes_timer_max
 	
 	
 func _drop_eyes():
 	_eyes._drop()
 	_vulnerable = true
+	
+func _clothes_attack():
+	if randi_range(0,_clothes_density) == 0:
+		var selection = randi_range(0,2)
+		var new_clothes = laundry_list[selection].instantiate()
+		_clothes_path.add_child(new_clothes)
 	
 	
 func _revive_eyes():
@@ -66,6 +95,8 @@ func _on_boss_phase_changed(phase):
 	if Main.node.boss_health > 0:
 		print(phase)
 		print("new phase")
+		_clothes_timer_max = clothes_timer_list[phase]
+		print(_clothes_timer_max)
 		_current_phase = phase -1
 		_repair_nozzles()
 		_adjust_water_level()
