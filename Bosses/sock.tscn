@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5vie6u6xs1mi"]
+[gd_scene load_steps=5 format=3 uid="uid://c5vie6u6xs1mi"]
 
 [ext_resource type="Script" path="res://Bosses/sock.gd" id="1_rfhnw"]
 [ext_resource type="Texture2D" uid="uid://dgbww5v3835qc" path="res://Sprite Sheets/Washer/socks.png" id="1_sqv4q"]
+[ext_resource type="Script" path="res://Bosses/clothing_hit.gd" id="2_baqen"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fhd12"]
 size = Vector2(10, 12)
@@ -9,12 +10,13 @@ size = Vector2(10, 12)
 [node name="Sock" type="PathFollow2D"]
 script = ExtResource("1_rfhnw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_sqv4q")
-
-[node name="RigidBody2D" type="StaticBody2D" parent="Sprite2D"]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 96
 collision_mask = 0
+script = ExtResource("2_baqen")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_fhd12")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("1_sqv4q")

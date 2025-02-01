@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnudfq4b3k0xe"]
+
+[ext_resource type="Script" path="res://gold_nozzle.gd" id="1_8wcg5"]
+[ext_resource type="Texture2D" uid="uid://mbnn7w148ida" path="res://Sprite Sheets/Washer/NozzGold.png" id="1_aho8x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkttu"]
+atlas = ExtResource("1_aho8x")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7ltt"]
+atlas = ExtResource("1_aho8x")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp5no"]
+atlas = ExtResource("1_aho8x")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4dw34"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkttu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7ltt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp5no")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ybnvw"]
+
+[node name="GoldNozzle" type="StaticBody2D"]
+z_index = 5
+script = ExtResource("1_8wcg5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4dw34")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ybnvw")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

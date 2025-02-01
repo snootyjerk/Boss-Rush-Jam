@@ -2,7 +2,7 @@ extends Area2D
 
 @export var _high_point = 50
 @export var _mid_point = 150
-@export var _low_point = 220
+@export var _low_point = 240
 @export var _lower_point = 300
 @export var _lowest_point = 340
 @export var _x_current = 10

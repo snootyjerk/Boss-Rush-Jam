@@ -95,9 +95,9 @@ func _on_boss_phase_changed(phase):
 	if Main.node.boss_health > 0:
 		print(phase)
 		print("new phase")
-		_clothes_timer_max = clothes_timer_list[phase]
 		print(_clothes_timer_max)
 		_current_phase = phase -1
+		_clothes_timer_max = clothes_timer_list[_current_phase]
 		_repair_nozzles()
 		_adjust_water_level()
 		_revive_eyes()

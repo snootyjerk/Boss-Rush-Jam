@@ -62,6 +62,7 @@ func _on_recall_area_body_entered(body: Node2D) -> void:
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
+		#print("hit!")
 		body.take_damage()
 		travel_timer.stop()
 		_state = States.RECALL
