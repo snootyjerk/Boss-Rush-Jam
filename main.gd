@@ -169,7 +169,8 @@ func game_completed():
 		var mode = "hardcore" if GlobalState.is_hardcore else "casual"
 		var file = FileAccess.open("user://best_time_" + mode + ".dat", FileAccess.WRITE)
 		file.store_string(node.run_time_elapsed_str)
-		get_tree().change_scene_to_packed(_credits_scene)
+	
+	get_tree().change_scene_to_packed(_credits_scene)
 	
 
 func quit():
