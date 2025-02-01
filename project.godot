@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Test="*res://test.gd"
+GlobalState="*res://global_state.gd"
 
 [display]
 
