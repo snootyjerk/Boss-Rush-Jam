@@ -394,7 +394,7 @@ parameters/looping = true
 
 [node name="CasualModeDescription" type="Label" parent="."]
 visible = false
-z_index = 4
+z_index = 99
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -411,7 +411,7 @@ vertical_alignment = 1
 
 [node name="HardcoreModeDescription" type="Label" parent="."]
 visible = false
-z_index = 4
+z_index = 99
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -425,6 +425,26 @@ text = "No healing. One life."
 label_settings = SubResource("LabelSettings_r2vjp")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CasualBestTime" type="Label" parent="."]
+visible = false
+z_index = 99
+layout_mode = 0
+offset_left = 364.0
+offset_top = 236.0
+offset_right = 405.0
+offset_bottom = 259.0
+text = "00:00"
+
+[node name="HardcoreBestTime" type="Label" parent="."]
+visible = false
+z_index = 99
+layout_mode = 0
+offset_left = 364.0
+offset_top = 285.0
+offset_right = 405.0
+offset_bottom = 308.0
+text = "00:00"
 
 [connection signal="button_up" from="CasualButton" to="." method="_on_casual_button_button_up"]
 [connection signal="mouse_entered" from="CasualButton" to="." method="_on_casual_button_mouse_entered"]
