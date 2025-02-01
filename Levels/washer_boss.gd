@@ -3,7 +3,7 @@ extends Boss
 @onready var _water_level = $WaterLevel
 @onready var _eyes = $WasherEyes
 @onready var nozz_list = [$WaterNozzle0,$WaterNozzle1,$WaterNozzle2,$WaterNozzle3,$WaterNozzle4,$WaterNozzle5]
-@onready var phase0_list = [nozz_list[0],nozz_list[1]]
+@onready var phase0_list = [nozz_list[5],nozz_list[4]]
 @onready var phase1_list = [nozz_list[2],nozz_list[3]]
 @onready var phase2_list = [nozz_list[0],nozz_list[1],nozz_list[4],nozz_list[5]]
 @onready var phase3_list = [nozz_list[0],nozz_list[1],nozz_list[2],nozz_list[3],nozz_list[4],nozz_list[5]]
@@ -56,7 +56,7 @@ func _repair_nozzles():
 		nozzle = i
 		nozzle._repair()
 		_nozz_count +=1
-		
+	
 		
 func _adjust_water_level():
 	_water_level._set_level(_nozz_count)
@@ -66,7 +66,8 @@ func _on_boss_phase_changed(phase):
 	if Main.node.boss_health > 0:
 		print(phase)
 		print("new phase")
+		_current_phase = phase -1
 		_repair_nozzles()
 		_adjust_water_level()
 		_revive_eyes()
-		_current_phase = phase -1
+		

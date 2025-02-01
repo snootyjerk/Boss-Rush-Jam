@@ -157,7 +157,7 @@ shape = SubResource("RectangleShape2D_g28i8")
 debug_color = Color(0.83, 0.525667, 0, 0.643137)
 
 [node name="Player" parent="." instance=ExtResource("3_clgp8")]
-position = Vector2(320, 328)
+position = Vector2(320, 208)
 
 [node name="NextLevelTrigger" parent="." instance=ExtResource("5_0kcp1")]
 position = Vector2(645, 320)
@@ -167,12 +167,10 @@ position = Vector2(48, 20.5)
 shape = SubResource("RectangleShape2D_x6iin")
 
 [node name="BubbleSpawner" parent="." instance=ExtResource("5_5axnj")]
-_max_timer = 6
 _timer = 3
 
 [node name="BubbleSpawner2" parent="." instance=ExtResource("5_5axnj")]
 position = Vector2(512, 328)
-_max_timer = 6
 
 [node name="WasherBoss" type="Node2D" parent="." node_paths=PackedStringArray("_boss_death_spawn_node")]
 script = ExtResource("6_c8hk5")
