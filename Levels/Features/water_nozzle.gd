@@ -17,6 +17,7 @@ var _broken: bool = true:
 @onready var _sprite: AnimatedSprite2D = $Sprite2D
 @onready var _particles = $CPUParticles2D
 @onready var _detector = $Detector
+@onready var _shot_point = $ShotPoint
 
 var _shot = preload("res://Bosses/shot.tscn")
 var _shot_timer_max = 3
@@ -67,7 +68,7 @@ func _fire_shots():
 		new_shot = _shot.instantiate()
 		Main.node.current_level.add_child(new_shot)
 		new_shot._angle = angle
-		new_shot.global_position = global_position
+		new_shot.global_position = _shot_point.global_position
 		angle = player_angle.rotated(-_shot_offset)
 
 func _emerge():

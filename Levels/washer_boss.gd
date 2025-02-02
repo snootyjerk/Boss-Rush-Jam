@@ -31,7 +31,7 @@ var clothes_timer_list = [_clothes_timer_phase1,_clothes_timer_phase2,_clothes_t
 var _clothes_timer_max = _clothes_timer_phase1
 var _clothes_timer_min = -.3
 var _clothes_timer = 3
-var _clothes_density = 1
+var _clothes_density = 4
 
 signal clothes_warning
 

@@ -287,7 +287,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="GoldNozzle" parent="." instance=ExtResource("17_nda60")]
-position = Vector2(320, 72)
+position = Vector2(320, 80)
 rotation = 1.5708
 
 [connection signal="boss_defeated" from="." to="GoldNozzle" method="_on_washer_level_boss_defeated"]

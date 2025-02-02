@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq76gv1e4y8rf"]
+[gd_scene load_steps=4 format=3 uid="uid://dq76gv1e4y8rf"]
 
 [ext_resource type="Script" path="res://Bosses/shot.gd" id="1_6ircv"]
+[ext_resource type="Texture2D" uid="uid://263m35ggltwy" path="res://Sprite Sheets/shot.png" id="2_wv73d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2gbi1"]
 size = Vector2(8, 8)
@@ -15,8 +16,5 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_2gbi1")
 
-[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
-position = Vector2(1.19209e-07, 1.19209e-07)
-scale = Vector2(0.5, 0.5)
-color = Color(0.816421, 0.000545033, 0.820229, 1)
-polygon = PackedVector2Array(-4, -8, -8, -4, -8, -4, -8, 4, -4, 8, 4, 8, 8, 4, 8, -4, 4, -8)
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("2_wv73d")

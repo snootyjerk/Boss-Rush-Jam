@@ -1,7 +1,7 @@
 extends PathFollow2D
 
 var _speed = .1
-var _offset = 20
+var _offset = 25
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,5 +14,5 @@ func _process(delta: float) -> void:
 		queue_free()
 
 func take_damage():
-	print("destroyed")
+	#print("destroyed")
 	queue_free()

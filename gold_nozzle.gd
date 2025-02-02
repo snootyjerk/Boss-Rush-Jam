@@ -1,11 +1,10 @@
 extends StaticBody2D
 
 var _seed = preload("res://Levels/seed.tscn")
-#var _active = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	_on_washer_level_boss_defeated()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
