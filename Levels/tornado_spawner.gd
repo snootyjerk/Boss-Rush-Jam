@@ -11,10 +11,11 @@ func _ready():
 	
 	
 func _on_timeout():
-	var tornado = _tornado_scene.instantiate()
-	tornado.global_position = global_position
-	tornado.direction = _direction_1_or_neg1
-	Main.node.current_level.add_child(tornado)
+	if Main.node.current_level.level_name == "Vacuum":
+		var tornado = _tornado_scene.instantiate()
+		tornado.global_position = global_position
+		tornado.direction = _direction_1_or_neg1
+		Main.node.current_level.add_child(tornado)
 
 
 func _on_boss_phase_changed(new_phase: int):
@@ -25,4 +26,5 @@ func _on_boss_phase_changed(new_phase: int):
 
 func _on_boss_defeated():
 	$Timer.stop()
+	$Timer.free()
 	queue_free()

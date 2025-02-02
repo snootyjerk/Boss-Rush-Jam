@@ -7,6 +7,7 @@ const LEVEL_DIR: String = "res://Levels/level_"
 
 @export var _next_level_name: String
 @export var _boss: Boss
+@export var level_name: String = ""
 
 @onready var boss_music: AudioStreamPlayer = $BossMusic
 @onready var exit_blocking_tile_map: TileMap = $ExitBlockingTileMap
