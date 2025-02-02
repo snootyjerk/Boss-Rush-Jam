@@ -5,3 +5,4 @@
 [node name="BubbleSpawner" type="Node2D"]
 position = Vector2(128, 328)
 script = ExtResource("1_asv72")
+_max_timer = 5

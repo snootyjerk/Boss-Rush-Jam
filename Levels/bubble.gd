@@ -18,9 +18,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	_timer+= .5*delta
+	_timer += delta
 	
-	velocity.x = sin(_timer*_frequency) * _amplitude
+	velocity.x = sin(0.5*_timer*_frequency) * _amplitude
 	global_position += velocity
 	if _timer >= _max_time:
 		take_damage()

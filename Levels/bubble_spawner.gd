@@ -1,6 +1,6 @@
 extends Node2D
 var _bubble_scene = preload("res://Levels/Features/bubble.tscn")
-@export var _max_timer =  3	
+@export var _max_timer =  3
 @export var _timer = 2
 
 
