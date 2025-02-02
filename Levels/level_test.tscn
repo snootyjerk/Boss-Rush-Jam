@@ -20,6 +20,7 @@ process_mode = 1
 script = ExtResource("1_cta5x")
 _next_level_name = "test2"
 _boss = NodePath("VacuumBoss")
+level_name = "Vacuum"
 
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
 self_modulate = Color(0.572549, 0.572549, 0.572549, 0.87451)
