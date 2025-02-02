@@ -13,9 +13,9 @@ var _part_x_offset = 0
 var _part_y_offset = 0
 
 func _ready() -> void:
-	_particles.rotation = rotation
-	_particles.global_position = Vector2(global_position.x + _part_x_offset,global_position.y + _part_y_offset)
-
+	#_particles.rotation = rotation
+	#_particles.global_position = Vector2(global_position.x + _part_x_offset,global_position.y + _part_y_offset)
+	pass
 
 func _process(delta: float) -> void:
 	
