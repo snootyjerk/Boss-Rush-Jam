@@ -21,6 +21,7 @@ texture = SubResource("CanvasTexture_rtbpd")
 polygon = PackedVector2Array(0, 0, 20, 100, -20, 100)
 
 [node name="SuctionParticles" type="CPUParticles2D" parent="CollisionPolygon2D"]
+top_level = true
 position = Vector2(4.54747e-13, 141)
 rotation = -1.5708
 amount = 12

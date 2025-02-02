@@ -72,6 +72,7 @@ position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_8i6a0")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+top_level = true
 position = Vector2(16, 0)
 amount = 20
 lifetime = 0.2
