@@ -8,8 +8,17 @@ var _grav_vector = Vector2(0,15)
 var _drop_timer = 4
 
 @onready var circle = $CircleEffect
+@onready var _particles = $Sprite2D/CPUParticles2D
+var _part_x_offset = 0 
+var _part_y_offset = 0
+
+func _ready() -> void:
+	_particles.rotation = rotation
+	_particles.global_position = Vector2(global_position.x + _part_x_offset,global_position.y + _part_y_offset)
+
 
 func _process(delta: float) -> void:
+	
 	if _drop_timer >0:
 		global_position += _grav_vector*delta
 		_drop_timer -= 1*delta

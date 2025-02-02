@@ -2,7 +2,7 @@ extends Node2D
 
 @export var _enemy_scene: PackedScene
 var _enemy_count = 0
-var _max_enemy_count = 3
+var _max_enemy_count = 2
 
 func spawn():
 	if _enemy_count < _max_enemy_count:

@@ -32,10 +32,16 @@ var _in_range = false
 signal just_broken
 signal submerged
 signal emerged
+ 
+var _part_x_offset = 0 
+var _part_y_offset = 25
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	_particles.rotation = rotation
+	_particles.global_position = Vector2(global_position.x + _part_x_offset,global_position.y + _part_y_offset)
 	material.set("shader_parameter/flash_value", 0)
 	_detector.monitoring = false
 	

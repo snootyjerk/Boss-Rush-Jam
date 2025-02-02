@@ -9,10 +9,19 @@ var _player_quadrant: Vector2
 var _suck_timer = 2
 var _rotation_direction
 
+
+@onready var _particles = $CollisionPolygon2D/SuctionParticles
+var _part_x_offset = 0 
+var _part_y_offset = 0
+
+
 signal _suction_complete
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	_particles.rotation = rotation
+	_particles.global_position = Vector2(global_position.x + _part_x_offset,global_position.y + _part_y_offset)
+	
 	_set_enabled(true)
 	#_player_quadrant = _get_player_quadrant()
 	match _player_quadrant:
