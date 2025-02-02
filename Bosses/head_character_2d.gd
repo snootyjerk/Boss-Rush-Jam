@@ -9,7 +9,7 @@ var _suction_attack = preload("res://Bosses/suction_hitbox.tscn")
 
 @export var _idle_speed: float = 25
 @export var _strike_speed: float = 250
-@export var _tether_length: float = 100
+@export var _tether_length: float = 110
 
 @export var _idle_timer_max = 70
 var _idle_timer = _idle_timer_max

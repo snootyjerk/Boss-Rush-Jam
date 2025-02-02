@@ -11,6 +11,7 @@ var _is_active: bool = false
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+signal killed
 
 func _process(delta: float) -> void:
 	if _is_active:
@@ -23,6 +24,7 @@ func take_damage():
 	var death_scene = _enemy_death_scene.instantiate()
 	Main.node.current_level.add_child(death_scene)
 	death_scene.global_position = global_position
+	killed.emit()
 	queue_free()
 
 
