@@ -5,6 +5,7 @@ var _shirt = preload("res://Bosses/shirt.tscn")
 var _pants = preload("res://Bosses/pants.tscn")
 var laundry_list = [_sock,_shirt,_pants]
 
+@onready var _warning_light = $WarningLight
 @onready var _water_level = $WaterLevel
 @onready var _eyes = $WasherEyes
 @onready var _clothes_path = $Path2D
@@ -32,7 +33,7 @@ var _clothes_timer_min = -.3
 var _clothes_timer = 3
 var _clothes_density = 1
 
-
+signal clothes_warning
 
 func _ready() -> void:
 	super._ready()
@@ -48,6 +49,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	_clothes_timer -=1*delta
+	if _clothes_timer <= 3 and _warning_light._warning == false:
+		clothes_warning.emit()
 	if _clothes_timer <= 0:
 		_clothes_attack()
 	if _clothes_timer <= _clothes_timer_min:

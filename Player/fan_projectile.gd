@@ -8,7 +8,8 @@ signal recalled
 @onready var delay_timer: Timer = $DelayTimer
 @onready var hold_timer: Timer = $HoldTimer
 @onready var recall_timer: Timer = $RecallTimer
-
+@onready var throw_audio = $ThrowAudio
+@onready var plink_audio = $PlinkAudio
 
 enum States { TRAVEL, DELAY, HOLD, RECALL }
 var _state: States = States.TRAVEL
@@ -18,6 +19,7 @@ var _direction_sign: int # -1 or 1
 
 func _ready() -> void:
 	travel_timer.start()
+	throw_audio.play()
 
 
 func _process(delta: float) -> void:
@@ -58,6 +60,7 @@ func _on_recall_timer_timeout() -> void:
 
 func _on_recall_area_body_entered(body: Node2D) -> void:
 	_recall()
+	plink_audio.play()
 
 
 func _on_damage_area_body_entered(body: Node2D) -> void:
@@ -66,8 +69,8 @@ func _on_damage_area_body_entered(body: Node2D) -> void:
 		body.take_damage()
 		travel_timer.stop()
 		_state = States.RECALL
-	
-	
+	else:
+		plink_audio.play()
 	
 func _recall():
 	recalled.emit()

@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds2n7mhwba2c7"]
+[gd_scene load_steps=6 format=3 uid="uid://ds2n7mhwba2c7"]
 
 [ext_resource type="Texture2D" uid="uid://1uq1jmjbyarw" path="res://Sprite Sheets/Vaccum_pipe.png" id="1_eejdo"]
 [ext_resource type="Script" path="res://Levels/seed.gd" id="1_qdw6u"]
+[ext_resource type="AudioStream" uid="uid://gydcacc2ngr5" path="res://Sound Effects/seed_get.wav" id="3_nwi5t"]
+[ext_resource type="Script" path="res://Levels/circle_effect.gd" id="4_2k3bw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uc8vi"]
 radius = 9.0
@@ -35,5 +37,12 @@ collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_uc8vi")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_nwi5t")
+
+[node name="CircleEffect" type="Sprite2D" parent="."]
+z_index = -1
+script = ExtResource("4_2k3bw")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

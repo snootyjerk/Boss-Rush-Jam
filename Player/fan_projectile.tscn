@@ -1,7 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhhkd74y8g2tm"]
+[gd_scene load_steps=11 format=3 uid="uid://bhhkd74y8g2tm"]
 
 [ext_resource type="Texture2D" uid="uid://74qtjn1yy0uw" path="res://Sprite Sheets/fan_projectile.png" id="1_10tjw"]
 [ext_resource type="Script" path="res://Player/fan_projectile.gd" id="1_rsd6w"]
+[ext_resource type="AudioStream" uid="uid://bogmkf6o3vcdh" path="res://Sound Effects/fan_throw.wav" id="3_o2vg8"]
+[ext_resource type="AudioStream" uid="uid://cnnlmex7smd26" path="res://Sound Effects/plink.wav" id="4_qxf75"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5q6rt"]
 size = Vector2(14, 14)
@@ -99,6 +101,12 @@ collision_mask = 16
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RecallArea"]
 shape = SubResource("RectangleShape2D_j6pay")
 debug_color = Color(1.63645e-06, 0.627744, 0.498995, 0.42)
+
+[node name="ThrowAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_o2vg8")
+
+[node name="PlinkAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_qxf75")
 
 [connection signal="timeout" from="TravelTimer" to="." method="_on_travel_timer_timeout"]
 [connection signal="timeout" from="DelayTimer" to="." method="_on_delay_timer_timeout"]
