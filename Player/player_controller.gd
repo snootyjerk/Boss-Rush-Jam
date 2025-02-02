@@ -232,7 +232,6 @@ func _on_jump():
 
 
 func _submerge():
-	#print("in water")
 	_max_run_speed = 75
 	_jump_speed = 250
 	_acceleration = 250
@@ -240,11 +239,10 @@ func _submerge():
 	_air_friction = 1600
 	_friction = 3000
 	_gravity = 600
-	_flight_acceleration = 50
+	_flight_acceleration = 60
 
 
 func _emerge():
-	#print("out of water")
 	_max_run_speed = 150
 	_jump_speed = 500
 	_acceleration = 500
