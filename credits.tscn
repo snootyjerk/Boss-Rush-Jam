@@ -1,13 +1,41 @@
-[gd_scene load_steps=8 format=3 uid="uid://djt1ptpml0ydr"]
+[gd_scene load_steps=9 format=3 uid="uid://djt1ptpml0ydr"]
 
 [ext_resource type="FontFile" uid="uid://v2k5vidjfusp" path="res://Fonts/Outfit-Medium.ttf" id="1_hdwcf"]
 [ext_resource type="Script" path="res://credits.gd" id="1_mxi6f"]
+[ext_resource type="AudioStream" uid="uid://djnbiiy5vlq67" path="res://Music/boss_washer.ogg" id="3_vifrk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yj7ri"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_smmwx"]
 font = ExtResource("1_hdwcf")
+
+[sub_resource type="Animation" id="Animation_rrn1n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(245.5, 380)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-16.365]
+}
 
 [sub_resource type="Animation" id="Animation_8lmra"]
 resource_name = "roll"
@@ -22,7 +50,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(194.5, 380), Vector2(194.5, -440)]
+"values": [Vector2(202, 380), Vector2(202, -440)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -38,20 +66,17 @@ tracks/1/keys = {
 "method": &"_input_delay_finished"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_rrn1n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 8.6, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(245.5, 380)]
+"values": [-16.365, -16.365, -80.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k5dbo"]
@@ -82,10 +107,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -74.5
-offset_top = 200.0
-offset_right = 176.5
-offset_bottom = 845.0
+offset_left = -118.0
+offset_top = -620.0
+offset_right = 133.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Programmers:
@@ -124,5 +149,10 @@ libraries = {
 "": SubResource("AnimationLibrary_k5dbo")
 }
 autoplay = "roll"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_vifrk")
+volume_db = -16.365
+autoplay = true
 
 [connection signal="animation_finished" from="Label/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
