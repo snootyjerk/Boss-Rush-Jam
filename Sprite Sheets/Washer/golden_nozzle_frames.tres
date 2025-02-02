@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bh3kk0aktrwo5"]
+
+[ext_resource type="Texture2D" uid="uid://bk7vmxxgrv0rg" path="res://Sprite Sheets/Washer/GoldenNozzle.png" id="1_0rrqa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h360f"]
+atlas = ExtResource("1_0rrqa")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7da4"]
+atlas = ExtResource("1_0rrqa")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dto58"]
+atlas = ExtResource("1_0rrqa")
+region = Rect2(0, 0, 32, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h360f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o7da4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dto58")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]

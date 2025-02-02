@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cb5lqane2i3b8"]
+[gd_scene load_steps=35 format=3 uid="uid://cb5lqane2i3b8"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_mrqov"]
 [ext_resource type="Texture2D" uid="uid://b7csvcyq02swy" path="res://Sprite Sheets/Washer/BackgroundLayer3.png" id="2_ijcpp"]
@@ -15,9 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://keu34hegqnu6" path="res://Bosses/washer_eyes.tscn" id="9_1qgpv"]
 [ext_resource type="AudioStream" uid="uid://djnbiiy5vlq67" path="res://Music/boss_washer.ogg" id="11_vul5i"]
 [ext_resource type="Shader" path="res://Shaders/flash_shader.gdshader" id="14_8jvry"]
+[ext_resource type="SpriteFrames" uid="uid://dvwfxt04akr48" path="res://Sprite Sheets/Washer/alert_frames.tres" id="16_27f1l"]
 [ext_resource type="Script" path="res://Levels/warning_light.gd" id="17_8yrc8"]
 [ext_resource type="PackedScene" uid="uid://bnudfq4b3k0xe" path="res://gold_nozzle.tscn" id="17_nda60"]
-[ext_resource type="Texture2D" uid="uid://8h000gohoe2k" path="res://Sprite Sheets/WarningLight.png" id="18_sdqs7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wsfav"]
 size = Vector2(320.5, 31)
@@ -93,28 +93,6 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 124, 76, -3.86177, -11.671, 3.86177, 11.671, 124, 252, -57.9401, -19.0488, 57.9401, 19.0488, 196, 308, -42.8598, 21.4299, 42.8598, -21.4299, 452, 312, -11.9055, 31.748, 11.9055, -31.748, 492, 256, 11.9055, 20.6362, -11.9055, -20.6362, 504, 160, 52.3842, -0.7937, -52.3842, 0.7937, 324, 128, 9.87939, -43.2035, -9.87939, 43.2035, 124, 160, -8.85699, -46.6341, 8.85699, 46.6341, 124, 252, -36.5102, -17.4614, 36.5102, 17.4614, 196, 308, -32.5417, 24.6047, 32.5417, -24.6047, 452, 312, -6.3496, 26.9858, 6.3496, -26.9858, 492, 256, 0, 0, 0, 0, 512, 48)
 }
 point_count = 13
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hur4j"]
-atlas = ExtResource("18_sdqs7")
-region = Rect2(0, 0, 12, 12)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hi0kn"]
-atlas = ExtResource("18_sdqs7")
-region = Rect2(12, 0, 12, 12)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_a48ae"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hur4j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hi0kn")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [node name="WasherLevel" type="Node2D" node_paths=PackedStringArray("_boss")]
 process_mode = 1
@@ -227,36 +205,42 @@ collision_mask = 80
 
 [node name="WaterNozzle0" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 material = SubResource("ShaderMaterial_vvikr")
-position = Vector2(32, 325)
+position = Vector2(31, 325)
+scale = Vector2(1.5, 1.5)
 collision_layer = 64
 
 [node name="WaterNozzle1" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 material = SubResource("ShaderMaterial_kceea")
-position = Vector2(608, 325)
+position = Vector2(609, 325)
 rotation = 3.14159
+scale = Vector2(1.5, 1.5)
 collision_layer = 64
 
 [node name="WaterNozzle2" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 material = SubResource("ShaderMaterial_fxa65")
-position = Vector2(32, 148)
+position = Vector2(31, 148)
+scale = Vector2(1.5, 1.5)
 collision_layer = 64
 
 [node name="WaterNozzle3" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 material = SubResource("ShaderMaterial_m82cd")
 position = Vector2(608, 148)
 rotation = 3.14159
+scale = Vector2(1.5, 1.5)
 collision_layer = 64
 
 [node name="WaterNozzle4" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 material = SubResource("ShaderMaterial_d3c58")
-position = Vector2(160, 64)
+position = Vector2(160, 63)
 rotation = 1.5708
+scale = Vector2(1.5, 1.5)
 collision_layer = 64
 
 [node name="WaterNozzle5" parent="WasherBoss" instance=ExtResource("6_6nnh0")]
 material = SubResource("ShaderMaterial_17w0g")
-position = Vector2(480, 64)
+position = Vector2(480, 63)
 rotation = 1.5708
+scale = Vector2(1.5, 1.5)
 collision_layer = 64
 
 [node name="Path2D" type="Path2D" parent="WasherBoss"]
@@ -266,19 +250,16 @@ curve = SubResource("Curve2D_rwmj8")
 script = ExtResource("17_8yrc8")
 
 [node name="Light1" type="AnimatedSprite2D" parent="WasherBoss/WarningLight"]
-position = Vector2(112, 56)
-sprite_frames = SubResource("SpriteFrames_a48ae")
-frame = 1
+position = Vector2(90, 53)
+sprite_frames = ExtResource("16_27f1l")
 
 [node name="Light2" type="AnimatedSprite2D" parent="WasherBoss/WarningLight"]
-position = Vector2(124, 56)
-sprite_frames = SubResource("SpriteFrames_a48ae")
-frame = 1
+position = Vector2(108, 53)
+sprite_frames = ExtResource("16_27f1l")
 
 [node name="Light3" type="AnimatedSprite2D" parent="WasherBoss/WarningLight"]
-position = Vector2(136, 56)
-sprite_frames = SubResource("SpriteFrames_a48ae")
-frame = 1
+position = Vector2(126, 53)
+sprite_frames = ExtResource("16_27f1l")
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_vul5i")
@@ -287,8 +268,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="GoldNozzle" parent="." instance=ExtResource("17_nda60")]
-position = Vector2(320, 80)
-rotation = 1.5708
+position = Vector2(320, 76)
 
 [connection signal="boss_defeated" from="." to="GoldNozzle" method="_on_washer_level_boss_defeated"]
 [connection signal="clothes_warning" from="WasherBoss" to="WasherBoss/WarningLight" method="_on_washer_boss_clothes_warning"]

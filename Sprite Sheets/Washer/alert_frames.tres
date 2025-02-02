@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dvwfxt04akr48"]
+
+[ext_resource type="Texture2D" uid="uid://cgs78eqkmegk4" path="res://Sprite Sheets/Washer/Alert.png" id="1_bmrnn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tnyqi"]
+atlas = ExtResource("1_bmrnn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl8ok"]
+atlas = ExtResource("1_bmrnn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afjk4"]
+atlas = ExtResource("1_bmrnn")
+region = Rect2(32, 0, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tnyqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl8ok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afjk4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
