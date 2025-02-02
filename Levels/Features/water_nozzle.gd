@@ -25,7 +25,7 @@ var _shot_timer = 0
 var _shot_offset = deg_to_rad(20)
 
 var _submerged = false
-var _max_hp = 3
+var _max_hp = 2
 var _hp = _max_hp
 var _in_range = false
 

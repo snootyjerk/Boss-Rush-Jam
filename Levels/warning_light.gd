@@ -8,7 +8,6 @@ var _warning = false
 @onready var light3 = $Light3
 @onready var light_list = [light1,light2,light3]
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in light_list:

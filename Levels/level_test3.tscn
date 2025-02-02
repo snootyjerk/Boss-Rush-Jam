@@ -133,36 +133,43 @@ texture = ExtResource("5_4gfed")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+visible = false
 position = Vector2(160.25, 16)
 shape = SubResource("RectangleShape2D_wsfav")
 debug_color = Color(0.83, 0.525667, 0, 0.643137)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+visible = false
 position = Vector2(3.125, 112)
 shape = SubResource("RectangleShape2D_mhmx4")
 debug_color = Color(0.83, 0.525667, 0, 0.643137)
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+visible = false
 position = Vector2(316.5, 104)
 shape = SubResource("RectangleShape2D_kfe8u")
 debug_color = Color(0.83, 0.525667, 0, 0.643137)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+visible = false
 position = Vector2(160, 128)
 shape = SubResource("RectangleShape2D_44w5b")
 debug_color = Color(0.83, 0.525667, 0, 0.643137)
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Walls"]
+visible = false
 position = Vector2(23.75, 128)
 shape = SubResource("RectangleShape2D_k0g8x")
 debug_color = Color(0.83, 0.525667, 0, 0.643137)
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="Walls"]
+visible = false
 position = Vector2(296, 128)
 shape = SubResource("RectangleShape2D_k0g8x")
 debug_color = Color(0.83, 0.525667, 0, 0.643137)
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
+visible = false
 position = Vector2(147.25, 205.125)
 shape = SubResource("RectangleShape2D_g28i8")
 debug_color = Color(0.83, 0.525667, 0, 0.643137)
@@ -250,15 +257,18 @@ curve = SubResource("Curve2D_rwmj8")
 script = ExtResource("17_8yrc8")
 
 [node name="Light1" type="AnimatedSprite2D" parent="WasherBoss/WarningLight"]
-position = Vector2(90, 53)
+texture_filter = 1
+position = Vector2(106, 36)
 sprite_frames = ExtResource("16_27f1l")
 
 [node name="Light2" type="AnimatedSprite2D" parent="WasherBoss/WarningLight"]
-position = Vector2(108, 53)
+texture_filter = 1
+position = Vector2(124, 36)
 sprite_frames = ExtResource("16_27f1l")
 
 [node name="Light3" type="AnimatedSprite2D" parent="WasherBoss/WarningLight"]
-position = Vector2(126, 53)
+texture_filter = 1
+position = Vector2(142, 36)
 sprite_frames = ExtResource("16_27f1l")
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="."]

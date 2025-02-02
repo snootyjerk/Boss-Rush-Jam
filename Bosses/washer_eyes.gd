@@ -18,8 +18,6 @@ func _process(delta: float) -> void:
 	
 	
 func _drop():
-	left_eye.drop()
-	right_eye.drop()
 	animation_player.play("drop")
 	
 	
@@ -32,3 +30,9 @@ func _repair():
 func _on_damaged():
 	left_eye.flash_animation()
 	right_eye.flash_animation()
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "drop":
+		left_eye.drop()
+		right_eye.drop()
