@@ -17,7 +17,7 @@ func _ready() -> void:
 func _on_level_boss_defeated() -> void:
 	if _boss_death_scene:
 		var boss_death = _boss_death_scene.instantiate()
-		get_parent().add_child(boss_death)
+		Main.node.current_level.add_child(boss_death)
 		if _boss_death_spawn_node:
 			boss_death.global_position = _boss_death_spawn_node.global_position
 		else:

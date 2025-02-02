@@ -118,7 +118,6 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
 		#go_to_next_level()
 		_pause(!is_game_paused)
-		#go_to_next_level()
 
 
 func go_to_level(level_scene: PackedScene):
@@ -142,6 +141,7 @@ func go_to_next_level():
 	var new_level: Level = new_level_scene.instantiate()
 	if node.current_level:
 		node.remove_child(node.current_level)
+		node.current_level.queue_free()
 	node.call_deferred("add_child", new_level)
 	node.boss_phase = 1
 	
