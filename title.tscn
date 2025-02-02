@@ -1,27 +1,27 @@
 [gd_scene load_steps=28 format=3 uid="uid://bw64y1ck7tjv4"]
 
-[ext_resource type="FontFile" uid="uid://b8bkntbvtd4tt" path="res://Fonts/Geo-Regular.ttf" id="1_1tvp6"]
-[ext_resource type="Script" path="res://title_screen.gd" id="1_3osmr"]
-[ext_resource type="Texture2D" uid="uid://dgl80wedvkmuc" path="res://Sprite Sheets/Title/skyTitle1.png" id="2_geimr"]
-[ext_resource type="FontFile" uid="uid://cwbu6sa072b5f" path="res://Fonts/Orbitron-Medium.ttf" id="2_rmxdq"]
-[ext_resource type="Texture2D" uid="uid://bc03y64r2xbom" path="res://Sprite Sheets/Title/skyTitle2.png" id="3_87uke"]
-[ext_resource type="Script" path="res://title_clouds.gd" id="4_lcs05"]
-[ext_resource type="Texture2D" uid="uid://du1jr6r524vek" path="res://Sprite Sheets/Title/cloudLayer2.png" id="5_nua02"]
-[ext_resource type="AudioStream" uid="uid://dghwx5x1hy6ik" path="res://Music/title.ogg" id="6_jqu8i"]
-[ext_resource type="Texture2D" uid="uid://bnc04opuk3ekc" path="res://Sprite Sheets/Title/cloudLayer1.png" id="6_v8g0k"]
-[ext_resource type="Texture2D" uid="uid://dx1tq3fhwu4j5" path="res://Sprite Sheets/Title/SpinnySitOnCliff.png" id="7_q24eq"]
+[ext_resource type="Script" path="res://title_screen.gd" id="1_jmsb5"]
+[ext_resource type="Texture2D" uid="uid://dgl80wedvkmuc" path="res://Sprite Sheets/Title/skyTitle1.png" id="2_m3cn3"]
+[ext_resource type="Texture2D" uid="uid://bc03y64r2xbom" path="res://Sprite Sheets/Title/skyTitle2.png" id="3_083qv"]
+[ext_resource type="Script" path="res://title_clouds.gd" id="4_rvue6"]
+[ext_resource type="Texture2D" uid="uid://du1jr6r524vek" path="res://Sprite Sheets/Title/cloudLayer2.png" id="5_0jw2d"]
+[ext_resource type="Texture2D" uid="uid://bnc04opuk3ekc" path="res://Sprite Sheets/Title/cloudLayer1.png" id="6_5kbdi"]
+[ext_resource type="Texture2D" uid="uid://dx1tq3fhwu4j5" path="res://Sprite Sheets/Title/SpinnySitOnCliff.png" id="7_8cva2"]
+[ext_resource type="FontFile" uid="uid://b8bkntbvtd4tt" path="res://Fonts/Geo-Regular.ttf" id="8_86e62"]
+[ext_resource type="FontFile" uid="uid://cwbu6sa072b5f" path="res://Fonts/Orbitron-Medium.ttf" id="9_iw7dd"]
+[ext_resource type="AudioStream" uid="uid://dghwx5x1hy6ik" path="res://Music/title.ogg" id="10_ylroi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ep45t"]
-texture = ExtResource("2_geimr")
+texture = ExtResource("2_m3cn3")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6c4vq"]
-texture = ExtResource("3_87uke")
+texture = ExtResource("3_083qv")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8fy1g"]
-texture = ExtResource("5_nua02")
+texture = ExtResource("5_0jw2d")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cyvj0"]
-texture = ExtResource("6_v8g0k")
+texture = ExtResource("6_5kbdi")
 
 [sub_resource type="Animation" id="Animation_d153u"]
 length = 0.001
@@ -159,7 +159,7 @@ _data = {
 }
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t25oq"]
-texture = ExtResource("7_q24eq")
+texture = ExtResource("7_8cva2")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ce1pu"]
 bg_color = Color(0.623, 0.68975, 0.89, 1)
@@ -180,11 +180,11 @@ bg_color = Color(0.7, 0.147, 0.2576, 1)
 bg_color = Color(1, 0.313536, 0.456251, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_odyfv"]
-font = ExtResource("1_1tvp6")
+font = ExtResource("8_86e62")
 font_size = 12
 
 [sub_resource type="LabelSettings" id="LabelSettings_sqtxb"]
-font = ExtResource("2_rmxdq")
+font = ExtResource("9_iw7dd")
 font_size = 48
 outline_size = 4
 outline_color = Color(0.05, 0.05, 0.05, 1)
@@ -201,7 +201,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3osmr")
+script = ExtResource("1_jmsb5")
 
 [node name="Panel" type="Panel" parent="."]
 texture_filter = 1
@@ -231,7 +231,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("4_lcs05")
+script = ExtResource("4_rvue6")
 
 [node name="CloudsFar" type="Panel" parent="Clouds"]
 z_index = 2
@@ -327,7 +327,7 @@ offset_right = 32.0
 offset_bottom = 83.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_1tvp6")
+theme_override_fonts/font = ExtResource("8_86e62")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ce1pu")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_lik1b")
 theme_override_styles/normal = SubResource("StyleBoxFlat_6lr5s")
@@ -348,7 +348,7 @@ offset_right = 32.0
 offset_bottom = 132.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("1_1tvp6")
+theme_override_fonts/font = ExtResource("8_86e62")
 theme_override_styles/hover = SubResource("StyleBoxFlat_21jvg")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_dyd0o")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wrxy6")
@@ -387,7 +387,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_jqu8i")
+stream = ExtResource("10_ylroi")
 volume_db = -9.245
 autoplay = true
 parameters/looping = true

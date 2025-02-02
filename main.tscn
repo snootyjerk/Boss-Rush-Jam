@@ -171,9 +171,8 @@ anchors_preset = 0
 anchor_left = 0.0
 anchor_right = 0.0
 offset_left = 0.0
-offset_top = 0.0
 offset_right = 638.0
-offset_bottom = 75.0
+offset_bottom = 80.0
 grow_horizontal = 1
 
 [node name="TimeLabel" type="Label" parent="HUD"]
