@@ -19,4 +19,4 @@ func _input_delay_finished():
 	
 
 func _next():
-	get_tree().change_scene_to_file("res://title_screen.tscn")
+	get_tree().change_scene_to_file("res://title.tscn")
