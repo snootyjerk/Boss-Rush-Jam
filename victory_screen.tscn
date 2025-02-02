@@ -1,0 +1,415 @@
+[gd_scene load_steps=25 format=3 uid="uid://jih2shtopg22"]
+
+[ext_resource type="Script" path="res://victory_screen.gd" id="1_2qivg"]
+[ext_resource type="Texture2D" uid="uid://dgl80wedvkmuc" path="res://Sprite Sheets/Title/skyTitle1.png" id="2_16rg8"]
+[ext_resource type="Texture2D" uid="uid://bc03y64r2xbom" path="res://Sprite Sheets/Title/skyTitle2.png" id="3_ugycs"]
+[ext_resource type="Script" path="res://title_clouds.gd" id="4_r7fng"]
+[ext_resource type="Texture2D" uid="uid://du1jr6r524vek" path="res://Sprite Sheets/Title/cloudLayer2.png" id="5_aooo7"]
+[ext_resource type="Texture2D" uid="uid://bnc04opuk3ekc" path="res://Sprite Sheets/Title/cloudLayer1.png" id="6_1d4y5"]
+[ext_resource type="Texture2D" uid="uid://ny8blibpkgn8" path="res://Sprite Sheets/SpinnyAndFrendSitOnCliff.png" id="6_bq8aw"]
+[ext_resource type="FontFile" uid="uid://v2k5vidjfusp" path="res://Fonts/Outfit-Medium.ttf" id="9_4huah"]
+[ext_resource type="FontFile" uid="uid://cwbu6sa072b5f" path="res://Fonts/Orbitron-Medium.ttf" id="9_gt5jj"]
+[ext_resource type="AudioStream" uid="uid://dghwx5x1hy6ik" path="res://Music/title.ogg" id="10_tu5nl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ep45t"]
+texture = ExtResource("2_16rg8")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6c4vq"]
+texture = ExtResource("3_ugycs")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8fy1g"]
+texture = ExtResource("5_aooo7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cyvj0"]
+texture = ExtResource("6_1d4y5")
+
+[sub_resource type="Animation" id="Animation_d153u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CloudsFar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloudsFar2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(638, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CloudsNear:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CloudsNear2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(638, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CloudsNear3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1276, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qk7vg"]
+resource_name = "scroll"
+length = 60.0
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CloudsFar:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-640, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CloudsFar2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(638, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CloudsNear:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-1280, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CloudsNear2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(638, 0), Vector2(-638, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CloudsNear3:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1276, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5ucq3"]
+_data = {
+"RESET": SubResource("Animation_d153u"),
+"scroll": SubResource("Animation_qk7vg")
+}
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t25oq"]
+texture = ExtResource("6_bq8aw")
+
+[sub_resource type="LabelSettings" id="LabelSettings_sqtxb"]
+font = ExtResource("9_gt5jj")
+font_size = 40
+outline_size = 4
+outline_color = Color(0.05, 0.05, 0.05, 1)
+shadow_color = Color(0.69, 0.69, 0.69, 0.843137)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xcaxq"]
+font = ExtResource("9_4huah")
+font_size = 32
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_q6bqx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-9.245]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackPanel:theme_override_styles/panel:bg_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vtbof"]
+resource_name = "win"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5.5, 7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-9.245, -9.245, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackPanel:theme_override_styles/panel:bg_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.5, 7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cc3ff"]
+_data = {
+"RESET": SubResource("Animation_q6bqx"),
+"win": SubResource("Animation_vtbof")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktb0u"]
+bg_color = Color(0, 0, 0, 0)
+
+[node name="VictoryScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2qivg")
+
+[node name="Panel" type="Panel" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ep45t")
+
+[node name="Panel2" type="Panel" parent="."]
+z_index = 1
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_6c4vq")
+
+[node name="Clouds" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_r7fng")
+
+[node name="CloudsFar" type="Panel" parent="Clouds"]
+z_index = 2
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.00012207
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_8fy1g")
+
+[node name="CloudsFar2" type="Panel" parent="Clouds"]
+z_index = 3
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 638.0
+offset_right = 638.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_8fy1g")
+
+[node name="CloudsNear" type="Panel" parent="Clouds"]
+z_index = 4
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cyvj0")
+
+[node name="CloudsNear2" type="Panel" parent="Clouds"]
+z_index = 5
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 638.0
+offset_right = 638.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cyvj0")
+
+[node name="CloudsNear3" type="Panel" parent="Clouds"]
+z_index = 5
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1276.0
+offset_right = 1276.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_cyvj0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Clouds"]
+libraries = {
+"": SubResource("AnimationLibrary_5ucq3")
+}
+autoplay = "scroll"
+
+[node name="Panel5" type="Panel" parent="."]
+z_index = 6
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_t25oq")
+
+[node name="Title" type="Label" parent="."]
+z_index = 99
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -130.0
+offset_bottom = -69.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Victory!"
+label_settings = SubResource("LabelSettings_sqtxb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_tu5nl")
+volume_db = -9.245
+autoplay = true
+parameters/looping = true
+
+[node name="PlayTime" type="Label" parent="."]
+z_index = 99
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.5
+offset_top = -11.5
+offset_right = 20.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "00:00"
+label_settings = SubResource("LabelSettings_xcaxq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cc3ff")
+}
+autoplay = "win"
+
+[node name="BlackPanel" type="Panel" parent="."]
+z_index = 999
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ktb0u")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

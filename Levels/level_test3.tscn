@@ -273,7 +273,7 @@ sprite_frames = ExtResource("16_27f1l")
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_vul5i")
-volume_db = -6.009
+volume_db = -14.329
 autoplay = true
 parameters/looping = true
 

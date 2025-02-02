@@ -28,7 +28,7 @@ texture = ExtResource("2_phtop")
 
 [node name="BossMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_6fsmp")
-volume_db = -16.0
+volume_db = -13.689
 autoplay = true
 parameters/looping = true
 

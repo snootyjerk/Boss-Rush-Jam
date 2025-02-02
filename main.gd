@@ -8,10 +8,10 @@ signal boss_health_changed(new_health: int)
 signal boss_phase_changed(new_phase: int)
 signal boss_defeated
 
-var _title_scene = preload("res://title_screen.tscn")
+var _title_scene = load("res://title.tscn")
 var _first_level_scene = preload("res://Levels/level_test.tscn")
 var _game_over_scene = preload("res://Scenes/game_over.tscn")
-var _credits_scene = preload("res://credits.tscn")
+var _victory_scene = preload("res://victory_screen.tscn")
 
 static var node: Main
 
@@ -109,10 +109,7 @@ func _ready():
 		var time_str: String = file.get_line()
 		current_best_time = _convert_time_str_to_secs(time_str)
 	
-	if Test.level < 1: # Remove for final build
-		go_to_level(_first_level_scene)
-	else:
-		go_to_level(Test.levels[Test.level - 1])
+	go_to_level(_first_level_scene)
 		
 	player_health_changed.emit(player_health)
 	
@@ -148,8 +145,6 @@ func go_to_next_level():
 	
 	
 func retry():
-	Test.level = 0
-	get_tree().paused = false
 	if GlobalState.is_hardcore:
 		get_tree().change_scene_to_packed(_title_scene)
 	else:
@@ -158,19 +153,18 @@ func retry():
 		_hide_game_over_screen()
 		hud.visible = true
 		_restart_level()
-	#get_tree().paused = false
-	#
-	#
+		get_tree().paused = false
 	
 	
 func game_completed():
-	var new_time = _convert_time_str_to_secs(node.run_time_elapsed_str)
-	if new_time < current_best_time:
-		var mode = "hardcore" if GlobalState.is_hardcore else "casual"
-		var file = FileAccess.open("user://best_time_" + mode + ".dat", FileAccess.WRITE)
-		file.store_string(node.run_time_elapsed_str)
+	#var new_time = _convert_time_str_to_secs(node.run_time_elapsed_str)
+	#if new_time < current_best_time:
+		#var mode = "hardcore" if GlobalState.is_hardcore else "casual"
+		#var file = FileAccess.open("user://best_time_" + mode + ".dat", FileAccess.WRITE)
+		#file.store_string(node.run_time_elapsed_str)
 	
-	get_tree().change_scene_to_packed(_credits_scene)
+	GlobalState.time_str = node.run_time_elapsed_str
+	get_tree().change_scene_to_packed(_victory_scene)
 	
 
 func quit():

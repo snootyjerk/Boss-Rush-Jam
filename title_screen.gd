@@ -7,7 +7,8 @@ var _main_scene = preload("res://main.tscn")
 
 
 
-#func _ready() -> void:
+func _ready() -> void:
+	get_tree().paused = false
 	#if FileAccess.file_exists("user://best_time_casual.dat"):
 		#var file = FileAccess.open("user://best_time_casual.dat", FileAccess.READ)
 		#var time = file.get_line()
@@ -30,20 +31,6 @@ func _on_casual_button_button_up() -> void:
 func _on_hardcore_button_button_up() -> void:
 	GlobalState.is_hardcore = true
 	get_tree().change_scene_to_packed(_main_scene)
-
-
-# REMOVE FOR FINAL BUILD!!!!!!
-func _process(delta: float) -> void:
-	if Input.is_key_pressed(KEY_1):
-		Test.level = 1
-		print("And a 1!")
-		get_tree().change_scene_to_packed(_main_scene)
-	if Input.is_key_pressed(KEY_2):
-		Test.level = 2
-		get_tree().change_scene_to_packed(_main_scene)
-	if Input.is_key_pressed(KEY_3):
-		Test.level = 3
-		get_tree().change_scene_to_packed(_main_scene)
 
 
 func _on_casual_button_mouse_entered() -> void:
