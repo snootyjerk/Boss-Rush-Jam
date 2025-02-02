@@ -117,6 +117,7 @@ func _ready():
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("pause"):
 		_pause(!is_game_paused)
+		#go_to_next_level()
 
 
 func go_to_level(level_scene: PackedScene):

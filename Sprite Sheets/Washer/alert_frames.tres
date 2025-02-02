@@ -1,25 +1,30 @@
-[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://dvwfxt04akr48"]
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://dvwfxt04akr48"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_tnyqi"]
+[ext_resource type="Texture2D" uid="uid://cgs78eqkmegk4" path="res://Sprite Sheets/Washer/Alert.png" id="1_8bin2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2yjg"]
+atlas = ExtResource("1_8bin2")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pl8ok"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmppr"]
+atlas = ExtResource("1_8bin2")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_afjk4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_nr8ql"]
+atlas = ExtResource("1_8bin2")
 region = Rect2(32, 0, 16, 16)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tnyqi")
+"texture": SubResource("AtlasTexture_h2yjg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pl8ok")
+"texture": SubResource("AtlasTexture_jmppr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_afjk4")
+"texture": SubResource("AtlasTexture_nr8ql")
 }],
 "loop": true,
 "name": &"default",
